@@ -1,6 +1,6 @@
 ### Graduation Project
 
-[Discord Group](https://discord.gg/F6JpFq879y)
+[Discord Server](https://discord.gg/F6JpFq879y)
 
 ### Instructions
 
