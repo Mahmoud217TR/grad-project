@@ -18,6 +18,7 @@ There are several lines you may need to change in a text editor (use search to f
 `extension=gd`
 `extension=mbstring`
 `extension=pdo_mysql`
+`extension=sqlite3`
 
 **Step 4 - Add** `C:\php` **to the path environment variable:**
 to ensure Windows can find the PHP executable, you need to change the `PATH` environment variable. Click the Windows Start button and type “environment”, then click Edit the system environment variables. Select the Advanced tab, and click the Environment Variables button.
@@ -57,7 +58,13 @@ open your `CMD` at the local directory **where you want to clone your repository
 **Step 2:**
 Paste this command `git clone https://github.com/Mahmoud217TR/grad-project.git`.
 
-**IMPORTANT**: once you downloaded the project run the commands:
+**IMPORTANT**: once you downloaded the project run the you have several steps:
+
+**Step 1 - in tmp folder open pack1 and extract the files to there appropriate places**
+
+**Step 2 - Run the following commands:**
+
+`composer install`
 `npm install`
 `npm run dev`
 
