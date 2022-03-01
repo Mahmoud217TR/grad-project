@@ -29,14 +29,14 @@ class DatabaseSeeder extends Seeder
             $user->snippets()->saveMany(Snippet::factory(rand(0,4))->make());
             if($user->role > 1){
                 echo "Generating Posts for user".$user->id."...\n";
-                $user->posts()->saveMany(Post::factory(rand(0,5))->make());
+                $user->posts()->saveMany(Post::factory(rand(0,4))->make());
             }
         });
         
         $posts = Post::all();
         foreach($posts as $post){
             echo "Generating Comments for post ".$post->id."....\n";
-            $post->comments()->saveMany(Comment::factory(rand(0,8))->make());
+            $post->comments()->saveMany(Comment::factory(rand(0,4))->make());
         }
         
         echo "Generating Tags....\n";
