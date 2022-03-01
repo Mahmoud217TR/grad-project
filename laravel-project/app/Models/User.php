@@ -44,6 +44,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $attributes = [
+		'role' => 0
+	];
+
+    public function getRole(){
+        return [
+            0 => 'user',
+            1 => 'reviewer',
+            2 => 'editor',
+            3 => 'admin',
+            4 => 'super_admin'
+        ];
+    }
+
     public function snippets(){
         return $this->hasMany(Snippet::class);
     }
@@ -55,4 +69,36 @@ class User extends Authenticatable
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+    
+    public function getRoleAttribute($attribute){
+		return $this->getRole()[$attribute];
+	}
+
+    public function scopeUsers($query){
+		return $query->where('role','0');
+	}
+
+    public function scopeReviewers($query){
+		return $query->where('role','1');
+	}
+
+    public function scopeEditors($query){
+		return $query->where('role','2');
+	}
+
+    public function scopeAdmins($query){
+		return $query->where('role','3');
+	}
+
+    public function scopeSuperAdmins($query){
+		return $query->where('role','4');
+	}
+
+    public function scopeSystemAdmins($query){
+		return $query->where('role','>=','3');
+	}
+
+    public function scopeWebAdmins($query){
+		return $query->where('role','>','0');
+	}
 }

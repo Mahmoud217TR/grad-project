@@ -24,41 +24,56 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        generate_generic_useres();
+
         echo "Generating Tags....\n";
-        Tag::factory(10)->create();
-        echo Tag::count()." Tags Generated\n\n";
+        $numberOfTags = rand(3,20);
+        Tag::factory($numberOfTags)->create();
+        echo $numberOfTags." Tags Generated!!\n";
 
         echo "Generating Users....\n";
-        User::factory(rand(10,15))->create()->each(function ($user){
+        $numberOfUsers = rand(10,30);
+        User::factory($numberOfUsers)->create(['role' => 0])->each(function ($user){
             echo "Generating Snipints for user ".$user->id."...\n";
-            if($user->role > 0){
-                $user->snippets()->saveMany(Snippet::factory(rand(0,4))->make(['status'=> 1]));
-            }else{
-                $user->snippets()->saveMany(Snippet::factory(rand(0,4))->make());
-            }
-            
-            if($user->role > 1){
-                echo "Generating Posts for user ".$user->id."...\n";
-                $user->posts()->saveMany(Post::factory(rand(0,4))->make());
-            }
+            $user->snippets()->saveMany(Snippet::factory(rand(0,2))->make(['status'=> 0]));
         });
+        echo $numberOfUsers." Users Generated!!\n";
 
-        echo User::count()." Main Users Generated with ".Snippet::count()." Snippets & ".Post::count()." Posts Generated\n\n";
+        echo "Generating Reviewers....\n";
+        $numberOfReviewers = rand(3,9);
+        User::factory($numberOfReviewers)->create(['role' => 1])->each(function ($user){
+            echo "Generating Snipints for reviewer ".$user->id."...\n";
+            $user->snippets()->saveMany(Snippet::factory(rand(0,4))->make(['status'=> 1]));
+        });
+        echo $numberOfReviewers." Reviewers Generated!!\n";
+
+        echo "Generating Editors....\n";
+        $numberOfEditors = rand(2,6);
+        User::factory($numberOfEditors)->create(['role' => 2])->each(function ($user){
+            echo "Generating Snipints for editor ".$user->id."...\n";
+            $user->snippets()->saveMany(Snippet::factory(rand(0,4))->make(['status'=> 1]));
+            echo "Generating Posts for editor ".$user->id."...\n";
+            $user->posts()->saveMany(Post::factory(rand(0,8))->make());
+        });
+        echo $numberOfEditors." Editors Generated!!\n";
         
         $snippets = Snippet::all();
         foreach($snippets as $snippet){
             echo "Attaching tags for snippet ".$snippet->id."...\n";
-            $snippet->tags()->attach(Tag::inRandomOrder()->limit(rand(0,5))->get());
+            $snippet->tags()->attach(Tag::inRandomOrder()->limit(rand(0,$numberOfTags))->get());
         }
+        echo "Tags Attached!!\n";
 
         $posts = Post::all();
+        $numberOfComments = 0;
         foreach($posts as $post){
             echo "Generating Comments for post ".$post->id."....\n";
             $post->comments()->saveMany(Comment::factory(rand(0,4))->make());
+            $numberOfComments += $post->comments->count();
             echo "Attaching tags for post ".$post->id."...\n";
-            $post->tags()->attach(Tag::inRandomOrder()->limit(rand(0,5))->get());
+            $post->tags()->attach(Tag::inRandomOrder()->limit(rand(0,$numberOfTags))->get());
         }
-        echo Comment::count()." Commnets with new Users Generated\n\n";
+        echo $numberOfComments." Commnets with new Users Generated\n\n";
 
         db_stat();
     }
