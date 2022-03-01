@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+
+    public function posts(){
+        return $this->belongsToMany(Post::class);
+    }
+
+    public function snippets(){
+        return $this->belongsToMany(Snippet::class);
+    }
 }

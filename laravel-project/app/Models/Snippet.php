@@ -29,4 +29,8 @@ class Snippet extends Model
     public function language(){
         return $this->belongsTo(Language::class);
     }
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
 }
