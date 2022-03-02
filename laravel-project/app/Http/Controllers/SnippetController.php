@@ -29,7 +29,7 @@ class SnippetController extends Controller
 
     public function show($id){
         $snippet = Snippet::findOrfail($id);
-        return compact('tag');
+        return compact('snippet');
     }
 
     public function edit($id){

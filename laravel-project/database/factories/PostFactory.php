@@ -23,4 +23,13 @@ class PostFactory extends Factory
             'user_id' => User::factory(),
         ];
     }
+
+    public function withoutUser()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'user_id' => null,
+            ];
+        });
+    }
 }

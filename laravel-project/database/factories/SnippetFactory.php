@@ -28,4 +28,49 @@ class SnippetFactory extends Factory
             'code_id' => Code::factory(),
         ];
     }
+
+    public function withoutUser()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'user_id' => null,
+            ];
+        });
+    }
+
+    public function withoutCode()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'code_id' => null,
+            ];
+        });
+    }
+
+    public function withoutLanguage()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'language_id' => null,
+            ];
+        });
+    }
+
+    public function requested()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => 0,
+            ];
+        });
+    }
+
+    public function approved()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => 1,
+            ];
+        });
+    }
 }

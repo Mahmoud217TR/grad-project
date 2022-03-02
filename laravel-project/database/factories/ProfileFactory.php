@@ -2,14 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Profile>
  */
-class CommentFactory extends Factory
+class ProfileFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,26 +18,18 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'content' => $this->faker->paragraph(),
             'user_id' => User::factory(),
-            'post_id' => Post::factory(),
+            'visits' => $this->faker->numberBetween(0,1000),
+            'bio' => $this->faker->sentence(),
+            'profile_pic' => null,
         ];
     }
-
+    
     public function withoutUser()
     {
         return $this->state(function (array $attributes) {
             return [
                 'user_id' => null,
-            ];
-        });
-    }
-
-    public function withoutPost()
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'post_id' => null,
             ];
         });
     }

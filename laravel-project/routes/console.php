@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+Artisan::command('db_stat', function () {
+    db_stat();
+})->purpose('Display Total Objects in Database');
+
+Artisan::command('db_users', function () {
+    db_users();
+})->purpose('Display Total Users in Database');

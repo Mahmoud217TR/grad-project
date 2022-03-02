@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-		'role' => 0
+		'role' => 0,
 	];
 
     public function getRole(){
@@ -68,6 +68,10 @@ class User extends Authenticatable
 
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function profile(){
+        return $this->hasOne(Profile::class);
     }
     
     public function getRoleAttribute($attribute){
