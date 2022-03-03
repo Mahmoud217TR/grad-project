@@ -32,4 +32,4 @@ Route::resource('language', LanguageController::class);
 Route::resource('post', PostController::class);
 Route::resource('snippet', SnippetController::class);
 Route::resource('tag', TagController::class);
-Route::resource('profile', ProfileController::class);
+Route::resource('profile', ProfileController::class)->except(['create','store']);

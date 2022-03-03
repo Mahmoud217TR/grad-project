@@ -10,6 +10,10 @@ class ProfilePolicy
 {
     use HandlesAuthorization;
 
+    private function isOwner(User $user, Profile $profile){
+        return $user->id == $profile->user_id;
+    }
+
     /**
      * Determine whether the user can view any models.
      *
@@ -53,7 +57,7 @@ class ProfilePolicy
      */
     public function update(User $user, Profile $profile)
     {
-        return ($user->id == $profile->user_id);
+        return $this->isOwner($user,$profile);
     }
 
     /**
@@ -65,7 +69,7 @@ class ProfilePolicy
      */
     public function delete(User $user, Profile $profile)
     {
-        return ($user->id == $profile->user_id) || ($user->level() > 2);
+        return $this->isOwner($user,$profile) || ($user->level() > 2);
     }
 
     /**

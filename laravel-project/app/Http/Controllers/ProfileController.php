@@ -19,14 +19,6 @@ class ProfileController extends Controller
         return compact('profile');
     }
 
-    public function create(){
-        // return create view
-    }
-
-    public function store(){
-        return Profile::create($this->validData());
-    }
-
     public function show($id){
         $profile = Profile::findOrfail($id);
         return compact('profile');
@@ -34,17 +26,21 @@ class ProfileController extends Controller
 
     public function edit($id){
         $profile = Profile::findOrfail($id);
+        $this->authorize('update',$profile);
         // return edit view
     }
 
     public function update($id){
         $profile = Profile::findOrfail($id);
+        $this->authorize('update',$profile);
         $profile->update($this->validData());
         return compact('profile');
     }
 
     public function destroy($id){
-        Profile::findOrfail($id)->destroy();
+        $profile = Profile::findOrfail($id);
+        $this->authorize('delete',$profile);
+        $profile->destroy();
         // return redirect
     }
 }
