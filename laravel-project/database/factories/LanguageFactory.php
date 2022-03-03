@@ -19,6 +19,25 @@ class LanguageFactory extends Factory
         return [
             'name' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
+            'status' => 1,
         ];
+    }
+
+    public function requested()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => 0,
+            ];
+        });
+    }
+
+    public function approved()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => 1,
+            ];
+        });
     }
 }

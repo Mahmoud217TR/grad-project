@@ -22,7 +22,7 @@ class SnippetFactory extends Factory
         return [
             'code' => $this->faker->paragraph(),
             'note' => $this->faker->paragraph(),
-            'status' => $this->faker->numberBetween(0, 1),
+            'status' => 1,
             'user_id' => User::factory(),
             'language_id' => Language::factory(),
             'code_id' => Code::factory(),
@@ -37,6 +37,7 @@ class SnippetFactory extends Factory
             ];
         });
     }
+
 
     public function withoutCode()
     {
@@ -61,6 +62,8 @@ class SnippetFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'status' => 0,
+                'language_id' => Language::factory()->requested(),
+                'code_id' => Code::factory()->requested()
             ];
         });
     }

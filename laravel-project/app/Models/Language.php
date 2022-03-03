@@ -18,7 +18,30 @@ class Language extends Model
         'code_id',
     ];
 
+    protected $attributes = [
+		'status' => 0
+	];
+
+    public function getStatus(){
+        return [
+            0 => 'requested',
+            1 => 'approved'
+        ];
+    }
+
     public function sinppet(){
         return $this->hasOne(sinppet::class);
     }
+    
+    public function getStatusAttribute($attribute){
+		return $this->getStatus()[$attribute];
+	}
+
+    public function scopeRequested($query){
+		return $query->where('status','0');
+	}
+
+    public function scopeApproved($query){
+		return $query->where('status','1');
+	}
 }

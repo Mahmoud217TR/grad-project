@@ -28,9 +28,9 @@ class LanguagePolicy
      * @param  \App\Models\Language  $language
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Language $language)
+    public function view(?User $user, Language $language)
     {
-        //
+        return ($language->status === 'approved');
     }
 
     /**
@@ -41,7 +41,7 @@ class LanguagePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->level() > 0;
     }
 
     /**

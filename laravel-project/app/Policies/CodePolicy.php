@@ -28,9 +28,9 @@ class CodePolicy
      * @param  \App\Models\Code  $code
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Code $code)
+    public function view(?User $user, Code $code)
     {
-        //
+        return ($code->status === 'approved');
     }
 
     /**
@@ -41,7 +41,7 @@ class CodePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->level() > 0;
     }
 
     /**

@@ -14,7 +14,30 @@ class Code extends Model
         'description',
     ];
 
+    protected $attributes = [
+		'status' => 0
+	];
+
+    public function getStatus(){
+        return [
+            0 => 'requested',
+            1 => 'approved'
+        ];
+    }
+
     public function snippets(){
         return $this->hasMany(Snippet::class);
     }
+
+    public function getStatusAttribute($attribute){
+		return $this->getStatus()[$attribute];
+	}
+
+    public function scopeRequested($query){
+		return $query->where('status','0');
+	}
+
+    public function scopeApproved($query){
+		return $query->where('status','1');
+	}
 }

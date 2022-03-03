@@ -28,9 +28,13 @@ class SnippetPolicy
      * @param  \App\Models\Snippet  $snippet
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Snippet $snippet)
+    public function view(?User $user, Snippet $snippet)
     {
-        //
+        if(is_null($user)){
+            return ($snippet->status === 'approved');
+        }else{
+            return ($user->level() > 0) || ($snippet->user_id = $user->id);
+        }
     }
 
     /**

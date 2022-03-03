@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
         User::factory($numberOfReviewers)->create(['role' => 1])->each(function ($user) use (&$allSnippets,&$allUsers){
             $user->profile()->save(Profile::factory()->withoutUser()->make());
             echo "Generating Snipints for reviewer ".$user->id."...\n";
-            $snippets = Snippet::factory(rand(0,4))->requested()->withoutUser()->make();
+            $snippets = Snippet::factory(rand(0,4))->approved()->withoutUser()->make();
             $user->snippets()->saveMany($snippets);
             foreach($user->snippets as $snippet){
                 array_push($allSnippets,$snippet);
