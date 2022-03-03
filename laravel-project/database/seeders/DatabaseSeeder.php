@@ -25,10 +25,6 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        global $allSnippets;
-        global $allPosts;
-        global $allTags;
-        global $allUsers;
         $allSnippets = [];
         $allPosts = [];
         $allTags = [];
@@ -45,9 +41,7 @@ class DatabaseSeeder extends Seeder
 
         echo "Generating Users....\n";
         $numberOfUsers = rand(10,30);
-        User::factory($numberOfUsers)->create(['role' => 0])->each(function ($user){
-            global $allSnippets;
-            global $allUsers;
+        User::factory($numberOfUsers)->create(['role' => 0])->each(function ($user) use($allSnippets,$allUsers){
             $user->profile()->save(Profile::factory()->withoutUser()->make());
             echo "Generating Snipints for user ".$user->id."...\n";
             $snippets = Snippet::factory(rand(0,4))->requested()->withoutUser()->make();
@@ -61,9 +55,7 @@ class DatabaseSeeder extends Seeder
 
         echo "Generating Reviewers....\n";
         $numberOfReviewers = rand(3,9);
-        User::factory($numberOfReviewers)->create(['role' => 1])->each(function ($user){
-            global $allSnippets;
-            global $allUsers;
+        User::factory($numberOfReviewers)->create(['role' => 1])->each(function ($user) use($allSnippets,$allUsers){
             $user->profile()->save(Profile::factory()->withoutUser()->make());
             echo "Generating Snipints for reviewer ".$user->id."...\n";
             $snippets = Snippet::factory(rand(0,4))->requested()->withoutUser()->make();
@@ -77,10 +69,7 @@ class DatabaseSeeder extends Seeder
 
         echo "Generating Editors....\n";
         $numberOfEditors = rand(2,6);
-        User::factory($numberOfEditors)->create(['role' => 2])->each(function ($user){
-            global $allSnippets;
-            global $allPosts;
-            global $allUsers;
+        User::factory($numberOfEditors)->create(['role' => 2])->each(function ($user) use($allSnippets,$allUsers,$allPosts){
             $user->profile()->save(Profile::factory()->withoutUser()->make());
             echo "Generating Snipints for editor ".$user->id."...\n";
             $snippets = Snippet::factory(rand(0,4))->approved()->withoutUser()->make();
