@@ -58,6 +58,10 @@ class User extends Authenticatable
         ];
     }
 
+    public function level(){
+        return array_search($this->role,$this->getRole());
+    }
+
     public function snippets(){
         return $this->hasMany(Snippet::class);
     }
