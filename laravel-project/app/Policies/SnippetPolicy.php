@@ -53,7 +53,7 @@ class SnippetPolicy
      */
     public function update(User $user, Snippet $snippet)
     {
-        //
+        return $user->level() > 0;
     }
 
     /**
@@ -65,7 +65,7 @@ class SnippetPolicy
      */
     public function delete(User $user, Snippet $snippet)
     {
-        //
+        return $user->level() > 0;
     }
 
     /**

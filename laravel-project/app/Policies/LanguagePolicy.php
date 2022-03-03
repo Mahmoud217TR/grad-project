@@ -53,7 +53,7 @@ class LanguagePolicy
      */
     public function update(User $user, Language $language)
     {
-        //
+        return $user->level() > 0;
     }
 
     /**
@@ -65,7 +65,7 @@ class LanguagePolicy
      */
     public function delete(User $user, Language $language)
     {
-        //
+        return $user->level() > 0;
     }
 
     /**

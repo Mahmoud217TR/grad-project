@@ -53,7 +53,7 @@ class CodePolicy
      */
     public function update(User $user, Code $code)
     {
-        //
+        return $user->level() > 0;
     }
 
     /**
@@ -65,7 +65,7 @@ class CodePolicy
      */
     public function delete(User $user, Code $code)
     {
-        //
+        return $user->level() > 0;
     }
 
     /**
