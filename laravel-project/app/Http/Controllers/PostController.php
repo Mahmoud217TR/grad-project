@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth')->except(['index','show']);
+    }
+    
     public function validData(){
         return request()->validate([
             'title' => 'required|string|max:200',
