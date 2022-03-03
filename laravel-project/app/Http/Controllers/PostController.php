@@ -20,10 +20,12 @@ class PostController extends Controller
     }
 
     public function create(){
+        $this->authorize('create');
         // return create view
     }
 
     public function store(){
+        $this->authorize('create');
         return Post::create($this->validData());
     }
 
@@ -34,17 +36,21 @@ class PostController extends Controller
 
     public function edit($id){
         $post = Post::findOrfail($id);
+        $this->authorize('update',$post);
         // return edit view
     }
 
     public function update($id){
         $post = Post::findOrfail($id);
+        $this->authorize('update',$post);
         $post->update($this->validData());
         return compact('post');
     }
 
     public function destroy($id){
-        Post::findOrfail($id)->destroy();
+        $post = Post::findOrfail($id);
+        $this->authorize('delete',$post);
+        $post->destroy();
         // return redirect
     }
 }

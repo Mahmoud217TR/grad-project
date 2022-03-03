@@ -10,6 +10,10 @@ class CommentPolicy
 {
     use HandlesAuthorization;
 
+    private function isAuthor(User $user, Comment $comment){
+        return $user->id == $comment->user_id;
+    }
+
     /**
      * Determine whether the user can view any models.
      *
@@ -53,7 +57,7 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment)
     {
-        return ($user->id == $comment->user_id);
+        return $this->isAuthor($user,$comment);
     }
 
     /**
@@ -65,7 +69,7 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment)
     {
-        return ($user->id == $comment->user_id) || ($user->level() > 2);
+        return $this->isAuthor($user,$comment) || ($user->level() > 2);
     }
 
     /**

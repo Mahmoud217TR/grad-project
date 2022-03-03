@@ -37,17 +37,21 @@ class CommentController extends Controller
 
     public function edit($id){
         $comment = Comment::findOrfail($id);
+        $this->authorize('update',$comment);
         // return edit view
     }
 
     public function update($id){
         $comment = Comment::findOrfail($id);
+        $this->authorize('update',$comment);
         $comment->update($this->validData());
         return compact('comment');
     }
 
     public function destroy($id){
-        Comment::findOrfail($id)->destroy();
+        $comment = Comment::findOrfail($id);
+        $this->authorize('delete',$comment);
+        $comment->destroy();
         // return redirect
     }
 }
