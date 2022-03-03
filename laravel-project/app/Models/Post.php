@@ -13,7 +13,20 @@ class Post extends Model
         'title',
         'content',
         'user_id',
+        'status',
     ];
+    
+    protected $attributes = [
+		'status' => 0
+	];
+
+    public function getStatus(){
+        return [
+            0 => 'draft',
+            1 => 'published',
+            2 => 'archived'
+        ];
+    }
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -26,4 +39,20 @@ class Post extends Model
     public function tags(){
         return $this->belongsToMany(Tag::class);
     }
+
+    public function getStatusAttribute($attribute){
+		return $this->getStatus()[$attribute];
+	}
+
+    public function scopeDrafted($query){
+		return $query->where('status','0');
+	}
+
+    public function scopePublished($query){
+		return $query->where('status','1');
+	}
+
+    public function scopeArchived($query){
+		return $query->where('status','2');
+	}
 }

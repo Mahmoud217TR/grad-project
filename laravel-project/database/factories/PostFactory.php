@@ -21,6 +21,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence(),
             'content' => $this->faker->paragraph(),
             'user_id' => User::factory(),
+            'status' => 1,
         ];
     }
 
@@ -29,6 +30,33 @@ class PostFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'user_id' => null,
+            ];
+        });
+    }
+
+    public function drafted()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => 0,
+            ];
+        });
+    }
+
+    public function published()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => 1,
+            ];
+        });
+    }
+
+    public function archived()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => 2,
             ];
         });
     }

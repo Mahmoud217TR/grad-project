@@ -22,6 +22,7 @@ class CommentFactory extends Factory
             'content' => $this->faker->paragraph(),
             'user_id' => User::factory(),
             'post_id' => Post::factory(),
+            'status' => 0,
         ];
     }
 
@@ -39,6 +40,33 @@ class CommentFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'post_id' => null,
+            ];
+        });
+    }
+
+    public function published()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => 0,
+            ];
+        });
+    }
+
+    public function hidden()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => 1,
+            ];
+        });
+    }
+
+    public function archived()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => 2,
             ];
         });
     }
