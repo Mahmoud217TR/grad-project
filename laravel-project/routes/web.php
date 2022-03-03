@@ -6,6 +6,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SnippetController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\TaggingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +34,8 @@ Route::resource('post', PostController::class);
 Route::resource('snippet', SnippetController::class);
 Route::resource('tag', TagController::class);
 Route::resource('profile', ProfileController::class)->except(['create','store']);
+
+Route::controller(TaggingController::class)->group(function(){
+    Route::post('post/{pid}/tag','post_tags')->name('tag-post');
+    Route::post('snippet/{sid}/tag','snippet_tags')->name('tag-snippet');
+});

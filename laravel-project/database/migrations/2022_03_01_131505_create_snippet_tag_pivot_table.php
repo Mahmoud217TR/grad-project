@@ -16,7 +16,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('snippet_tag', function (Blueprint $table) {
-            $table->id();
+            $table->primary(['snippet_id', 'tag_id']);
             $table->foreignIdFor(Snippet::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(Tag::class)->constrained()->onDelete('cascade');
         });
