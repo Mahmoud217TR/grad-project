@@ -14,11 +14,6 @@
                         </div>
                     @endif
                     
-                    <test-component uri = '{{ route('tag-post','29') }}' 
-                                    tags = '1'
-                                    action = 'attach'>
-                    </test-component>
-
                     {{ __('You are logged in!') }}
                 </div>
             </div>
