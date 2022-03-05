@@ -12,8 +12,8 @@ https://windows.php.net/downloads/releases/php-8.1.3-Win32-vs16-x64.zip
 Create a new php folder in the root of your `C:\` drive and extract the contents of the ZIP into it.
 
 **Step 3 - Configure php.ini:**
-PHPís configuration file is named `php.ini`. This doesnít exist initially, so copy `C:\php\php.ini-development` to `C:\php\php.ini`. 
-There are several lines you may need to change in a text editor (use search to find the current value). In most cases, youíll need to remove a leading semicolon `(;)` to uncomment a setting.
+PHP‚Äôs configuration file is named `php.ini`. This doesn‚Äôt exist initially, so copy `C:\php\php.ini-development` to `C:\php\php.ini`. 
+There are several lines you may need to change in a text editor (use search to find the current value). In most cases, you‚Äôll need to remove a leading semicolon `(;)` to uncomment a setting.
 `extension=curl`
 `extension=gd`
 `extension=mbstring`
@@ -21,7 +21,7 @@ There are several lines you may need to change in a text editor (use search to f
 `extension=sqlite3`
 
 **Step 4 - Add** `C:\php` **to the path environment variable:**
-to ensure Windows can find the PHP executable, you need to change the `PATH` environment variable. Click the Windows Start button and type ìenvironmentî, then click Edit the system environment variables. Select the Advanced tab, and click the Environment Variables button.
+to ensure Windows can find the PHP executable, you need to change the `PATH` environment variable. Click the Windows Start button and type ‚Äúenvironment‚Äù, then click Edit the system environment variables. Select the Advanced tab, and click the Environment Variables button.
 
 Scroll down the System variables list and click Path followed by the Edit button. Click New and add `C:\php`.
 
@@ -71,8 +71,18 @@ Paste this command `git clone https://github.com/Mahmoud217TR/grad-project.git`.
 
 ## Dealing with the Projects
 
--To run the project on local server on your device use the command: `php artisan serve`
+- To run the project on local server on your device use the command: `php artisan serve`
 
--To apply the changes of js and css files: `npm run dev`
+- To apply the changes of js and css files: `npm run dev`
 
--To pull the new changes **ALWAYS DO IT BEFORE ANY COMMITS**: `git pull`
+- To pull the new changes **ALWAYS DO IT BEFORE ANY COMMITS**: `git pull`
+
+- To destroy and rebuild database:`php artisan migrate:fresh`
+
+- To seed database: `php artisan db:seed`
+
+## New Artisan Commands were added:
+
+- `php artisan db_stat`: displays the objects in database
+
+- `php artisan db_users`: displays the users types in database
