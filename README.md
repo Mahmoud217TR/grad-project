@@ -5,70 +5,60 @@
 ## Instructions
 
 ### Installing PHP
-**Step 1 - Download the PHP files:**
-https://windows.php.net/downloads/releases/php-8.1.3-Win32-vs16-x64.zip
 
-**Step 2 - Extract the files:**
-Create a new php folder in the root of your `C:\` drive and extract the contents of the ZIP into it.
+- **Step 1 - Download the PHP files:** https://windows.php.net/downloads/releases/php-8.1.3-Win32-vs16-x64.zip
 
-**Step 3 - Configure php.ini:**
-PHP’s configuration file is named `php.ini`. This doesn’t exist initially, so copy `C:\php\php.ini-development` to `C:\php\php.ini`. 
+- **Step 2 - Extract the files:** Create a new php folder in the root of your `C:\` drive and extract the contents of the ZIP into it.
+
+- **Step 3 - Configure php.ini:** PHP’s configuration file is named `php.ini`. This doesn’t exist initially, so copy `C:\php\php.ini-development` to `C:\php\php.ini`. 
 There are several lines you may need to change in a text editor (use search to find the current value). In most cases, you’ll need to remove a leading semicolon `(;)` to uncomment a setting.
-`extension=curl`
-`extension=gd`
-`extension=mbstring`
-`extension=pdo_mysql`
-`extension=sqlite3`
+  ```
+  extension=curl
+  extension=gd
+  extension=mbstrin
+  extension=pdo_mysql
+  extension=sqlite3
+  ```
 
-**Step 4 - Add** `C:\php` **to the path environment variable:**
-to ensure Windows can find the PHP executable, you need to change the `PATH` environment variable. Click the Windows Start button and type “environment”, then click Edit the system environment variables. Select the Advanced tab, and click the Environment Variables button.
-
-Scroll down the System variables list and click Path followed by the Edit button. Click New and add `C:\php`.
+- **Step 4 - Add** `C:\php` **to the path environment variable:** to ensure Windows can find the PHP executable, you need to change the `PATH` environment variable. Click the Windows Start button and type “environment”, then click Edit the system environment variables. Select the Advanced tab, and click the Environment Variables button. Scroll down the System variables list and click Path followed by the Edit button. Click New and add `C:\php`.
 
 
 ### Installing Composer
-**Step 1 - Download Composer Setup:**
-https://getcomposer.org/Composer-Setup.exe
 
-**Step 2 - Install Composer**
+- **Step 1 - Download Composer Setup:** [download composer](https://getcomposer.org/Composer-Setup.exe)
 
-**Step 3 - Modify php.ini:**
-remove the `;` before `extension=fileinfo`
+- **Step 2 - Install Composer**
+
+- **Step 3 - Modify php.ini:** remove the `;` before `extension=fileinfo`
 
 
 ### Installing Laravel
 
-Open your `CMD` and type: `composer global require laravel/installer`
+- Open your `CMD` and type: `composer global require laravel/installer`
 
 
 ### Installing Node.js
-**Step 1 - Download Node.js Installer:**
-https://nodejs.org/dist/v16.14.0/node-v16.14.0-x64.msi
 
-**Step 2 - Install Node.js**
+- **Step 1 - Download Node.js Installer:** [Node.js Installer](https://nodejs.org/dist/v16.14.0/node-v16.14.0-x64.msi)
 
-**Step 3 - Verify Installation:**
-open your `CMD` and type `npm -v`
+- **Step 2 - Install Node.js**
+
+- **Step 3 - Verify Installation:** open your `CMD` and type `npm -v`
 
 
 ## Downloading Project Files
-**Step 1:**
-open your `CMD` at the local directory **where you want to clone your repository**.
 
-**Step 2:**
-Paste this command `git clone https://github.com/Mahmoud217TR/grad-project.git`.
+- **Step 1:** open your `CMD` at the local directory **where you want to clone your repository**.
 
-**IMPORTANT**: once you downloaded the project run the you have several steps:
+- **Step 2:** Paste this command `git clone https://github.com/Mahmoud217TR/grad-project.git`.
 
-**Step 1 - in tmp folder open pack1 and extract the files to there appropriate places**
+- **IMPORTANT**: once you downloaded the project run the you have several steps:
 
-**Step 2 - Run the following commands:**
+  - **Step 1 - in tmp folder open pack1 and extract the files to there appropriate places**
 
-`composer install`
-`npm install`
-`npm run dev`
+  - **Step 2 - Run the following commands:** `composer install` `npm install` `npm run dev`
 
-**For Mellisearch** install [millesearch v25 for windows](https://www.mediafire.com/file/ays61sk42cbutgi/meilisearch-windows-amd64.exe/file) *External link for faster downlaod*
+- **For Mellisearch** this file is needed [millesearch v25 for windows](https://www.mediafire.com/file/ays61sk42cbutgi/meilisearch-windows-amd64.exe/file) *An **EXTERNAL** link for faster downlaod*
 
 ## Dealing with the Projects
 
