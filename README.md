@@ -58,8 +58,6 @@ There are several lines you may need to change in a text editor (use search to f
 
   - **Step 2 - Run the following commands:** `composer install` `npm install` `npm run dev`
 
-- **For Mellisearch** this file is needed [millesearch v25 for windows](https://www.mediafire.com/file/ays61sk42cbutgi/meilisearch-windows-amd64.exe/file) *An **EXTERNAL** link for faster downlaod*
-
 ## Dealing with the Projects
 
 - To run the project on local server on your device use the command: `php artisan serve`
@@ -71,6 +69,8 @@ There are several lines you may need to change in a text editor (use search to f
 - To destroy and rebuild database:`php artisan migrate:fresh`
 
 - To seed database: `php artisan db:seed`
+
+- Run the `meilisearch-windows-amd64.exe` for meillisearch
 
 ## New Artisan Commands were added:
 
