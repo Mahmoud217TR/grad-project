@@ -1,10 +1,10 @@
-### Graduation Project
+# Graduation Project
 
 [Discord Server](https://discord.gg/F6JpFq879y)
 
-### Instructions
+## Instructions
 
-## Installing PHP
+### Installing PHP
 **Step 1 - Download the PHP files:**
 https://windows.php.net/downloads/releases/php-8.1.3-Win32-vs16-x64.zip
 
@@ -26,7 +26,7 @@ to ensure Windows can find the PHP executable, you need to change the `PATH` env
 Scroll down the System variables list and click Path followed by the Edit button. Click New and add `C:\php`.
 
 
-## Installing Composer
+### Installing Composer
 **Step 1 - Download Composer Setup:**
 https://getcomposer.org/Composer-Setup.exe
 
@@ -36,12 +36,12 @@ https://getcomposer.org/Composer-Setup.exe
 remove the `;` before `extension=fileinfo`
 
 
-## Installing Laravel
+### Installing Laravel
 
 Open your `CMD` and type: `composer global require laravel/installer`
 
 
-## Installing Node.js
+### Installing Node.js
 **Step 1 - Download Node.js Installer:**
 https://nodejs.org/dist/v16.14.0/node-v16.14.0-x64.msi
 
@@ -68,6 +68,7 @@ Paste this command `git clone https://github.com/Mahmoud217TR/grad-project.git`.
 `npm install`
 `npm run dev`
 
+**For Mellisearch** install [millesearch v25 for windows](https://www.mediafire.com/file/ays61sk42cbutgi/meilisearch-windows-amd64.exe/file) *External link for faster downlaod*
 
 ## Dealing with the Projects
 
