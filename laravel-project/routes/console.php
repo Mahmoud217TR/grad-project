@@ -54,4 +54,4 @@ Artisan::command('scout:flush_all', function () {
 Artisan::command('scout:refresh', function () {
     Artisan::call('scout:flush_all');
     Artisan::call('scout:import_all');
-})->purpose('Flushes All "SCOUT_MODELS" from Scout Database');
+})->purpose('Flushes All "SCOUT_MODELS" from Scout Database then Import them');
