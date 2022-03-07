@@ -77,3 +77,9 @@ There are several lines you may need to change in a text editor (use search to f
 - `php artisan db_stat`: displays the objects in database
 
 - `php artisan db_users`: displays the users types in database
+
+- `php artisan scout:import_all`: imports all models to scout database
+
+- `php artisan scout:flush_all`: flushes all models to scout database
+
+- `php artisan scout:refresh`: refreshes all models in scout database
