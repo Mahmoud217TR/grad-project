@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Scout\Attributes\SearchUsingFullText;
+use Laravel\Scout\Attributes\SearchUsingPrefix;
 use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
@@ -61,6 +63,16 @@ class User extends Authenticatable
 
     public function level(){
         return array_search($this->role,$this->getRole());
+    }
+
+    #[SearchUsingPrefix(['id', 'email'])]
+    #[SearchUsingFullText(['name'])]
+
+    public function toSearchableArray(){
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+        ];
     }
 
     public function snippets(){

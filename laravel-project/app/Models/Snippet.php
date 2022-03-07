@@ -30,6 +30,20 @@ class Snippet extends Model
         ];
     }
 
+    public function toSearchableArray(){
+        return [
+            'code' => $this->code,
+            'note' => $this->note,
+            'user_id' => $this->user_id,
+            'code_id' => $this->code_id,
+            'language_id' => $this->language_id,
+        ];
+    }
+
+    public function shouldBeSearchable(){
+        return $this->isApproved();
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -57,4 +71,8 @@ class Snippet extends Model
     public function scopeApproved($query){
 		return $query->where('status','1');
 	}
+
+    public function isApproved(){
+        return $this->status == 'approved';
+    }
 }

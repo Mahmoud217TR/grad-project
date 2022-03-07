@@ -25,8 +25,20 @@ class Comment extends Model
         return [
             0 => 'published',
             1 => 'hidden',
-            1 => 'archived'
+            2 => 'archived'
         ];
+    }
+
+    public function toSearchableArray(){
+        return [
+            'content' => $this->content,
+            'user_id' => $this->user_id,
+            'post_id' => $this->post_id,
+        ];
+    }
+
+    public function shouldBeSearchable(){
+        return $this->isPublished();
     }
 
     public function user(){
@@ -52,4 +64,16 @@ class Comment extends Model
     public function scopeArchived($query){
 		return $query->where('status','2');
 	}
+
+    public function isPublished(){
+        return $this->status == 'published';
+    }
+
+    public function isHidden(){
+        return $this->status == 'hidden';
+    }
+
+    public function isArchived(){
+        return $this->status == 'archived';
+    }
 }

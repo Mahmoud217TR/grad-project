@@ -23,10 +23,22 @@ class Post extends Model
 
     public function getStatus(){
         return [
-            0 => 'draft',
+            0 => 'drafted',
             1 => 'published',
             2 => 'archived'
         ];
+    }
+
+    public function toSearchableArray(){
+        return [
+            'title' => $this->title,
+            'content' => $this->content,
+            'user_id' => $this->user_id,
+        ];
+    }
+
+    public function shouldBeSearchable(){
+        return $this->isPublished();
     }
 
     public function user(){
@@ -56,4 +68,16 @@ class Post extends Model
     public function scopeArchived($query){
 		return $query->where('status','2');
 	}
+
+    public function isDrafted(){
+        return $this->status == 'drafted';
+    }
+
+    public function isPublished(){
+        return $this->status == 'published';
+    }
+
+    public function isArchived(){
+        return $this->status == 'archived';
+    }
 }

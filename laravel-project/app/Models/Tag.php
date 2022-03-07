@@ -15,6 +15,13 @@ class Tag extends Model
         'description',
     ];
 
+    public function toSearchableArray(){
+        return [
+            'name' => $this->name,
+            'description' => $this->description,
+        ];
+    }
+
     public function posts(){
         return $this->belongsToMany(Post::class);
     }

@@ -13,6 +13,8 @@ class Code extends Model
     protected $fillable = [
         'title',
         'description',
+        'status',
+        'user_id',
     ];
 
     protected $attributes = [
@@ -24,6 +26,18 @@ class Code extends Model
             0 => 'requested',
             1 => 'approved'
         ];
+    }
+
+    public function toSearchableArray(){
+        return [
+            'title' => $this->title,
+            'description' => $this->description,
+            'user_id' => $this->user_id,
+        ];
+    }
+
+    public function shouldBeSearchable(){
+        return $this->isApproved();
     }
 
     public function snippets(){
@@ -41,4 +55,8 @@ class Code extends Model
     public function scopeApproved($query){
 		return $query->where('status','1');
 	}
+
+    public function isApproved(){
+        return $this->status == 'approved';
+    }
 }

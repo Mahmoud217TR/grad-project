@@ -13,12 +13,20 @@ class Profile extends Pivot
     protected $fillable = [
         'bio',
         'profile_pic',
+        'visits',
     ];
 
     protected $attributes = [
 		'visits' => 0,
         'bio' => "The user didn't set a Bio yet."
 	];
+
+    public function toSearchableArray(){
+        return [
+            'bio' => $this->bio,
+            'user_id' => $this->user_id,
+        ];
+    }
 
     public function user(){
         return $this->belongsTo(User::class);

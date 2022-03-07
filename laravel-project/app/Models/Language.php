@@ -11,12 +11,10 @@ class Language extends Model
     use HasFactory,Searchable;
     
     protected $fillable = [
-        'code',
-        'note',
+        'name',
+        'description',
         'status',
         'user_id',
-        'language_id',
-        'code_id',
     ];
 
     protected $attributes = [
@@ -28,6 +26,18 @@ class Language extends Model
             0 => 'requested',
             1 => 'approved'
         ];
+    }
+
+    public function toSearchableArray(){
+        return [
+            'name' => $this->code,
+            'description' => $this->note,
+            'user_id' => $this->user_id,
+        ];
+    }
+
+    public function shouldBeSearchable(){
+        return $this->isApproved();
     }
 
     public function sinppet(){
@@ -45,4 +55,8 @@ class Language extends Model
     public function scopeApproved($query){
 		return $query->where('status','1');
 	}
+
+    public function isApproved(){
+        return $this->status == 'approved';
+    }
 }
