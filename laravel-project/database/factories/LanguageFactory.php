@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Language;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,7 @@ class LanguageFactory extends Factory
         return [
             'name' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
-            'status' => 1,
+            'status' => Language::getStatus('approved'),
         ];
     }
 
@@ -27,7 +28,7 @@ class LanguageFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'status' => 0,
+                'status' => Language::getStatus('requested'),
             ];
         });
     }
@@ -36,7 +37,7 @@ class LanguageFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'status' => 1,
+                'status' => Language::getStatus('approved'),
             ];
         });
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -22,7 +23,7 @@ class CommentFactory extends Factory
             'content' => $this->faker->paragraph(),
             'user_id' => User::factory(),
             'post_id' => Post::factory(),
-            'status' => 0,
+            'status' => Comment::getStatus('published'),
         ];
     }
 
@@ -48,7 +49,7 @@ class CommentFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'status' => 0,
+                'status' => Comment::getStatus('published'),
             ];
         });
     }
@@ -57,7 +58,7 @@ class CommentFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'status' => 1,
+                'status' => Comment::getStatus('hidden'),
             ];
         });
     }
@@ -66,7 +67,7 @@ class CommentFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'status' => 2,
+                'status' => Comment::getStatus('archived'),
             ];
         });
     }
