@@ -31,9 +31,9 @@ class SnippetPolicy
     public function view(?User $user, Snippet $snippet)
     {
         if(is_null($user)){
-            return ($snippet->status === 'approved');
+            return $snippet->isApproved();
         }else{
-            return ($user->level() > 0) || ($snippet->user_id = $user->id);
+            return ($user->isWebAdmin() || $user->isOwner($snippet));
         }
     }
 
@@ -57,7 +57,7 @@ class SnippetPolicy
      */
     public function update(User $user, Snippet $snippet)
     {
-        return $user->level() > 0;
+        return $user->isWebAdmin();
     }
 
     /**
@@ -69,7 +69,7 @@ class SnippetPolicy
      */
     public function delete(User $user, Snippet $snippet)
     {
-        return $user->level() > 0;
+        return $user->isWebAdmin();
     }
 
     /**
