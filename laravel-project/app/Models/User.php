@@ -51,7 +51,7 @@ class User extends Authenticatable
 		'role' => 0,
 	];
 
-    public function getRole(){
+    private function getRoles(){
         return [
             0 => 'user',
             1 => 'reviewer',
@@ -61,8 +61,25 @@ class User extends Authenticatable
         ];
     }
 
+    private function inRoleRange($num){
+        return in_array($num,array_keys($this->getRoles()));
+    }
+
+    private function inRoles($role){
+        return in_array($role,$this->getRoles());
+    }
+
+    private function getLevel($role){
+        if($this->inRoles($role)){
+            return array_search($role,$this->getRoles());
+        }else{
+            return -1;
+        }
+            
+    }
+
     public function level(){
-        return array_search($this->role,$this->getRole());
+        return $this->getLevel($this->role);
     }
 
     #[SearchUsingPrefix(['id', 'email'])]
@@ -92,7 +109,7 @@ class User extends Authenticatable
     }
     
     public function getRoleAttribute($attribute){
-		return $this->getRole()[$attribute];
+		return $this->getRoles()[$attribute];
 	}
 
     public function scopeUsers($query){
@@ -122,4 +139,53 @@ class User extends Authenticatable
     public function scopeWebAdmins($query){
 		return $query->where('role','>','0');
 	}
+
+    public function isUser(){
+        return $this->status == 'user';
+    }
+
+    public function isReviewer(){
+        return $this->status == 'reviewer';
+    }
+    
+    public function isEditor(){
+        return $this->status == 'editor';
+    }
+
+    public function isAdmin(){
+        return $this->status == 'admin';
+    }
+
+    public function isSuperAdmin(){
+        return $this->status == 'super_admin';
+    }
+
+    public function isOrAbove($role){
+        $level = $this->getLevel($role);
+        return ($this->inRoleRange($level) && $this->level() >= $level);
+    }
+
+    public function isOrBelow($role){
+        $level = $this->getLevel($role);
+        return ($this->inRoleRange($level) && $this->level() <= $level);
+    }
+
+    public function isAbove($role){
+        $level = $this->getLevel($role);
+        return ($this->inRoleRange($level) && $this->level() > $level);
+    }
+
+    public function isBelow($role){
+        $level = $this->getLevel($role);
+        return ($this->inRoleRange($level) && $this->level() < $level);
+    }
+
+    public function isSysAdmin(){
+        return $this->isOrAbove('admin');
+    }
+
+    public function isWebAdmin(){
+        return $this->isOrAbove('reviewer');
+    }
+
 }
