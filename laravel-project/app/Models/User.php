@@ -51,36 +51,7 @@ class User extends Authenticatable
 		'role' => 0,
 	];
 
-    private function getRoles(){
-        return [
-            0 => 'user',
-            1 => 'reviewer',
-            2 => 'editor',
-            3 => 'admin',
-            4 => 'super_admin'
-        ];
-    }
-
-    private function inRoleRange($num){
-        return in_array($num,array_keys($this->getRoles()));
-    }
-
-    private function inRoles($role){
-        return in_array($role,$this->getRoles());
-    }
-
-    private function getLevel($role){
-        if($this->inRoles($role)){
-            return array_search($role,$this->getRoles());
-        }else{
-            return -1;
-        }
-            
-    }
-
-    public function level(){
-        return $this->getLevel($this->role);
-    }
+    // Scout Functions
 
     #[SearchUsingPrefix(['id', 'email'])]
     #[SearchUsingFullText(['name'])]
@@ -91,6 +62,44 @@ class User extends Authenticatable
             'email' => $this->email,
         ];
     }
+
+    // Model Functions
+
+    public static function getRoles(){
+        return [
+            0 => 'user',
+            1 => 'reviewer',
+            2 => 'editor',
+            3 => 'admin',
+            4 => 'super_admin'
+        ];
+    }
+
+    public static function getRole($role){
+        return array_search($role,self::getRoles());
+    }
+
+    private static function inRoleRange($num){
+        return in_array($num,array_keys(self::getRoles()));
+    }
+
+    private static function inRoles($role){
+        return in_array($role,self::getRoles());
+    }
+
+    public static function getLevel($role){
+        if(self::inRoles($role)){
+            return array_search($role,self::getRoles());
+        }else{
+            return false;
+        }
+    }
+
+    public function level(){
+        return $this->getLevel($this->role);
+    }
+
+    // Relations 
 
     public function snippets(){
         return $this->hasMany(Snippet::class);
@@ -107,9 +116,11 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne(Profile::class);
     }
+
+    // Attributes & Scopes
     
     public function getRoleAttribute($attribute){
-		return $this->getRoles()[$attribute];
+		return self::getRoles()[$attribute];
 	}
 
     public function scopeUsers($query){
@@ -141,43 +152,39 @@ class User extends Authenticatable
 	}
 
     public function isUser(){
-        return $this->status == 'user';
+        return $this->level() == self::getRole('user');
     }
 
     public function isReviewer(){
-        return $this->status == 'reviewer';
+        return $this->level() == self::getRole('reviewer');
     }
     
     public function isEditor(){
-        return $this->status == 'editor';
+        return $this->level() == self::getRole('editor');
     }
 
     public function isAdmin(){
-        return $this->status == 'admin';
+        return $this->level() == self::getRole('admin');
     }
 
     public function isSuperAdmin(){
-        return $this->status == 'super_admin';
+        return $this->level() == self::getRole('super_admin');
     }
 
     public function isOrAbove($role){
-        $level = $this->getLevel($role);
-        return ($this->inRoleRange($level) && $this->level() >= $level);
+        return (self::inRoles($role) && $this->level() >= self::getLevel($role));
     }
 
     public function isOrBelow($role){
-        $level = $this->getLevel($role);
-        return ($this->inRoleRange($level) && $this->level() <= $level);
+        return (self::inRoles($role) && $this->level() <= self::getLevel($role));
     }
 
     public function isAbove($role){
-        $level = $this->getLevel($role);
-        return ($this->inRoleRange($level) && $this->level() > $level);
+        return (self::inRoles($role) && $this->level() > self::getLevel($role));
     }
 
     public function isBelow($role){
-        $level = $this->getLevel($role);
-        return ($this->inRoleRange($level) && $this->level() < $level);
+        return (self::inRoles($role) && $this->level() < self::getLevel($role));
     }
 
     public function isSysAdmin(){

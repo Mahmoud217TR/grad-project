@@ -15,12 +15,16 @@ class Tag extends Model
         'description',
     ];
 
+    // Scout Functions
+
     public function toSearchableArray(){
         return [
             'name' => $this->name,
             'description' => $this->description,
         ];
     }
+
+    // Relations
 
     public function posts(){
         return $this->belongsToMany(Post::class);
