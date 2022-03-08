@@ -188,4 +188,8 @@ class User extends Authenticatable
         return $this->isOrAbove('reviewer');
     }
 
+    public function isOwner($object){
+        return $this->id == $object->user_id;
+    }
+
 }
