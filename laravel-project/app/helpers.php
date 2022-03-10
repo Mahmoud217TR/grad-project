@@ -46,50 +46,40 @@ use function PHPUnit\Framework\isNull;
             $users = [];
             echo "Generating Generic Users....\n";
             if(User::where('email','superadmin@users.test')->get()->count() == 0){
-                $user = User::factory()->create([
+                $user = User::factory()->superAdmin()->create([
                     'email' => 'superadmin@users.test',
-                    'password' => '$2y$10$wETeRkfN6IIbOZfWztDxBOTMa/3MtD7.G/IhMEs2OdCn8x57MHGH6',
-                    'role' => '4'
                 ]);
                 $user->profile()->save(Profile::factory()->withoutUser()->make());
                 array_push($users,$user);
             }
 
             if(User::where('email','admin@users.test')->get()->count() == 0){
-                $user = User::factory()->create([
+                $user = User::factory()->admin()->create([
                     'email' => 'admin@users.test',
-                    'password' => '$2y$10$wETeRkfN6IIbOZfWztDxBOTMa/3MtD7.G/IhMEs2OdCn8x57MHGH6',
-                    'role' => '3'
                 ]);
                 $user->profile()->save(Profile::factory()->withoutUser()->make());
                 array_push($users,$user);
             }
 
             if(User::where('email','editor@users.test')->get()->count() == 0){
-                $user = User::factory()->create([
+                $user = User::factory()->editor()->create([
                     'email' => 'editor@users.test',
-                    'password' => '$2y$10$wETeRkfN6IIbOZfWztDxBOTMa/3MtD7.G/IhMEs2OdCn8x57MHGH6',
-                    'role' => '2'
                 ]);
                 $user->profile()->save(Profile::factory()->withoutUser()->make());
                 array_push($users,$user);
             }
 
             if(User::where('email','reviewer@users.test')->get()->count() == 0){
-                $user = User::factory()->create([
+                $user = User::factory()->reviewer()->create([
                     'email' => 'reviewer@users.test',
-                    'password' => '$2y$10$wETeRkfN6IIbOZfWztDxBOTMa/3MtD7.G/IhMEs2OdCn8x57MHGH6',
-                    'role' => '1'
                 ]);
                 $user->profile()->save(Profile::factory()->withoutUser()->make());
                 array_push($users,$user);
             }
 
             if(User::where('email','user@users.test')->get()->count() == 0){
-                $user = User::factory()->create([
+                $user = User::factory()->user()->create([
                     'email' => 'user@users.test',
-                    'password' => '$2y$10$wETeRkfN6IIbOZfWztDxBOTMa/3MtD7.G/IhMEs2OdCn8x57MHGH6',
-                    'role' => '0'
                 ]);
                 $user->profile()->save(Profile::factory()->withoutUser()->make());
                 array_push($users,$user);

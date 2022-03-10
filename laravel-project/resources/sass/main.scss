@@ -1,0 +1,11 @@
+// App
+
+@import 'app.scss';
+
+$color-test-1: white;
+$color-test-2: #010a0b;
+
+.test-div{
+    color: $color-test-1;
+    background-color: $color-test-2;
+}

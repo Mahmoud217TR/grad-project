@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Code;
 use App\Models\Language;
+use App\Models\Snippet;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +23,7 @@ class SnippetFactory extends Factory
         return [
             'code' => $this->faker->paragraph(),
             'note' => $this->faker->paragraph(),
-            'status' => 1,
+            'status' => Snippet::getStatus('approved'),
             'user_id' => User::factory(),
             'language_id' => Language::factory(),
             'code_id' => Code::factory(),
@@ -61,9 +62,7 @@ class SnippetFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'status' => 0,
-                'language_id' => Language::factory()->requested(),
-                'code_id' => Code::factory()->requested()
+                'status' => Snippet::getStatus('requested'),
             ];
         });
     }
@@ -72,7 +71,7 @@ class SnippetFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'status' => 1,
+                'status' => Snippet::getStatus('approved'),
             ];
         });
     }

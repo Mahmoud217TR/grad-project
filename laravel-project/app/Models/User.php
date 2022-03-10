@@ -51,19 +51,7 @@ class User extends Authenticatable
 		'role' => 0,
 	];
 
-    public function getRole(){
-        return [
-            0 => 'user',
-            1 => 'reviewer',
-            2 => 'editor',
-            3 => 'admin',
-            4 => 'super_admin'
-        ];
-    }
-
-    public function level(){
-        return array_search($this->role,$this->getRole());
-    }
+    // Scout Functions
 
     #[SearchUsingPrefix(['id', 'email'])]
     #[SearchUsingFullText(['name'])]
@@ -74,6 +62,44 @@ class User extends Authenticatable
             'email' => $this->email,
         ];
     }
+
+    // Model Functions
+
+    public static function getRoles(){
+        return [
+            0 => 'user',
+            1 => 'reviewer',
+            2 => 'editor',
+            3 => 'admin',
+            4 => 'super_admin'
+        ];
+    }
+
+    public static function getRole($role){
+        return array_search($role,self::getRoles());
+    }
+
+    private static function inRoleRange($num){
+        return in_array($num,array_keys(self::getRoles()));
+    }
+
+    private static function inRoles($role){
+        return in_array($role,self::getRoles());
+    }
+
+    public static function getLevel($role){
+        if(self::inRoles($role)){
+            return array_search($role,self::getRoles());
+        }else{
+            return false;
+        }
+    }
+
+    public function level(){
+        return $this->getLevel($this->role);
+    }
+
+    // Relations 
 
     public function snippets(){
         return $this->hasMany(Snippet::class);
@@ -90,9 +116,11 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne(Profile::class);
     }
+
+    // Attributes & Scopes
     
     public function getRoleAttribute($attribute){
-		return $this->getRole()[$attribute];
+		return self::getRoles()[$attribute];
 	}
 
     public function scopeUsers($query){
@@ -122,4 +150,53 @@ class User extends Authenticatable
     public function scopeWebAdmins($query){
 		return $query->where('role','>','0');
 	}
+
+    public function isUser(){
+        return $this->level() == self::getRole('user');
+    }
+
+    public function isReviewer(){
+        return $this->level() == self::getRole('reviewer');
+    }
+    
+    public function isEditor(){
+        return $this->level() == self::getRole('editor');
+    }
+
+    public function isAdmin(){
+        return $this->level() == self::getRole('admin');
+    }
+
+    public function isSuperAdmin(){
+        return $this->level() == self::getRole('super_admin');
+    }
+
+    public function isOrAbove($role){
+        return (self::inRoles($role) && $this->level() >= self::getLevel($role));
+    }
+
+    public function isOrBelow($role){
+        return (self::inRoles($role) && $this->level() <= self::getLevel($role));
+    }
+
+    public function isAbove($role){
+        return (self::inRoles($role) && $this->level() > self::getLevel($role));
+    }
+
+    public function isBelow($role){
+        return (self::inRoles($role) && $this->level() < self::getLevel($role));
+    }
+
+    public function isSysAdmin(){
+        return $this->isOrAbove('admin');
+    }
+
+    public function isWebAdmin(){
+        return $this->isOrAbove('reviewer');
+    }
+
+    public function isOwner($object){
+        return $this->id == $object->user_id;
+    }
+
 }

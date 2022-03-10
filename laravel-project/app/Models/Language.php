@@ -21,12 +21,7 @@ class Language extends Model
 		'status' => 0
 	];
 
-    public function getStatus(){
-        return [
-            0 => 'requested',
-            1 => 'approved'
-        ];
-    }
+    // Scout Functions
 
     public function toSearchableArray(){
         return [
@@ -40,12 +35,49 @@ class Language extends Model
         return $this->isApproved();
     }
 
+    // Model Functions
+
+    public static function getStatuses(){
+        return [
+            0 => 'requested',
+            1 => 'approved'
+        ];
+    }
+
+    public static function getStatus($status){
+        return array_search($status,self::getStatuses());
+    }
+
+    private static function inStatusesRange($num){
+        return in_array($num,array_keys(self::getStatuses()));
+    }
+
+    private static function inStatuses($status){
+        return in_array($status,self::getStatuses());
+    }
+
+    public static function getStatusValue($status){
+        if(self::inStatuses($status)){
+            return array_search($status,self::getStatuses());
+        }else{
+            return false;
+        }
+    }
+
+    public function statusValue(){
+        return $this->getStatusValue($this->status);
+    }
+
+    // Relations
+
     public function sinppet(){
         return $this->hasOne(sinppet::class);
     }
+
+    // Attributes & Scopes
     
     public function getStatusAttribute($attribute){
-		return $this->getStatus()[$attribute];
+		return self::getStatuses()[$attribute];
 	}
 
     public function scopeRequested($query){
@@ -57,6 +89,10 @@ class Language extends Model
 	}
 
     public function isApproved(){
-        return $this->status == 'approved';
+        return $this->statusValue() == self::getStatus('approved');
+    }
+
+    public function isRequested(){
+        return $this->statusValue() == self::getStatus('requested');
     }
 }

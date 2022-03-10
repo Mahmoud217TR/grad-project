@@ -21,13 +21,7 @@ class Post extends Model
 		'status' => 0
 	];
 
-    public function getStatus(){
-        return [
-            0 => 'drafted',
-            1 => 'published',
-            2 => 'archived'
-        ];
-    }
+    // Scout Functions
 
     public function toSearchableArray(){
         return [
@@ -41,6 +35,42 @@ class Post extends Model
         return $this->isPublished();
     }
 
+    // Model Functions
+
+    public static function getStatuses(){
+        return [
+            0 => 'drafted',
+            1 => 'published',
+            2 => 'archived'
+        ];
+    }
+
+    public static function getStatus($status){
+        return array_search($status,self::getStatuses());
+    }
+
+    private static function inStatusesRange($num){
+        return in_array($num,array_keys(self::getStatuses()));
+    }
+
+    private static function inStatuses($status){
+        return in_array($status,self::getStatuses());
+    }
+
+    public static function getStatusValue($status){
+        if(self::inStatuses($status)){
+            return array_search($status,self::getStatuses());
+        }else{
+            return false;
+        }
+    }
+
+    public function statusValue(){
+        return $this->getStatusValue($this->status);
+    }
+
+    // Relations
+
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -53,8 +83,10 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    // Attributes & Scopes
+
     public function getStatusAttribute($attribute){
-		return $this->getStatus()[$attribute];
+		return self::getStatuses()[$attribute];
 	}
 
     public function scopeDrafted($query){
@@ -70,14 +102,14 @@ class Post extends Model
 	}
 
     public function isDrafted(){
-        return $this->status == 'drafted';
+        return $this->statusValue() ==  self::getStatus('drafted');
     }
 
     public function isPublished(){
-        return $this->status == 'published';
+        return $this->statusValue() ==  self::getStatus('published');
     }
 
     public function isArchived(){
-        return $this->status == 'archived';
+        return $this->statusValue() ==  self::getStatus('archived');
     }
 }

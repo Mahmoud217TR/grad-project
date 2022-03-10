@@ -21,12 +21,16 @@ class Profile extends Pivot
         'bio' => "The user didn't set a Bio yet."
 	];
 
+    // Scout Functions
+
     public function toSearchableArray(){
         return [
             'bio' => $this->bio,
             'user_id' => $this->user_id,
         ];
     }
+
+    // Relations
 
     public function user(){
         return $this->belongsTo(User::class);

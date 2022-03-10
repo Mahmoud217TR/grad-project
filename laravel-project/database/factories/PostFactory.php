@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,7 +22,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence(),
             'content' => $this->faker->paragraph(),
             'user_id' => User::factory(),
-            'status' => 1,
+            'status' => Post::getStatus('published'),
         ];
     }
 
@@ -38,7 +39,7 @@ class PostFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'status' => 0,
+                'status' => Post::getStatus('drafted'),
             ];
         });
     }
@@ -47,7 +48,7 @@ class PostFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'status' => 1,
+                'status' => Post::getStatus('published'),
             ];
         });
     }
@@ -56,7 +57,7 @@ class PostFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'status' => 2,
+                'status' => Post::getStatus('archived'),
             ];
         });
     }

@@ -39,3 +39,11 @@ Route::controller(TaggingController::class)->group(function(){
     Route::post('post/{pid}/tag','post_tags')->name('tag-post');
     Route::post('snippet/{sid}/tag','snippet_tags')->name('tag-snippet');
 });
+
+Route::get('/nav', function () {
+    return view('layouts.nav');
+});
+
+Route::get('/footer', function () {
+    return view('layouts.footer');
+});

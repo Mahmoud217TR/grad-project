@@ -10,10 +10,6 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
-    private function isAuthor(User $user, Post $post){
-        return $user->id == $post->user_id;
-    }
-
     /**
      * Determine whether the user can view any models.
      *
@@ -45,7 +41,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        return $user->level() > 1;
+        return $user->isOrAbove('editor');
     }
 
     /**
@@ -57,7 +53,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        return ($this->isAuthor($user,$post) && $user->level() > 1);
+        return ($user->isOwner($post) && $user->isOrAbove('editor'));
     }
 
     /**
@@ -69,7 +65,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        return ($this->isAuthor($user,$post) && $user->level() > 1) || ($user->level() > 2);
+        return ($user->isOwner($post) && $user->isOrAbove('editor') || $user->isSysAdmin());
     }
 
     /**
