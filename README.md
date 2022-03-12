@@ -1,6 +1,16 @@
 # Graduation Project
 
-[Discord Server](https://discord.gg/F6JpFq879y)
+This Project is a web application aims to help programmers in many different ways.
+
+## Files
+
+* [The Discussion Files](/Discussion%20Files/)
+  * [The ERD Diagram](/Discussion%20Files/ERD%20Diagram)
+* [The Laravel Project](/laravel-project/)
+* [User Interface Files](/UX-UI%20Files/)
+* [Temporary Files](/tmp/)
+
+Work disscussions and details is on our [Discord Server](https://discord.gg/F6JpFq879y)
 
 ## Instructions
 

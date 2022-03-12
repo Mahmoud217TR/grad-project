@@ -4,6 +4,7 @@ use App\Http\Controllers\CodeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SnippetController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaggingController;
