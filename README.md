@@ -2,7 +2,7 @@
 
 This Project is a web application aims to help programmers in many different ways.
 
-![](Logo.svg)
+<img src="/logo.svg" width="256" height="256" />
 
 ## Files
 
