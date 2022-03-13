@@ -82,6 +82,15 @@ There are several lines you may need to change in a text editor (use search to f
 
 - Run the `meilisearch-windows-amd64.exe` for meillisearch
 
+- To make the compiler work there is 2 steps:
+	- Registert in [JDOODLE](https://www.jdoodle.com/compiler-api/) and get `client id` and `client secret`.
+	- Add these 2 lines to your `.env` file and fill it with the previous info:
+	
+	```
+	JDOODLE_CLIENT_ID = 
+	JDOODLE_CLIENT_SECRET = 
+	```
+	
 ## New Artisan Commands were added:
 
 - `php artisan db_stat`: displays the objects in database
