@@ -86,10 +86,10 @@ There are several lines you may need to change in a text editor (use search to f
 1. Registert in [JDOODLE](https://www.jdoodle.com/compiler-api/) and get `client id` and `client secret`.
 2. Add these 2 lines to your `.env` file and fill it with the previous info:
 	
-```
-JDOODLE_CLIENT_ID = 
-JDOODLE_CLIENT_SECRET = 
-```
+	```
+	JDOODLE_CLIENT_ID = 
+	JDOODLE_CLIENT_SECRET = 
+	```
 	
 ## New Artisan Commands were added:
 
