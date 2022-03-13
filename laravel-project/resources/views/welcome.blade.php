@@ -21,6 +21,9 @@
         background: url("{{ asset('images/background.jpg') }}");
       }
     </style>
+
+    <!-- fav icon -->
+    @include('components.favicon')
 </head>
 <body  class="Body">
   <div id="app">
@@ -34,7 +37,7 @@
              {{--start Logo--}}                  
               <a href="/" class="unstyled-anchor">
                 <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-1 ps-3 ">
-                  @include('layouts.logo',['width'=>80,'height'=>80])
+                  @include('components.logo',['width'=>80,'height'=>80])
                 </div>
               </a>
              {{--end logo--}} 
