@@ -3,9 +3,6 @@
 @import 'app.scss';
 
 
-
-
-$Background:url("Background6.jpg");
 $Primary:#FF2E00;
 $Secondary:#F0EFF0;
 $background:#1c2025;
@@ -50,11 +47,12 @@ $PrimaryText:#EEEBD0;
 //
 
 //Hovering
-  p.TH:hover{
+.TH:hover{
     text-decoration: underline;
+    text-underline-offset: 2px;
     text-decoration-color: $Primary;
-    text-decoration-thickness: 2px;
-    cursor: pointer;
+    text-decoration-thickness: 4px;
+    color: $Secondary!important;
  }
  i.bi-person:hover{
     color: $Primary;
@@ -67,7 +65,7 @@ $PrimaryText:#EEEBD0;
     -moz-transform: scale(1.1);
     -o-transform: scale(1.1);
     border-radius:10%;
-    } 
+} 
 .Rigester:hover {
    background-color:$Primary;
    color: $Secondary;
@@ -75,11 +73,10 @@ $PrimaryText:#EEEBD0;
    -moz-transform: scale(1.1);
    -o-transform: scale(1.1);
    border-radius:10%;
-   } 
+} 
 //
 
 .Body{
-background-image: $Background;
 background-size:cover;
 }
 .bi{
@@ -113,3 +110,6 @@ color:$Secondary;
   width:100px;
 }
     
+.unstyled-anchor{
+    text-decoration: none;
+}

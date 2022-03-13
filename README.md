@@ -2,6 +2,8 @@
 
 This Project is a web application aims to help programmers in many different ways.
 
+![](Logo.svg)
+
 ## Files
 
 * [The Discussion Files](/Discussion%20Files/)
