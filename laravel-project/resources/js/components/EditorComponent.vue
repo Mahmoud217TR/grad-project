@@ -47,9 +47,7 @@
 
 <script>
     export default {
-        devServer: {
-            proxy: 'https://mainsite.com/',
-        },
+        props:['uri'],
         mounted() {
 			this.changeTheme('ace/theme/monokai');
             this.changeLang('ace/mode/python');
@@ -117,13 +115,11 @@
                 var data = {
                     script : editor.getValue(),
                     language: this.currLang.lang,
-                    versionIndex: this.currLang.index,
-                    clientId: "",
-                    clientSecret:""
+                    index: this.currLang.index,
                 }
                 
-                axios.post('https://api.jdoodle.com/v1/execute', data).then(response =>{
-                    this.output = response.data;
+                axios.post(this.uri, data).then(response =>{
+                    this.output = response.data["output"];
                 }).catch(error => {
                     this.output = error.response.data.message
                 });

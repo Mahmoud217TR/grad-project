@@ -1,4 +1,4 @@
 ### Discussion Files
 
-## ERD Diagrams
-this folder is made for storing our erd diagrams
+## ERD Diagram
+this folder is made for storing our erd diagram

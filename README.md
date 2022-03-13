@@ -1,6 +1,16 @@
 # Graduation Project
 
-[Discord Server](https://discord.gg/F6JpFq879y)
+This Project is a web application aims to help programmers in many different ways.
+
+## Files
+
+* [The Discussion Files](/Discussion%20Files/)
+  * [The ERD Diagram](/Discussion%20Files/ERD%20Diagram)
+* [The Laravel Project](/laravel-project/)
+* [User Interface Files](/UX-UI%20Files/)
+* [Temporary Files](/tmp/)
+
+Work disscussions and details is on our [Discord Server](https://discord.gg/F6JpFq879y)
 
 ## Instructions
 
@@ -72,6 +82,15 @@ There are several lines you may need to change in a text editor (use search to f
 
 - Run the `meilisearch-windows-amd64.exe` for meillisearch
 
+- To make the compiler work there is 2 steps:
+1. Registert in [JDOODLE](https://www.jdoodle.com/compiler-api/) and get `client id` and `client secret`.
+2. Add these 2 lines to your `.env` file and fill it with the previous info:
+	
+	```
+	JDOODLE_CLIENT_ID = 
+	JDOODLE_CLIENT_SECRET = 
+	```
+	
 ## New Artisan Commands were added:
 
 - `php artisan db_stat`: displays the objects in database
