@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "bootstrap-icons": "^1.8.1",
         "github-markdown-css": "^5.1.0",
         "micromark": "^3.0.10",
         "micromark-extension-directive": "^2.1.1",

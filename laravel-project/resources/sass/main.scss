@@ -2,10 +2,114 @@
 
 @import 'app.scss';
 
-$color-test-1: white;
-$color-test-2: #010a0b;
 
-.test-div{
-    color: $color-test-1;
-    background-color: $color-test-2;
+
+
+$Background:url("Background6.jpg");
+$Primary:#FF2E00;
+$Secondary:#F0EFF0;
+$background:#1c2025;
+$PrimaryText:#EEEBD0;
+
+//main
+.h1{
+    font-size:60px;
+    font-family: 'Poppins';
+    font-weight: bold;
+    text-transform:uppercase;
 }
+.h2{
+    font-size:40px;
+    font-family: 'Poppins';
+    font-weight: bold;
+    text-transform:uppercase;  
+}
+.h3{
+    font-size:33px;
+    font-family:'Open Sans';
+    font-weight:400;
+    text-transform:uppercase;  
+}
+.h4{
+    font-size:28px;
+    font-family:'Open Sans';
+    font-weight:400;  
+}
+.TB{
+    font-size:20px;
+    font-family:'Roboto';
+    font-weight:500;
+}
+.TH{
+    font-size:20px;
+    font-family:'Poppins';
+    font-weight:500;
+    text-transform:uppercase;  
+    color: $Secondary;
+}
+//
+
+//Hovering
+  p.TH:hover{
+    text-decoration: underline;
+    text-decoration-color: $Primary;
+    text-decoration-thickness: 2px;
+    cursor: pointer;
+ }
+ i.bi-person:hover{
+    color: $Primary;
+    cursor: pointer;
+ }
+ .View:hover {
+    background-color:$Secondary;
+    color: $Primary;
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    border-radius:10%;
+    } 
+.Rigester:hover {
+   background-color:$Primary;
+   color: $Secondary;
+   -webkit-transform: scale(1.1);
+   -moz-transform: scale(1.1);
+   -o-transform: scale(1.1);
+   border-radius:10%;
+   } 
+//
+
+.Body{
+background-image: $Background;
+background-size:cover;
+}
+.bi{
+color:$Secondary;
+font-size:50px;
+}
+.Rigester{
+background-color:$Primary;
+color:$Secondary;
+}
+.View{
+    background-color:$Secondary;
+    color:$Primary;
+    }
+#TextInHeader{
+    color: $Secondary;
+}
+#ContentWelcome{
+    margin-top:10%;
+    color: $Secondary;
+}
+#Welcome{
+    color: $Secondary;
+}
+#NameProject{
+    color: $Primary;
+}
+.btn{
+  border-radius:20px;
+  margin-top:5px;
+  width:100px;
+}
+    
