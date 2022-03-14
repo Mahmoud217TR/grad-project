@@ -18,6 +18,8 @@
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 </head>
 <body>
-    {{-- Write your code here  --}}
+    {{-- Write  code here --}}
+    
+    </div>
 </body>
 </html>
