@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('codeedtie');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -50,7 +50,7 @@ Route::get('/footer', function () {
     return view('layouts.footer');
 });
 Route::get('/codeedite', function () {
-    return view('codeedite');
+    return view('codeedtie');
 });
 
 Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');
