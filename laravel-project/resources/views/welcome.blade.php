@@ -79,8 +79,8 @@
         <p class="h4" id="Welcome">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta, iusto illo, nostrum ab fugit est voluptate accusantium cumque at ipsa in. Magni minus libero debitis saepe iusto animi accusantium voluptates.</p> 
       </div>
       <div class="text-center ps-3 pt-3">
-        <button class="btn Rigester TB mx-2" type="button">Rigester</button>
-        <button class="btn View TB mx-2" type="button">View</button>
+        <a href="#" class="btn Rigester TB mx-2" type="button">Register</a>
+        <a href="#" class="btn View TB mx-2" type="button">View</a>
       </div>
       </div>
     {{----}}
