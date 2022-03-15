@@ -54,8 +54,8 @@
 
           {{--Buttons in header--}}
            <div class="col-12 col-sm-5 col-md-4 col-lg-3 d-flex align-items-center justify-content-around">
-             <a href="#" class="TH unstyled-anchor">services</a>
-             <a href="#" class="TH unstyled-anchor">about us</a>
+             <a href="/Services" class="TH unstyled-anchor">services</a>
+             <a href="/AboutUs" class="TH unstyled-anchor">about us</a>
            </div>
           {{----}}
 
@@ -71,14 +71,14 @@
     {{--end navbar--}}
     
     {{--text--}}
-      <div class="container ps-5" id="ContentWelcome">
-      <div class="offset-lg-1 offset-xl-2 pt-3 ">
-        <p class="h1" id="Welcome">welcome to <span id="NameProject">{{ config('app.name', 'Laravel') }}</span></p> 
+      <div class="container" id="ContentWelcome">
+      <div class="text-center pt-3 ">
+        <p class="h1" id="Welcome">welcome to <span id="OrangeText">{{ config('app.name', 'Laravel') }}</span></p> 
       </div>
-      <div class="text-center ps-3 pt-3 ">
+      <div class="text-center pt-3 ">
         <p class="h4" id="Welcome">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta, iusto illo, nostrum ab fugit est voluptate accusantium cumque at ipsa in. Magni minus libero debitis saepe iusto animi accusantium voluptates.</p> 
       </div>
-      <div class="text-center ps-3 pt-3">
+      <div class="text-center pt-3">
         <button class="btn Rigester TB mx-2" type="button">Rigester</button>
         <button class="btn View TB mx-2" type="button">View</button>
       </div>
