@@ -76,8 +76,8 @@ $PrimaryText:#EEEBD0;
 } 
 //
 
-.Body{
-background-size:cover;
+main{
+min-height: 100vh;
 }
 .bi{
 color:$Secondary;
@@ -95,7 +95,7 @@ color:$Secondary;
     color: $Secondary;
 }
 #ContentWelcome{
-    margin-top:10%;
+    margin-top:5%;
     color: $Secondary;
 }
 #Welcome{
