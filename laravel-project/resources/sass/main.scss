@@ -28,7 +28,7 @@ $PrimaryText:#EEEBD0;
     text-transform:uppercase;  
 }
 .h4{
-    font-size:28px;
+    font-size:25px;
     font-family:'Open Sans';
     font-weight:400;  
 }
@@ -101,9 +101,6 @@ color:$Secondary;
 #Welcome{
     color: $Secondary;
 }
-#NameProject{
-    color: $Primary;
-}
 .btn{
   border-radius:20px;
   margin-top:5px;
@@ -112,4 +109,16 @@ color:$Secondary;
     
 .unstyled-anchor{
     text-decoration: none;
+}
+
+.BodyColor{
+    background-color: $background;
+    color: $PrimaryText;
+}
+
+#container{
+    margin-top:10%;
+}
+#OrangeText{
+    color: $Primary;
 }

@@ -50,4 +50,12 @@ Route::get('/footer', function () {
     return view('layouts.footer');
 });
 
+Route::get('/Services', function () {
+    return view('Services');
+});
+
+Route::get('/AboutUs', function () {
+    return view('AboutUs');
+});
+
 Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');

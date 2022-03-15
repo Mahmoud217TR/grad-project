@@ -77,7 +77,7 @@
           <div class="row">
             <div class="col-8">
               <div class="text-start pt-3 mb-4">
-                <p class="h1" id="Welcome">welcome to <span id="NameProject">{{ config('app.name', 'Laravel') }}</span></p> 
+                <p class="h1" id="Welcome">welcome to <span id="OrangeText">{{ config('app.name', 'Laravel') }}</span></p> 
               </div>
               <div class="text-start ps-3 pt-3 ">
                 <p class="h4" id="Welcome">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, quae cupiditate nihil deleniti velit earum dolores dolore nam aut consequatur provident ducimus molestias ad iure officia inventore ipsam numquam quas esse praesentium rem. Itaque natus modi quis reprehenderit voluptate quas odio id quae nulla accusamus, aperiam dolor incidunt unde quidem.</p> 
