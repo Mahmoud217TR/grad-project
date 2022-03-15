@@ -19,64 +19,54 @@
     <!-- fav icon -->
     @include('components.favicon')
 </head>
-<body  class="BodyColor">
+<body  class="body-color">
   <div id="app">
 
 {{--text--}}
-  <div class="container">
+  <div class="container align-items-center">
     <div class="text-center pt-1">
-      <p class="h2 pt-5" id="OrangeText">services</p>
+      <p class="page-title pt-5 orange-text">services</p>
     </div> 
-      <div class="container" id="container">
-        <div class="row">
-          <div class="col-7">
-           <p class="h3" id="OrangeText">1- online ide with multiple languages</p>
-           <p class="h4"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae itaque pariatur quae odio nulla quasi quis fugiat excepturi officia? Reiciendis alias, enim repellendus itaque odit vero error tempora possimus!
+      <div class="container container1">
+        <div class=" d-lg-flex my-5">
+          <div class="">
+           <p class="head-line orange-text">1- online ide with multiple languages</p>
+           <p class="base-line"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae itaque pariatur quae odio nulla quasi quis fugiat excepturi officia? Reiciendis alias, enim repellendus itaque odit vero error tempora possimus!
              </p>
           </div>
-          <div class="col-5">
             @include('components.SVG1')
-          </div>
         </div>
-        <div class="row">
-          <div class="col-5">
+        <div class="d-lg-flex my-5">
             @include('components.SVG2')
-          </div>
-          <div class="col-7">
-            <p class="h3" id="OrangeText">2- blogger for experienced devloper</p>
-            <p class="h4"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae itaque pariatur quae odio nulla quasi quis fugiat excepturi officia? Reiciendis alias, enim repellendus itaque odit vero error tempora possimus!
+          <div>
+            <p class="head-line orange-text">2- blogger for experienced devloper</p>
+            <p class="base-line"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae itaque pariatur quae odio nulla quasi quis fugiat excepturi officia? Reiciendis alias, enim repellendus itaque odit vero error tempora possimus!
             </p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-7">
-            <p class="h3" id="OrangeText">3- providing codes or built-in function in different languages to ease search</p>
-            <p class="h4"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae itaque pariatur quae odio nulla quasi quis fugiat excepturi officia? Reiciendis alias, enim repellendus itaque odit vero error tempora possimus!
+        <div class="d-lg-flex my-5">
+          <div>
+            <p class="head-line orange-text">3- providing codes or built-in function in different languages to ease search</p>
+            <p class="base-line"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae itaque pariatur quae odio nulla quasi quis fugiat excepturi officia? Reiciendis alias, enim repellendus itaque odit vero error tempora possimus!
             </p>
           </div>
-          <div class="col-5">
             @include('components.SVG1')
-          </div>
         </div>
-        <div class="row">
-          <div class="col-5">
+        <div class="d-lg-flex my-5">
             @include('components.SVG2')
-          </div>
-          <div class="col-7">
-            <p class="h3" id="OrangeText">4- making their own cheat sheets</p>
-            <p class="h4"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae itaque pariatur quae odio nulla quasi quis fugiat excepturi officia? Reiciendis alias, enim repellendus itaque odit vero error tempora possimus!
+          <div>
+            <p class="head-line orange-text">4- making their own cheat sheets</p>
+            <p class="base-line"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae itaque pariatur quae odio nulla quasi quis fugiat excepturi officia? Reiciendis alias, enim repellendus itaque odit vero error tempora possimus!
             </p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-7">
-            <p class="h3" id="OrangeText">5- taking mcq quests for different languages</p>
-            <p class="h4"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae itaque pariatur quae odio nulla quasi quis fugiat excepturi officia? Reiciendis alias, enim repellendus itaque odit vero error tempora possimus!
+        <div class="d-lg-flex my-5">
+          <div>
+            <p class="head-line orange-text">5- taking mcq quests for different languages</p>
+            <p class="base-line"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae itaque pariatur quae odio nulla quasi quis fugiat excepturi officia? Reiciendis alias, enim repellendus itaque odit vero error tempora possimus!
             </p>
           </div>
-          <div class="col-5">
             @include('components.SVG1')
-          </div>
         </div>
       </div>
   </div>

@@ -19,25 +19,24 @@
     <!-- fav icon -->
     @include('components.favicon')
 </head>
-<body  class="BodyColor">
+<body  class="body-color">
   <div id="app">
 
     {{--text--}}
-        <div class="container pt-5" id="container">
-            <div class="row pt-5">
-                <div class="col-7">
-                 <p class="h3" id="OrangeText">few words about us:</p>
-                 <p class="h4"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae itaque pariatur quae odio nulla quasi quis fugiat excepturi officia? Reiciendis alias, enim repellendus itaque odit vero error tempora possimus!
-                   </p>
-                </div>
-                <div class="col-5">
-                  @include('components.SVG3')
-                </div>
-              </div>
+    <div class="container align-items-center">
+        <div class="container container1">
+          <div class="d-lg-flex my-5">
+            <div class="">
+             <p class="head-line orange-text">Few Words About Us:</p>
+             <p class="base-line"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae itaque pariatur quae odio nulla quasi quis fugiat excepturi officia? Reiciendis alias, enim repellendus itaque odit vero error tempora possimus!
+               </p>
+            </div>
+              @include('components.SVG3')
           </div>
+    </div>     
     {{----}}
 
-    {{--end page--}}
+
 
   </div>
 </body>
