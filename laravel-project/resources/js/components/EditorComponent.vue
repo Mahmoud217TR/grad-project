@@ -1,47 +1,99 @@
 <template>
-    <div class="container my-3">
-        <div class="row justify-content-center">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header bg-dark text-light">
-                        <div class="row">
-							<div class="col-md-3 d-flex align-items-start my-2">
-								<h2 class="card-title m-0">Code Editor: </h2>
-							</div>
-							<div class="col-md-3 d-flex align-items-end justify-content-start my-2">
-								<button class="btn btn-success mx-2" @click="run()">Run</button>
-								<button class="btn btn-light mx-2">Save</button>
-							</div>
-							<div class="col-md-6 my-2">
-								<div class="row">
-									<div class="col-md-6">
-										<label class="mb-1" for="theme">Theme:</label>
-										<select class="form-select bg-dark text-light" id="theme" @change="switchTheme($event)">
-											<option v-for="theme in themes" :value="getThemeUrl(theme)">{{ theme }}</option>
-										</select>
-									</div>
-									<div class="col-md-6">
-										<label class="mb-1" for="lang">Language:</label>
-										<select class="form-select bg-dark text-light" id="lang" @change="switchLang($event)" >
-											<option v-for="(lang,index) in langs" :value="index">{{ lang.key }}</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
+    <!-- the bigger div content all element of editor  -->
+    <div class="container ide text-white">
+        <!-- the header of it contain label and  selector  -->
+        <div  class="row header bg-header p-2">
+            <!-- this for label  -->
+            <div class="col ml-2 text-center text-lg-start my-3">
+                <h2 class="m-0"> Code Editor</h2>
+            </div>
+            <!-- this for selector1  -->
+            <div class="col-lg my-2 my-lg-0 text-center text-lg-start">
+                <div class="row">
+                    <div class="col-4 d-flex align-items-center justify-content-end">
+                        <label for ="language" class="me-2" >Language:</label>
                     </div>
-                    <div class="card-body p-0 rounded-bottom">
-                        <div id="editor">
-                            
-                        </div>
-						<div class="bg-dark text-light py-2 px-3 rounded-bottom">
-							<h3>Output:</h3>
-							<p class="output">{{output}}</p>
-						</div> 
+                    <div class="col-8 d-flex align-items-center justify-content-start">
+                        <select id ="language" name="language" class="form-select d-inline" aria-label="Default select example" @change="switchLang($event)">
+                            <option v-for="(lang,index) in langs" :value="index">{{ lang.key }}</option>
+                          </select>
                     </div>
-                </div>   
+                </div>
+            </div>
+            <!-- this for selector2  -->
+            <div class="col-lg my-2 my-lg-0 text-center text-lg-start">
+                <div class="row">
+                    <div class="col-4 d-flex align-items-center justify-content-end">
+                        <label for ="theme" class="me-2" >Theme:</label>
+                    </div>
+                    <div class="col-8 d-flex align-items-center justify-content-start">
+                        <select id ="theme" name="theme" class="form-select d-inline" aria-label="Default select example" @change="switchTheme($event)">
+                            <option v-for="theme in themes" :value="getThemeUrl(theme)">{{ theme }}</option>
+                          </select>
+                    </div>
+                </div>
             </div>
         </div>
+        <!-- the secound part is for code text  and output  -->
+        <div  class="row" >
+            <!-- this for code  -->
+            <div class="col-md-8 p-0">
+                <!-- this is for code   -->
+                <div class="code-editor" id="editor">
+
+                </div>
+            </div>
+             <!-- this for out   -->
+             <div class="col-md-4">
+                 <!-- this for output label   -->
+                 <div class="row bg-header">
+                   <div class="col mb-2 d-flex justify-content-center">
+                    <h2> Output</h2>
+                   </div>
+                 </div>
+                 <!-- this for output   -->
+                 <div class="row bg-output ">
+                    <div class="col">
+                        <p class="output p-2">
+                            {{output}}
+                        </p>
+                    </div>
+                  </div>
+                   <!-- this for button   -->
+                  <div class="row  bg-header">
+                  <!-- this for button run  -->
+                    <div class="col p-1">
+                        <button class="btn  Rigester TB d-flex align-items-center" @click="run()">
+                            <i class="bi bi-play-btn-fill icons pe-2"></i>
+                            <span>Run</span>
+                        </button>
+                    </div>
+                     <!-- this for button save  -->
+                     <div class="col p-1">
+                        <button class="btn  Rigester TB d-flex align-items-center">
+                            <i class="bi bi-save2-fill icons pe-2 mb-0"></i>
+                            <span>Save</span>
+                        </button>
+                     </div>
+                     <!-- this for button undo  -->
+                     <div class="col p-1">
+                        <button class="btn  Rigester TB d-flex align-items-center">
+                            <i class="bi bi-arrow-counterclockwise icons pe-1"></i>
+                            <span>Undo</span>
+                        </button>
+                     </div>
+                     <!-- this for button redo   -->
+                     <div class="col p-1">
+                        <button class="btn  Rigester TB d-flex align-items-center">
+                            <i class="bi bi-arrow-clockwise icons pe-1"></i>
+                            <span>Redo</span>
+                        </button>
+                     </div>
+                  </div>
+                    
+                </div>
+
+            </div>
     </div>
 </template>
 
@@ -127,14 +179,3 @@
         },
     }
 </script>
-
-<style scoped>
-    #editor { 
-		position: relative;
-		width: 100%;
-		height: 500px;
-	}
-    .output{
-        min-height: 100px;
-    }
-</style>
