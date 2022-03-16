@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<div id="app">
+<link href="{{ asset('css/ide.css') }}" rel="stylesheet">
+<div id="app" >
     <!-- the bigger div content all element of editor  -->
     <div class="container ide text-white">
         <!-- the header of it contain label and  selector  -->
@@ -71,14 +72,17 @@
                   <div class="row  bg-header">
                   <!-- this for button run  -->
                     <div class="col p-1">
-                       <button class="btn  Rigester TB">
-                        
-                           <span>Run</span>
-                       </button>
+                        <button class="btn  Rigester TB d-flex align-items-center">
+                            <i class="bi bi-play-btn-fill icons pe-2"></i>
+                            <span>Run</span>
+                        </button>
                     </div>
                      <!-- this for button save  -->
                      <div class="col p-1">
-                        <button class="btn  Rigester TB">Save</button>
+                        <button class="btn  Rigester TB d-flex align-items-center">
+                            <i class="bi bi-save2-fill icons pe-2 mb-0"></i>
+                            <span>Save</span>
+                        </button>
                      </div>
                      <!-- this for button undo  -->
                      <div class="col p-1">
@@ -89,7 +93,10 @@
                      </div>
                      <!-- this for button redo   -->
                      <div class="col p-1">
-                        <button class="btn  Rigester TB">Redo</button>
+                        <button class="btn  Rigester TB d-flex align-items-center">
+                            <i class="bi bi-arrow-clockwise icons pe-1"></i>
+                            <span>Redo</span>
+                        </button>
                      </div>
                   </div>
                     

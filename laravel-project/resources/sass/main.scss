@@ -3,11 +3,6 @@
 @import 'app.scss';
 
 
-$Primary:#FF2E00;
-$Secondary:#F0EFF0;
-$background:#1c2025;
-$PrimaryText:#EEEBD0;
-
 //main
 .h1{
     font-size:60px;
@@ -114,45 +109,4 @@ color:$Secondary;
     text-decoration: none;
 }
 
-.ide{
-    
- .bg-header{
-    background-color: $ide-header;
- }
- .bg-output{
-     background-color: $ide-output;
- }
- .output{
-    min-height: 400px;
- }
- .header{
-    min-height: 6rem;
-    display: flex;
-    align-items: center;
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
- }
- label{
-    
-     font-size: 1.1rem!important;
-}
- .form-select {
-    border-color:$Primary!important;
-    width: min(20rem,100%);
-    border-width: 0.2rem;
-    background-color: $ide-header;
-    color: $Secondary;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23FF2E00" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>');
-}
-.form-select:focus {
-    border-color:$Primary!important;
-    box-shadow: 0 0 0 0.5rem rgb(255 46 0 / 25%)!important;
-}
-.code-editor{
-    min-height: 400px;
-}
 
-.icons{
-    font-size: 20px;
-}
-}
