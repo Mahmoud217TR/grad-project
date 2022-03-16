@@ -76,8 +76,8 @@ $PrimaryText:#EEEBD0;
 } 
 //
 
-main{
-min-height: 100vh;
+.Body{
+background-size:cover;
 }
 .bi{
 color:$Secondary;
@@ -95,7 +95,7 @@ color:$Secondary;
     color: $Secondary;
 }
 #ContentWelcome{
-    margin-top:5%;
+    margin-top:10%;
     color: $Secondary;
 }
 #Welcome{
@@ -111,7 +111,7 @@ color:$Secondary;
     text-decoration: none;
 }
 
-.BodyColor{
+body{
     background-color: $background;
     color: $PrimaryText;
 }
