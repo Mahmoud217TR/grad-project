@@ -69,7 +69,7 @@
                     </div>
                   </div>
                    <!-- this for button   -->
-                  <div class="row  bg-header">
+                  <div class="row py-2 bg-header">
                   <!-- this for button run  -->
                     <div class="col p-1">
                         <button class="btn  Rigester TB d-flex align-items-center">
