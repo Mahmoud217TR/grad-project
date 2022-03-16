@@ -39,8 +39,8 @@
             <!-- this for code  -->
             <div class="col-md-8 p-0">
                 <!-- this is for code   -->
-                <div class="code-editor" id="editor">
-
+                <div class="code-editor" name="editor" id="editor" @keypress="checkButtons()">
+                    {{ content }}
                 </div>
             </div>
              <!-- this for out   -->
@@ -48,13 +48,13 @@
                  <!-- this for output label   -->
                  <div class="row bg-header">
                    <div class="col mb-2 d-flex justify-content-center">
-                    <h2> Output</h2>
+                    <h2>Output</h2>
                    </div>
                  </div>
                  <!-- this for output   -->
                  <div class="row bg-output ">
                     <div class="col">
-                        <p class="output p-2 text-dark">
+                        <p class="output text-break py-2 text-dark">
                             {{output}}
                         </p>
                     </div>
@@ -77,14 +77,14 @@
                      </div>
                      <!-- this for button undo  -->
                      <div class="col p-1">
-                        <button class="btn  Rigester TB d-flex align-items-center">
+                        <button id ='undo' class="btn Rigester TB d-flex align-items-center" @click="undo()">
                             <i class="bi bi-arrow-counterclockwise icons pe-1"></i>
                             <span>Undo</span>
                         </button>
                      </div>
                      <!-- this for button redo   -->
                      <div class="col p-1">
-                        <button class="btn  Rigester TB d-flex align-items-center">
+                        <button id = 'redo' class="btn Rigester TB d-flex align-items-center" @click="redo()">
                             <i class="bi bi-arrow-clockwise icons pe-1"></i>
                             <span>Redo</span>
                         </button>
@@ -98,12 +98,15 @@
 
 <script>
     export default {
-        props:['uri'],
+        props:['uri','content'],
         mounted() {
+            this.editor = ace.edit("editor");
 			this.changeTheme('ace/theme/monokai');
             this.changeLang('ace/mode/python');
             this.currLang = this.langs[0];
-            
+            this.editor.session.mergeUndoDeltas = true;
+            this.editor.session.markUndoGroup();
+            this.checkButtons()
         },
         data() {
             return {
@@ -142,6 +145,7 @@
                     {key: 'Kotlin (1.6.0 - JRE 17.0.1+12)',value: 'ace/mode/kotlin', lang:'kotlin', index: 3, ext:'kt'},
                 ],
                 currLang: null,
+                editor: null,
             }
         },
         methods: {
@@ -149,12 +153,10 @@
                 return 'ace/theme/'+theme;
             },
             changeTheme(theme){
-                var editor = ace.edit("editor");
-                editor.setTheme(theme);
+                this.editor.setTheme(theme);
             },
             changeLang(lang){
-                var editor = ace.edit("editor");
-                editor.session.setMode(lang);
+                this.editor.session.setMode(lang);
             },
             switchTheme(event){
                 this.changeTheme(event.target.value);
@@ -164,9 +166,8 @@
                 this.changeLang(this.currLang.value);
             },
             run(){
-                var editor = ace.edit("editor");
                 var data = {
-                    script : editor.getValue(),
+                    script : this.editor.getValue(),
                     language: this.currLang.lang,
                     index: this.currLang.index,
                 }
@@ -178,12 +179,42 @@
                 });
             },
             saveFile(){
-                var editor = ace.edit("editor");
-                var blob = new Blob([editor.getValue()],{type:'text/plain'})
+                var blob = new Blob([this.editor.getValue()],{type:'text/plain'})
                 var anchor = document.createElement('a')
                 anchor.download = 'test.'+this.currLang.ext
                 anchor.href = window.URL.createObjectURL(blob)
                 anchor.click()
+            },
+            checkButtons(){
+                if (!this.editor.session.getUndoManager().hasUndo()){
+                    this.disableButton('undo')
+                }else{
+                    this.enableButton('undo')
+                }
+
+                if (!this.editor.session.getUndoManager().hasRedo()){
+                    this.disableButton('redo')
+                }else{
+                    this.enableButton('redo')
+                }
+            },
+            undo(){
+                this.editor.undo()
+                this.checkButtons()
+            },
+            redo(){
+                this.editor.redo()
+                this.checkButtons()
+            },
+            disableButton(id){
+                var button = document.getElementById(id);
+                button.disabled = true
+                button.classList.add('btn-secondary')
+            },
+            enableButton(id){
+                var button = document.getElementById(id);
+                button.disabled = false
+                button.classList.remove('btn-secondary')
             }
         },
     }
