@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <link href="{{ asset('css/ide.css') }}" rel="stylesheet">
-<div id="app" >
     <!-- the bigger div content all element of editor  -->
     <div class="container ide text-white">
         <!-- the header of it contain label and  selector  -->
@@ -108,9 +107,4 @@
        
        
     </div>
-</div>
-
-    
-
-    
 @endsection
