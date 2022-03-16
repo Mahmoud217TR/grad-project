@@ -3,6 +3,11 @@
 @import 'app.scss';
 
 
+$Primary:#FF2E00;
+$Secondary:#F0EFF0;
+$background:#1c2025;
+$PrimaryText:#EEEBD0;
+
 //main
 .h1{
     font-size:60px;
@@ -23,7 +28,7 @@
     text-transform:uppercase;  
 }
 .h4{
-    font-size:28px;
+    font-size:25px;
     font-family:'Open Sans';
     font-weight:400;  
 }
@@ -96,9 +101,6 @@ color:$Secondary;
 #Welcome{
     color: $Secondary;
 }
-#NameProject{
-    color: $Primary;
-}
 .btn{
   border-radius:20px;
   margin-top:5px;
@@ -109,4 +111,14 @@ color:$Secondary;
     text-decoration: none;
 }
 
+body{
+    background-color: $background;
+    color: $PrimaryText;
+}
 
+#container{
+    margin-top:10%;
+}
+#OrangeText{
+    color: $Primary;
+}

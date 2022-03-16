@@ -15,8 +15,4 @@ mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/main.scss', 'public/css')
-<<<<<<< HEAD
-    .sass('resources/sass/app.scss', 'ide/css');
-=======
-    .sass('resources/sass/ide.scss', 'public/css');
->>>>>>> dd2c658f5cbd6bcb867860820c21f9dfca3ea91f
+    .sass('resources/sass/ide.scss', 'ide/css');
