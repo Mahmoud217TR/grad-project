@@ -54,7 +54,7 @@
                  <!-- this for output   -->
                  <div class="row bg-output ">
                     <div class="col">
-                        <p class="output p-2">
+                        <p class="output p-2 text-dark">
                             {{output}}
                         </p>
                     </div>
@@ -70,7 +70,7 @@
                     </div>
                      <!-- this for button save  -->
                      <div class="col p-1">
-                        <button class="btn  Rigester TB d-flex align-items-center">
+                        <button class="btn  Rigester TB d-flex align-items-center" @click="saveFile()">
                             <i class="bi bi-save2-fill icons pe-2 mb-0"></i>
                             <span>Save</span>
                         </button>
@@ -102,6 +102,8 @@
         mounted() {
 			this.changeTheme('ace/theme/monokai');
             this.changeLang('ace/mode/python');
+            this.currLang = this.langs[0];
+            
         },
         data() {
             return {
@@ -122,24 +124,24 @@
                     'gruvbox'
                 ],
                 langs: [
-                    {key: 'Python (3.9.9)',value: 'ace/mode/python', lang:'python3', index: 4},
-                    {key: 'Java (JDK 17.0.1)',value: 'ace/mode/java', lang:'java', index: 4},
-                    {key: 'C++ (GCC 11.1.0)',value: 'ace/mode/c_cpp', lang:'cpp', index: 5},
-                    {key: 'C++14 (GCC 11.1.0)',value: 'ace/mode/c_cpp', lang:'cpp14', index: 4},
-                    {key: 'C++17 (GCC 11.1.0)',value: 'ace/mode/c_cpp', lang:'cpp17', index: 1},
-                    {key: 'PHP (8.0.13)',value: 'ace/mode/php', lang:'php', index: 4},
-                    {key: 'Ruby (3.0.2)',value: 'ace/mode/ruby', lang:'ruby', index: 4},
-                    {key: 'C# (mono-6.12.0)',value: 'ace/mode/csharp', lang:'csharp', index: 4},
-                    {key: 'Lua (5.4.3)',value: 'ace/mode/lua', lang:'lua', index: 3},
-                    {key: 'RUST (1.56.1)',value: 'ace/mode/rust', lang:'rust', index: 4},
-                    {key: 'Scala (2.13.6)',value: 'ace/mode/scala', lang:'scala', index: 4},
-                    {key: 'COBOL (GNU COBOL 3.1.2)',value: 'ace/mode/cobol', lang:'cobol', index: 3},
-                    {key: 'Elixir (1.12.2)',value: 'ace/mode/elixir', lang:'elixir', index: 4},
-                    {key: 'Nim (1.4.8)',value: 'ace/mode/nim', lang:'nim', index: 3},
-                    {key: 'Dart (2.14.4)',value: 'ace/mode/dart', lang:'dart', index: 4},
-                    {key: 'Kotlin (1.6.0 - JRE 17.0.1+12)',value: 'ace/mode/kotlin', lang:'kotlin', index: 3},
+                    {key: 'Python (3.9.9)',value: 'ace/mode/python', lang:'python3', index: 4, ext:'py'},
+                    {key: 'Java (JDK 17.0.1)',value: 'ace/mode/java', lang:'java', index: 4, ext:'java'},
+                    {key: 'C++ (GCC 11.1.0)',value: 'ace/mode/c_cpp', lang:'cpp', index: 5, ext:'cpp'},
+                    {key: 'C++14 (GCC 11.1.0)',value: 'ace/mode/c_cpp', lang:'cpp14', index: 4, ext:'cpp'},
+                    {key: 'C++17 (GCC 11.1.0)',value: 'ace/mode/c_cpp', lang:'cpp17', index: 1, ext:'cpp'},
+                    {key: 'PHP (8.0.13)',value: 'ace/mode/php', lang:'php', index: 4, ext:'php'},
+                    {key: 'Ruby (3.0.2)',value: 'ace/mode/ruby', lang:'ruby', index: 4, ext:'rb'},
+                    {key: 'C# (mono-6.12.0)',value: 'ace/mode/csharp', lang:'csharp', index: 4, ext:'cs'},
+                    {key: 'Lua (5.4.3)',value: 'ace/mode/lua', lang:'lua', index: 3, ext:'lua'},
+                    {key: 'RUST (1.56.1)',value: 'ace/mode/rust', lang:'rust', index: 4, ext:'rs'},
+                    {key: 'Scala (2.13.6)',value: 'ace/mode/scala', lang:'scala', index: 4, ext:''},
+                    {key: 'COBOL (GNU COBOL 3.1.2)',value: 'ace/mode/cobol', lang:'cobol', index: 3, ext:'sc'},
+                    {key: 'Elixir (1.12.2)',value: 'ace/mode/elixir', lang:'elixir', index: 4, ext:'exs'},
+                    {key: 'Nim (1.4.8)',value: 'ace/mode/nim', lang:'nim', index: 3, ext:'nim'},
+                    {key: 'Dart (2.14.4)',value: 'ace/mode/dart', lang:'dart', index: 4, ext:'dart'},
+                    {key: 'Kotlin (1.6.0 - JRE 17.0.1+12)',value: 'ace/mode/kotlin', lang:'kotlin', index: 3, ext:'kt'},
                 ],
-                currLang: {key: 'Python (3.9.9)',value: 'ace/mode/python', lang:'python3', index: 4},
+                currLang: null,
             }
         },
         methods: {
@@ -174,6 +176,14 @@
                 }).catch(error => {
                     this.output = error.response.data.message
                 });
+            },
+            saveFile(){
+                var editor = ace.edit("editor");
+                var blob = new Blob([editor.getValue()],{type:'text/plain'})
+                var anchor = document.createElement('a')
+                anchor.download = 'test.'+this.currLang.ext
+                anchor.href = window.URL.createObjectURL(blob)
+                anchor.click()
             }
         },
     }
