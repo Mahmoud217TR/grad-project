@@ -2,10 +2,157 @@
 
 @import 'app.scss';
 
-$color-test-1: white;
-$color-test-2: #010a0b;
 
-.test-div{
-    color: $color-test-1;
-    background-color: $color-test-2;
+$Primary:#FF2E00;
+$Secondary:#F0EFF0;
+$background:#1c2025;
+$PrimaryText:#EEEBD0;
+
+//main
+.h1{
+    font-size:60px;
+    font-family: 'Poppins';
+    font-weight: bold;
+    text-transform:uppercase;
+}
+.h2{
+    font-size:40px;
+    font-family: 'Poppins';
+    font-weight: bold;
+    text-transform:uppercase;  
+}
+.h3{
+    font-size:33px;
+    font-family:'Open Sans';
+    font-weight:400;
+    text-transform:uppercase;  
+}
+.h4{
+    font-size:28px;
+    font-family:'Open Sans';
+    font-weight:400;  
+}
+.TB{
+    font-size:20px;
+    font-family:'Roboto';
+    font-weight:500;
+}
+.TH{
+    font-size:20px;
+    font-family:'Poppins';
+    font-weight:500;
+    text-transform:uppercase;  
+    color: $Secondary;
+}
+//
+
+//Hovering
+.TH:hover{
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: $Primary;
+    text-decoration-thickness: 4px;
+    color: $Secondary!important;
+ }
+ i.bi-person:hover{
+    color: $Primary;
+    cursor: pointer;
+ }
+ .View:hover {
+    background-color:$Secondary;
+    color: $Primary;
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    border-radius:10%;
+} 
+.Rigester:hover {
+   background-color:$Primary;
+   color: $Secondary;
+   -webkit-transform: scale(1.1);
+   -moz-transform: scale(1.1);
+   -o-transform: scale(1.1);
+   border-radius:10%;
+} 
+//
+
+.Body{
+background-size:cover;
+}
+.bi{
+color:$Secondary;
+font-size:50px;
+}
+.Rigester{
+background-color:$Primary;
+color:$Secondary;
+}
+.View{
+    background-color:$Secondary;
+    color:$Primary;
+    }
+#TextInHeader{
+    color: $Secondary;
+}
+#ContentWelcome{
+    margin-top:10%;
+    color: $Secondary;
+}
+#Welcome{
+    color: $Secondary;
+}
+#NameProject{
+    color: $Primary;
+}
+.btn{
+  border-radius:20px;
+  margin-top:5px;
+  width:100px;
+}
+    
+.unstyled-anchor{
+    text-decoration: none;
+}
+
+.ide{
+    
+ .bg-header{
+    background-color: $ide-header;
+ }
+ .bg-output{
+     background-color: $ide-output;
+ }
+ .output{
+    min-height: 400px;
+ }
+ .header{
+    min-height: 6rem;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+ }
+ label{
+    
+     font-size: 1.1rem!important;
+}
+ .form-select {
+    border-color:$Primary!important;
+    width: min(20rem,100%);
+    border-width: 0.2rem;
+    background-color: $ide-header;
+    color: $Secondary;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23FF2E00" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>');
+}
+.form-select:focus {
+    border-color:$Primary!important;
+    box-shadow: 0 0 0 0.5rem rgb(255 46 0 / 25%)!important;
+}
+.code-editor{
+    min-height: 400px;
+}
+
+.icons{
+    font-size: 20px;
+}
 }

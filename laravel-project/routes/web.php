@@ -49,8 +49,8 @@ Route::get('/nav', function () {
 Route::get('/footer', function () {
     return view('layouts.footer');
 });
-Route::get('/codeedite', function () {
-    return view('codeedtie');
+Route::get('/codeedit', function () {
+    return view('codeedit');
 });
 
 Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');

@@ -1,0 +1,1 @@
+<link rel="shortcut icon" href="{{ asset('images/logo.ico') }}" type="image/x-icon">

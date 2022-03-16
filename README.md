@@ -1,3 +1,5 @@
+<p align = 'center'><img src="/Logo.svg" width="256" height="256" /></p>
+
 # Graduation Project
 
 This Project is a web application aims to help programmers in many different ways.
