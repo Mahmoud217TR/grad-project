@@ -117,6 +117,30 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public function postVotes(){
+        return $this->belongsToMany(Post::class,'post_user','user_id')->withPivot('upvote')->withPivot('upvote');
+    }
+
+    public function postUpvotes(){
+        return $this->postVotes->where('pivot.upvote',true);
+    }
+
+    public function postDownvotes(){
+        return $this->postVotes->where('pivot.upvote',false);
+    }
+
+    public function commentVotes(){
+        return $this->belongsToMany(Comment::class,'comment_user','user_id')->withPivot('upvote');
+    }
+
+    public function commentUpvotes(){
+        return $this->commentVotes->where('pivot.upvote',true);
+    }
+
+    public function commentDownvotes(){
+        return $this->commentVotes->where('pivot.upvote',false);
+    }
+
     // Attributes & Scopes
     
     public function getRoleAttribute($attribute){
@@ -150,6 +174,8 @@ class User extends Authenticatable
     public function scopeWebAdmins($query){
 		return $query->where('role','>','0');
 	}
+
+    // Functions
 
     public function isUser(){
         return $this->level() == self::getRole('user');
