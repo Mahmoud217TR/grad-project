@@ -63,28 +63,28 @@
                   <div class="row  bg-header">
                   <!-- this for button run  -->
                     <div class="col p-1">
-                        <button class="btn  Rigester TB d-flex align-items-center" @click="run()">
+                        <button class="btn button-primary TB d-flex align-items-center" @click="run()">
                             <i class="bi bi-play-btn-fill icons pe-2"></i>
                             <span>Run</span>
                         </button>
                     </div>
                      <!-- this for button save  -->
                      <div class="col p-1">
-                        <button class="btn  Rigester TB d-flex align-items-center" @click="saveFile()">
+                        <button class="btn button-primary TB d-flex align-items-center" @click="saveFile()">
                             <i class="bi bi-save2-fill icons pe-2 mb-0"></i>
                             <span>Save</span>
                         </button>
                      </div>
                      <!-- this for button undo  -->
                      <div class="col p-1">
-                        <button id ='undo' class="btn Rigester TB d-flex align-items-center" @click="undo()">
+                        <button id ='undo' class="btn button-primary TB d-flex align-items-center" @click="undo()">
                             <i class="bi bi-arrow-counterclockwise icons pe-1"></i>
                             <span>Undo</span>
                         </button>
                      </div>
                      <!-- this for button redo   -->
                      <div class="col p-1">
-                        <button id = 'redo' class="btn Rigester TB d-flex align-items-center" @click="redo()">
+                        <button id = 'redo' class="btn button-primary TB d-flex align-items-center" @click="redo()">
                             <i class="bi bi-arrow-clockwise icons pe-1"></i>
                             <span>Redo</span>
                         </button>

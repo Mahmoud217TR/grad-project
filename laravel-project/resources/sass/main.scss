@@ -9,41 +9,53 @@ $background:#1c2025;
 $PrimaryText:#EEEBD0;
 
 //main
-.h1{
-    font-size:60px;
-    font-family: 'Poppins';
+.broad-title{
+    font-size:3.8rem;
+    font-family:Arial, Helvetica, sans-serif;
     font-weight: bold;
     text-transform:uppercase;
 }
-.h2{
-    font-size:40px;
-    font-family: 'Poppins';
+.page-title{
+    font-size:2.5rem;
+    font-family:'Times New Roman', Times, serif;
     font-weight: bold;
     text-transform:uppercase;  
 }
-.h3{
-    font-size:33px;
-    font-family:'Open Sans';
+.head-line{
+    font-size:2rem;
+    font-family:Georgia, 'Times New Roman', Times, serif;
     font-weight:400;
-    text-transform:uppercase;  
+    text-transform: capitalize;
 }
-.h4{
-    font-size:25px;
-    font-family:'Open Sans';
+.base-line{
+    font-size:1.5rem;
+    font-family:Arial, Helvetica, sans-serif;
     font-weight:400;  
 }
 .TB{
-    font-size:20px;
-    font-family:'Roboto';
+    font-size:1.25rem;
+    font-family:Georgia, 'Times New Roman', Times, serif;
     font-weight:500;
 }
 .TH{
-    font-size:20px;
-    font-family:'Poppins';
+    font-size:1.25rem;
+    font-family:Georgia, 'Times New Roman', Times, serif;
     font-weight:500;
     text-transform:uppercase;  
     color: $Secondary;
 }
+
+.button-primary{
+    background-color:$Primary;
+    color:$Secondary;
+    }
+    .button-secondary{
+        background-color:$Secondary;
+        color:$Primary;
+        }
+    .text-in-header{
+        color: $Secondary;
+    }
 //
 
 //Hovering
@@ -58,7 +70,7 @@ $PrimaryText:#EEEBD0;
     color: $Primary;
     cursor: pointer;
  }
- .View:hover {
+ .button-secondary:hover {
     background-color:$Secondary;
     color: $Primary;
     -webkit-transform: scale(1.1);
@@ -66,7 +78,7 @@ $PrimaryText:#EEEBD0;
     -o-transform: scale(1.1);
     border-radius:10%;
 } 
-.Rigester:hover {
+.button-primary:hover {
    background-color:$Primary;
    color: $Secondary;
    -webkit-transform: scale(1.1);
@@ -76,29 +88,15 @@ $PrimaryText:#EEEBD0;
 } 
 //
 
-.Body{
+.body-image{
 background-size:cover;
 }
 .bi{
 color:$Secondary;
 font-size:50px;
 }
-.Rigester{
-background-color:$Primary;
-color:$Secondary;
-}
-.View{
-    background-color:$Secondary;
-    color:$Primary;
-    }
-#TextInHeader{
-    color: $Secondary;
-}
-#ContentWelcome{
-    margin-top:10%;
-    color: $Secondary;
-}
-#Welcome{
+
+.welcome{
     color: $Secondary;
 }
 .btn{
@@ -111,14 +109,19 @@ color:$Secondary;
     text-decoration: none;
 }
 
+.unstyled-anchor:hover{
+    color: $Secondary!important;
+}
+
 body{
     background-color: $background;
     color: $PrimaryText;
 }
 
-#container{
+.container1{
     margin-top:10%;
+    color: $PrimaryText;
 }
-#OrangeText{
+.orange-text{
     color: $Primary;
 }
