@@ -120,11 +120,11 @@ class User extends Authenticatable
     }
 
     public function postVotes(){
-        return $this->belongsToMany(Post::class,'post_user','user_id')->withPivot('upvote')->withPivot('upvote');
+        return $this->belongsToMany(Post::class,'post_user','user_id')->Published()->withPivot('upvote')->withPivot('upvote');
     }
 
     public function commentVotes(){
-        return $this->belongsToMany(Comment::class,'comment_user','user_id')->withPivot('upvote');
+        return $this->belongsToMany(Comment::class,'comment_user','user_id')->Published()->withPivot('upvote');
     }
 
     // Attributes & Scopes
