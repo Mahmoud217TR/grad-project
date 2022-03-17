@@ -79,8 +79,8 @@
         <p class="base-line welcome">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, iste doloribus veritatis excepturi, repudiandae voluptate rerum dignissimos quibusdam ex enim earum beatae sapiente delectus exercitationem assumenda fuga sunt. At, autem!</p>
       </div>
       <div class="text-center pt-3">
-        <button class="btn button-primary TB mx-2" type="button">Rigester</button>
-        <button class="btn button-secondary TB mx-2" type="button">View</button>
+        <a href="{{ route('register') }}" class="btn button-primary TB mx-2" type="button">Rigester</a>
+        <a href="{{ route('home') }}" class="btn button-secondary TB mx-2" type="button">View</a>
       </div>
       </div>
     {{----}}
