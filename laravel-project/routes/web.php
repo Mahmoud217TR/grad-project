@@ -9,7 +9,10 @@ use App\Http\Controllers\SnippetController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaggingController;
 use App\Http\Controllers\CompilerController;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+
+use function Clue\StreamFilter\fun;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +24,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
@@ -42,20 +41,20 @@ Route::controller(TaggingController::class)->group(function(){
     Route::post('snippet/{sid}/tag','snippet_tags')->name('tag-snippet');
 });
 
+
+Route::controller(Controller::class)->group(function(){
+    Route::get('/','welcome')->name('welcome');
+    Route::get('/services','services')->name('services');
+    Route::get('/about-us','about')->name('about');
+    Route::get('/code-editor', 'editor')->name('editor');
+});
+
 Route::get('/nav', function () {
     return view('layouts.nav');
 });
 
 Route::get('/footer', function () {
     return view('layouts.footer');
-});
-
-Route::get('/Services', function () {
-    return view('Services');
-});
-
-Route::get('/AboutUs', function () {
-    return view('AboutUs');
 });
 
 Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');
