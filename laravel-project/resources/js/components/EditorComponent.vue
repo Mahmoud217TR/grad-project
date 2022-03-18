@@ -1,6 +1,6 @@
 <template>
     <!-- the bigger div content all element of editor  -->
-    <div class="container ide text-white">
+    <div class="container ide text-white px-2">
         <!-- the header of it contain label and  selector  -->
         <div  class="row header bg-header p-2">
             <!-- this for label  -->

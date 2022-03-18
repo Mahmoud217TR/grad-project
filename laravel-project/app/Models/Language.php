@@ -70,8 +70,12 @@ class Language extends Model
 
     // Relations
 
-    public function sinppet(){
-        return $this->hasOne(sinppet::class);
+    public function snippets(){
+        return $this->hasMany(Snippet::class);
+    }
+    
+    public function followers(){
+        return $this->belongsToMany(User::class,'user_follow','object_id')->where('type',1);
     }
 
     // Attributes & Scopes

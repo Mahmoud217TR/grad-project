@@ -127,6 +127,22 @@ class User extends Authenticatable
         return $this->belongsToMany(Comment::class,'comment_user','user_id')->Published()->withPivot('upvote');
     }
 
+    public function following(){
+        return $this->belongsToMany(User::class,'user_follow','user_id','object_id')->where('type',0)->withPivot('object_id');
+    }
+
+    public function languages(){
+        return $this->belongsToMany(Language::class,'user_follow','user_id','object_id')->where('type',1)->withPivot('object_id');
+    }
+
+    public function tags(){
+        return $this->belongsToMany(Language::class,'user_follow','user_id','object_id')->where('type',2)->withPivot('object_id');
+    }
+
+    public function followers(){
+        return $this->belongsToMany(User::class,'user_follow','object_id')->where('type',0)->withPivot('object_id');
+    }
+
     // Attributes & Scopes
     
     public function getRoleAttribute($attribute){
@@ -273,6 +289,38 @@ class User extends Authenticatable
         }else{
             return false;
         }
+    }
+
+    public function getFollower($user){
+        return $this->followers->where('pivot.user_id',$user->id)->first();
+    }
+
+    public function isFollowedBy($user){
+        return !(is_null($this->getFollower($user)));
+    }
+
+    public function getFollowingUser($user){
+        return $this->following->where('pivot.object_id',$user->id)->first();
+    }
+
+    public function isFollowingUser($user){
+        return !(is_null($this->getFollowingUser($user)));
+    }
+
+    public function getFollowingLanguage($language){
+        return $this->languages->where('pivot.object_id',$language->id)->first();
+    }
+
+    public function isFollowingLanguage($language){
+        return !(is_null($this->getFollowingLanguage($language)));
+    }
+    
+    public function getFollowingTag($tag){
+        return $this->tags->where('pivot.object_id',$tag->id)->first();
+    }
+
+    public function isFollowingTag($tag){
+        return !(is_null($this->getFollowingTag($tag)));
     }
 
 }

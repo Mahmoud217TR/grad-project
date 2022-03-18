@@ -15,11 +15,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_follow', function (Blueprint $table) {
-            $table->primary(['user_id', 'object_id']); // 
+            $table->primary(['user_id', 'type' ,'object_id']); // 
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->unsignedInteger('type');
             $table->unsignedBigInteger('object_id');
-            $table->timestamps();
         });
     }
 
