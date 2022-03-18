@@ -1,22 +1,28 @@
 @extends('layouts.app')
+@section('title','Register')
+
+@section('header')
 <style>
-    body{
-      background: url("{{ asset('images/background.jpg') }}");
-      background-size: cover;
-    }
-  </style>
+body{
+    background: url("{{ asset('images/background.jpg') }}");
+    background-size: cover;
+    background-size: 100% 100%;
+}
+</style>
+@endsection
+
 @section('content')
 
-<div class="container">
+<div class="container py-5 my-5">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6">
+        <div class="col-md-8 col">
             <div class="card registration-box">
                 <div class="card-body">
                     <div class="border-bottom border-2">
-                        <div class="text-center pb-2 head-line">Welcom To {{ config('app.name', 'Laravel') }}</div>
+                        <div class="text-center pb-2 head-line">Welcome To {{ config('app.name', 'Laravel') }}</div>
                         <div class="row row-cols-auto justify-content-center py-3">
-                           <a class="mx-auto my-1 bottom-line unstyled-anchor" href="/register"><p class="base-line">New Account</p></a>
-                           <a class="mx-auto my-1 unstyled-anchor" href="/logIn"><p class="base-line">Log In</p></a>
+                           <a class="mx-auto my-1 bottom-line unstyled-anchor" href="{{ route('register') }}"><p class="base-line">New Account</p></a>
+                           <a class="mx-auto my-1 unstyled-anchor" href="{{ route('login') }}"><p class="base-line">Login</p></a>
                         </div>
                     </div>
                 </div>
@@ -102,13 +108,13 @@
 
             <div class="text-center registration-box my-5">
                 <div class="row justify-content-center text-center py-1 head-line">or register with</div>
-                <a class="row row-cols-auto justify-content-center pt-3 my-2 mx-5 box-or unstyled-anchor" href="/">
+                <a class="row row-cols-auto justify-content-center py-3 my-2 mx-5 box-or unstyled-anchor align-items-center" href="#">
                     <i class="bi bi-google py-2"></i>
-                    <p class="base-line py-2">your google account</p>
+                    <p class="base-line my-0">Your Google Account</p>
                 </a>
-                <a class="row row-cols-auto justify-content-center pt-3 my-2 mx-5 box-or unstyled-anchor" href="/">
+                <a class="row row-cols-auto justify-content-center py-3 my-2 mx-5 box-or unstyled-anchor align-items-center" href="#">
                     <i class="bi bi-facebook py-2"></i>
-                    <p class="base-line py-2">your facebook account</p>
+                    <p class="base-line my-0">Your Facebook Account</p>
                 </a>
             </div>
         </div>

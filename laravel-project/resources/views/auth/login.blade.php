@@ -1,22 +1,27 @@
 @extends('layouts.app')
+@section('title','Login')
+
+@section('header')
 <style>
-    body{
-      background: url("{{ asset('images/background.jpg') }}");
-      background-size: cover;
-    }
-  </style>
+body{
+    background: url("{{ asset('images/background.jpg') }}");
+    background-size: cover;
+    background-size: 100% 100%;
+}
+</style>
+@endsection
 @section('content')
 
 <div class="container py-5 my-5">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6">
+        <div class="col-md-8 col">
             <div class="card registration-box">
                 <div class="card-body">
                     <div class="border-bottom border-2">
                         <div class="text-center pb-2 head-line">Welcom To {{ config('app.name', 'Laravel') }}</div>
                         <div class="row row-cols-auto justify-content-center py-3">
-                            <a class="mx-auto my-1 unstyled-anchor" href="/register"><p class="base-line">New Account</p></a>
-                            <a class="mx-auto my-1 bottom-line unstyled-anchor" href="/logIn"><p class="base-line">Log In</p></a>
+                            <a class="mx-auto my-1 unstyled-anchor" href="{{ route('register') }}"><p class="base-line">New Account</p></a>
+                            <a class="mx-auto my-1 bottom-line unstyled-anchor" href="{{ route('login') }}"><p class="base-line">Login</p></a>
                         </div>
                     </div>
                 </div>
@@ -66,15 +71,16 @@
 
                         <div class="row mb-0 text-center">
                             <div class="py-2">
-                                <button type="submit" class="btn button-primary TB ">
-                                    {{ __('Submit') }}
-                                </button>
-
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link unstyled-anchor" href="{{ route('password.request') }}">
+                                    <a class="unstyled-anchor" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                            </div>
+                            <div class="py-2">
+                                <button type="submit" class="btn button-primary TB ">
+                                    {{ __('Submit') }}
+                                </button>
                             </div>
                         </div>
                     </form>
