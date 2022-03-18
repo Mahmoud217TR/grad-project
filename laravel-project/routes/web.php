@@ -57,4 +57,14 @@ Route::get('/footer', function () {
     return view('layouts.footer');
 });
 
+Route::get('/regiter', function () {
+    return view('auth.register');
+});
+
+Route::get('/logIn', function () {
+    return view('auth.login');
+});
+
+
+
 Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');

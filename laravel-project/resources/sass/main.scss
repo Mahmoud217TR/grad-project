@@ -7,7 +7,7 @@ $Primary:#FF2E00;
 $Secondary:#F0EFF0;
 $background:#1c2025;
 $PrimaryText:#EEEBD0;
-
+$border-orange:$Primary;
 //main
 .broad-title{
     font-size:3.8rem;
@@ -91,11 +91,18 @@ $PrimaryText:#EEEBD0;
 .body-image{
 background-size:cover;
 }
-.bi{
+.bi-person{
 color:$Secondary;
 font-size:50px;
 }
-
+.bi-google{
+    color:$Secondary;
+    font-size:1.5rem; 
+}
+.bi-facebook{
+    color:$Secondary;
+    font-size:1.5rem; 
+}
 .welcome{
     color: $Secondary;
 }
@@ -107,6 +114,7 @@ font-size:50px;
     
 .unstyled-anchor{
     text-decoration: none;
+    color:$Secondary;
 }
 
 .unstyled-anchor:hover{
@@ -125,3 +133,20 @@ body{
 .orange-text{
     color: $Primary;
 }
+.bottom-line{
+    border-style: outset;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    border-color: $border-orange;
+    border-width:0.2rem;
+  }
+  .registration-box{
+    background:rgba(00, 00,00, 0.7);
+    box-shadow: 0px 0px 0.5rem 0.8rem rgba(0, 0, 0, .5); 
+    border-color: black
+    }
+    .box-or{
+     border-style: inset;
+     border-color: $border-orange;
+    }
