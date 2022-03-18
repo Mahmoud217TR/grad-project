@@ -19,6 +19,8 @@
     <style>
       body{
         background: url("{{ asset('images/background.jpg') }}");
+        background-size: cover;
+        background-size: 100% 100%;
       }
     </style>
 
