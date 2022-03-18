@@ -11,6 +11,8 @@ use Laravel\Scout\Attributes\SearchUsingFullText;
 use Laravel\Scout\Attributes\SearchUsingPrefix;
 use Laravel\Scout\Searchable;
 
+use function PHPUnit\Framework\isNull;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,Searchable;
@@ -118,27 +120,11 @@ class User extends Authenticatable
     }
 
     public function postVotes(){
-        return $this->belongsToMany(Post::class,'post_user','user_id')->withPivot('upvote')->withPivot('upvote');
-    }
-
-    public function postUpvotes(){
-        return $this->postVotes->where('pivot.upvote',true);
-    }
-
-    public function postDownvotes(){
-        return $this->postVotes->where('pivot.upvote',false);
+        return $this->belongsToMany(Post::class,'post_user','user_id')->Published()->withPivot('upvote')->withPivot('upvote');
     }
 
     public function commentVotes(){
-        return $this->belongsToMany(Comment::class,'comment_user','user_id')->withPivot('upvote');
-    }
-
-    public function commentUpvotes(){
-        return $this->commentVotes->where('pivot.upvote',true);
-    }
-
-    public function commentDownvotes(){
-        return $this->commentVotes->where('pivot.upvote',false);
+        return $this->belongsToMany(Comment::class,'comment_user','user_id')->Published()->withPivot('upvote');
     }
 
     // Attributes & Scopes
@@ -223,6 +209,70 @@ class User extends Authenticatable
 
     public function isOwner($object){
         return $this->id == $object->user_id;
+    }
+
+    public function postUpvotes(){
+        return $this->postVotes->where('pivot.upvote',true);
+    }
+
+    public function postDownvotes(){
+        return $this->postVotes->where('pivot.upvote',false);
+    }
+
+    public function commentUpvotes(){
+        return $this->commentVotes->where('pivot.upvote',true);
+    }
+
+    public function commentDownvotes(){
+        return $this->commentVotes->where('pivot.upvote',false);
+    }
+
+    public function getPostVote($post){
+        return $this->postVotes->where('id',$post->id)->first();
+    }
+
+    public function hasVotedPost($post){
+        return !(is_null($this->getPostVote($post)));
+    }
+
+    public function isPostUpvoted($post){
+        if($this->hasVotedPost($post)){
+            return $this->getPostVote($post)->pivot->upvote == true;
+        }else{
+            return false;
+        }
+    }
+
+    public function isPostDownvoted($post){
+        if($this->hasVotedPost($post)){
+            return $this->getPostVote($post)->pivot->upvote == false;
+        }else{
+            return false;
+        }
+    }
+
+    public function getCommentVote($comment){
+        return $this->commentVotes->where('id',$comment->id)->first();
+    }
+
+    public function hasVotedComment($Comment){
+        return !(is_null($this->getCommentVote($Comment)));
+    }
+
+    public function isCommentUpvoted($comment){
+        if($this->hasVotedComment($comment)){
+            return $this->getCommentVote($comment)->pivot->upvote == true;
+        }else{
+            return false;
+        }
+    }
+
+    public function isCommentDownvoted($comment){
+        if($this->hasVotedComment($comment)){
+            return $this->getCommentVote($comment)->pivot->upvote == false;
+        }else{
+            return false;
+        }
     }
 
 }
