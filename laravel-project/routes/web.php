@@ -10,6 +10,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaggingController;
 use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\FollowingController;
 use App\Http\Controllers\VotesController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,12 @@ Route::controller(VotesController::class)->group(function(){
     Route::post('comment/vote','voteOnComment')->name('comment-vote');
 });
 
+Route::controller(FollowingController::class)->group(function(){
+    Route::post('user/follow','follow')->name('follow-user');
+    Route::post('language/follow','follow')->name('follow-language');
+    Route::post('tag/follow','follow')->name('follow-tag');
+});
+
 Route::controller(Controller::class)->group(function(){
     Route::get('/','welcome')->name('welcome');
     Route::get('/services','services')->name('services');
@@ -63,4 +70,3 @@ Route::get('/nav', function () {
 Route::get('/footer', function () {
     return view('layouts.footer');
 });
-

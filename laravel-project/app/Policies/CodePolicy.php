@@ -30,7 +30,7 @@ class CodePolicy
      */
     public function view(?User $user, Code $code)
     {
-        return ($code->status === 'approved');
+        return $code->isApproved();
     }
 
     /**

@@ -1,0 +1,97 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Language;
+use App\Models\Tag;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
+class FollowingController extends Controller
+{
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+    const TYPES = [
+        'user'=> 0,
+        'language'=> 1,
+        'tag'=> 2,
+    ];
+
+    const PROCESSES = ['follow', 'unfollow'];
+
+    private function getValidRequest(){
+        return request()->validate([
+            'type' => ['required','string',Rule::in(self::TYPES)],
+            'object_id' => 'required',
+            'process' => ['required','string',Rule::in(self::PROCESSES)],
+        ]);
+    }
+
+    private function followUser($object){
+        auth()->user()->following()->attach($object,['type'=>self::TYPES['user']]);
+    }
+
+    private function unfollowUser($object){
+        auth()->user()->following()->detach($object,['type'=>self::TYPES['user']]);
+    }
+
+    private function userHandler($object, $process){
+        if($process == 'follow'){
+            $this->followUser($object);
+        }else{
+            $this->unfollowUser($object);
+        }
+    }
+
+    private function followLanguage($object){
+        auth()->user()->languages()->attach($object,['type'=>self::TYPES['language']]);
+    }
+
+    private function unfollowLanguage($object){
+        auth()->user()->languages()->detach($object,['type'=>self::TYPES['language']]);
+    }
+
+    private function languageHandler($object, $process){
+        if($process == 'follow'){
+            $this->followLanguage($object);
+        }else{
+            $this->unfollowLanguage($object);
+        }
+    }
+
+    private function followTag($object){
+        auth()->user()->tags()->attach($object,['type'=>self::TYPES['tag']]);
+    }
+
+    private function unfollowTag($object){
+        auth()->user()->tags()->attach($object,['type'=>self::TYPES['tag']]);
+    }
+
+    private function tagHandler($object, $process){
+        if($process == 'follow'){
+            $this->followTag($object);
+        }else{
+            $this->unfollowTag($object);
+        }
+    }
+
+    public function follow(){
+        $data = $this->getValidRequest();
+        if($data['type']==self::TYPES['user']){
+            $object = User::findOrFail($data['object_id']);
+            $this->userHandler($object, $data['process']);
+        }else if($data['type']==self::TYPES['language']){
+            $object = Language::findOrFail($data['object_id']);
+            $this->authorize('view',$object);
+            $this->languageHandler($object, $data['process']);
+        }else{
+            $object = Tag::findOrFail($data['object_id']);
+            $this->authorize('view',$object);
+            $this->languageHandler($object, $data['process']);
+        }
+    }
+}
