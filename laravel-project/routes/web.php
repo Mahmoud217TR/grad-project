@@ -49,9 +49,7 @@ Route::controller(VotesController::class)->group(function(){
 });
 
 Route::controller(FollowingController::class)->group(function(){
-    Route::post('user/follow','follow')->name('follow-user');
-    Route::post('language/follow','follow')->name('follow-language');
-    Route::post('tag/follow','follow')->name('follow-tag');
+    Route::post('follow','follow')->name('follow');
 });
 
 Route::controller(Controller::class)->group(function(){

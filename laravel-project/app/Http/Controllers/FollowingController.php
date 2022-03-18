@@ -16,6 +16,12 @@ class FollowingController extends Controller
     }
 
     const TYPES = [
+        'user',
+        'language',
+        'tag',
+    ];
+
+    const TYPE_VALUE = [
         'user'=> 0,
         'language'=> 1,
         'tag'=> 2,
@@ -32,11 +38,17 @@ class FollowingController extends Controller
     }
 
     private function followUser($object){
-        auth()->user()->following()->attach($object,['type'=>self::TYPES['user']]);
+        $user = auth()->user();
+        if(!$user->isFollowingUser($object)){
+            $user->following()->attach($object,['type'=>self::TYPE_VALUE['user']]);
+        }
     }
 
     private function unfollowUser($object){
-        auth()->user()->following()->detach($object,['type'=>self::TYPES['user']]);
+        $user = auth()->user();
+        if($user->isFollowingUser($object)){
+            $user->following()->detach($object,['type'=>self::TYPE_VALUE['user']]);
+        }
     }
 
     private function userHandler($object, $process){
@@ -48,11 +60,17 @@ class FollowingController extends Controller
     }
 
     private function followLanguage($object){
-        auth()->user()->languages()->attach($object,['type'=>self::TYPES['language']]);
+        $user = auth()->user();
+        if(!$user->isFollowingLanguage($object)){
+            $user->languages()->attach($object,['type'=>self::TYPE_VALUE['language']]);
+        }
     }
 
     private function unfollowLanguage($object){
-        auth()->user()->languages()->detach($object,['type'=>self::TYPES['language']]);
+        $user = auth()->user();
+        if($user->isFollowingLanguage($object)){
+            $user->languages()->detach($object,['type'=>self::TYPE_VALUE['language']]);
+        }
     }
 
     private function languageHandler($object, $process){
@@ -64,11 +82,17 @@ class FollowingController extends Controller
     }
 
     private function followTag($object){
-        auth()->user()->tags()->attach($object,['type'=>self::TYPES['tag']]);
+        $user = auth()->user();
+        if(!$user->isFollowingTag($object)){
+            $user->tags()->attach($object,['type'=>self::TYPE_VALUE['tag']]);
+        }
     }
 
     private function unfollowTag($object){
-        auth()->user()->tags()->attach($object,['type'=>self::TYPES['tag']]);
+        $user = auth()->user();
+        if($user->isFollowingTag($object)){
+            $user->tags()->detach($object,['type'=>self::TYPE_VALUE['tag']]);
+        }
     }
 
     private function tagHandler($object, $process){
@@ -81,17 +105,17 @@ class FollowingController extends Controller
 
     public function follow(){
         $data = $this->getValidRequest();
-        if($data['type']==self::TYPES['user']){
+        if($data['type']=='user'){
             $object = User::findOrFail($data['object_id']);
             $this->userHandler($object, $data['process']);
-        }else if($data['type']==self::TYPES['language']){
+        }else if($data['type']=='language'){
             $object = Language::findOrFail($data['object_id']);
             $this->authorize('view',$object);
             $this->languageHandler($object, $data['process']);
         }else{
             $object = Tag::findOrFail($data['object_id']);
-            $this->authorize('view',$object);
-            $this->languageHandler($object, $data['process']);
+            $this->tagHandler($object, $data['process']);
         }
+        return redirect()->back();
     }
 }
