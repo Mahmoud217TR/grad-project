@@ -18,7 +18,7 @@ body{
             <div class="card registration-box">
                 <div class="card-body">
                     <div class="border-bottom border-2">
-                        <div class="text-center pb-2 head-line">Welcom To {{ config('app.name', 'Laravel') }}</div>
+                        <div class="text-center pb-2 head-line">Welcome To {{ config('app.name', 'Laravel') }}</div>
                         <div class="row row-cols-auto justify-content-center py-3">
                             <a class="mx-auto my-1 unstyled-anchor" href="{{ route('register') }}"><p class="base-line">New Account</p></a>
                             <a class="mx-auto my-1 bottom-line unstyled-anchor" href="{{ route('login') }}"><p class="base-line">Login</p></a>
