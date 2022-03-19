@@ -37,4 +37,23 @@ class Tag extends Model
     public function followers(){
         return $this->belongsToMany(User::class,'user_follow','object_id')->where('type',2);
     }
+
+    // Functions
+
+    public function getTaggedPost($post){
+        return $this->posts->where('id',$post->id)->first();
+    }
+
+    public function isTaggedPost($post){
+        return !is_null($this->getTaggedPost($post));
+    }
+
+    
+    public function getTaggedSnippet($snippet){
+        return $this->snippets->where('id',$snippet->id)->first();
+    }
+
+    public function isTaggedSnippet($snippet){
+        return !is_null($this->getTaggedPost($snippet));
+    }
 }

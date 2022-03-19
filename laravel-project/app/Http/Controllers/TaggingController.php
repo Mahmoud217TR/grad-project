@@ -24,29 +24,41 @@ class TaggingController extends Controller
         }
     }
 
-    private function validateData(){
+    private function validatePostData(){
         return request()->validate([
+            'pid' => 'required',
             'tids' => ['required'],
             'action' => ['required',Rule::in(self::ACTIONS)],
-        ],
-        ['tids.required' => 'this is my custom error message for required']);
+        ]);
+    }
+
+    private function validateSnippetData(){
+        return request()->validate([
+            'sid' => 'required',
+            'tids' => ['required'],
+            'action' => ['required',Rule::in(self::ACTIONS)],
+        ]);
     }
 
     private function process($object, $tag, $action){
-        if($action === 'attach'){
-            if(!$object->tags->pluck('id')->contains($tag->id)){
-                $object->tags()->attach($tag);
+        if($this->isValidAction($action)){
+            if($action === 'attach'){
+                if(!$object->isTagged($tag)){
+                    $object->tags()->attach($tag);
+                }
+            }else{
+                if($object->isTagged($tag)){
+                    $object->tags()->detach($tag);
+                }
             }
-        }else if ($action == 'detach'){
-            $object->tags()->detach($tag);
         }
     }
     
-    public function post_tags($pid){
+    public function post_tags(){
         
-        $data = $this->validateData();
+        $data = $this->validatePostData();
 
-        $post = Post::findOrfail($pid);
+        $post = Post::findOrfail($data['pid']);
         $this->authorize('update',$post);
 
         foreach($data['tids'] as $tid){
@@ -57,11 +69,11 @@ class TaggingController extends Controller
         return ['post'=>$post,'post_tags'=>$post->tags];
     }
 
-    public function snippet_tags($sid){
+    public function snippet_tags(){
 
         $data = $this->validateData();
 
-        $snippet = Snippet::findOrfail($sid);
+        $snippet = Snippet::findOrfail($data['sid']);
         $this->authorize('update',$snippet);
 
         foreach($data['tids'] as $tid){
@@ -69,6 +81,6 @@ class TaggingController extends Controller
             $this->process($snippet, $tag, strtolower($data['action']));
         }
 
-        return ['post'=>$snippet,'post_tags'=>$snippet->tags];
+        return ['snippet'=>$snippet,'snippet_tags'=>$snippet->tags];
     }
 }

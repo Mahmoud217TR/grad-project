@@ -39,8 +39,8 @@ Route::resource('tag', TagController::class);
 Route::resource('profile', ProfileController::class)->except(['create','store']);
 
 Route::controller(TaggingController::class)->group(function(){
-    Route::post('post/{pid}/tag','post_tags')->name('tag-post');
-    Route::post('snippet/{sid}/tag','snippet_tags')->name('tag-snippet');
+    Route::post('post/tag','post_tags')->name('tag-post');
+    Route::post('snippet/tag','snippet_tags')->name('tag-snippet');
 });
 
 Route::controller(VotesController::class)->group(function(){
