@@ -71,7 +71,7 @@ class TaggingController extends Controller
 
     public function snippet_tags(){
 
-        $data = $this->validateData();
+        $data = $this->validateSnippetData();
 
         $snippet = Snippet::findOrfail($data['sid']);
         $this->authorize('update',$snippet);
