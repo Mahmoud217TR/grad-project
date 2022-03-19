@@ -8,6 +8,7 @@ use App\Models\Profile;
 use App\Models\Snippet;
 use App\Models\Tag;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 
 use function PHPUnit\Framework\isNull;
 
@@ -43,14 +44,14 @@ use function PHPUnit\Framework\isNull;
 
     if (!function_exists('generate_generic_useres')) {
         function generate_generic_useres(){ 
-            $users = [];
+            $users = new Collection;
             echo "Generating Generic Users....\n";
             if(User::where('email','superadmin@users.test')->get()->count() == 0){
                 $user = User::factory()->superAdmin()->create([
                     'email' => 'superadmin@users.test',
                 ]);
                 $user->profile()->save(Profile::factory()->withoutUser()->make());
-                array_push($users,$user);
+                $users->push($user);
             }
 
             if(User::where('email','admin@users.test')->get()->count() == 0){
@@ -58,7 +59,7 @@ use function PHPUnit\Framework\isNull;
                     'email' => 'admin@users.test',
                 ]);
                 $user->profile()->save(Profile::factory()->withoutUser()->make());
-                array_push($users,$user);
+                $users->push($user);
             }
 
             if(User::where('email','editor@users.test')->get()->count() == 0){
@@ -66,7 +67,7 @@ use function PHPUnit\Framework\isNull;
                     'email' => 'editor@users.test',
                 ]);
                 $user->profile()->save(Profile::factory()->withoutUser()->make());
-                array_push($users,$user);
+                $users->push($user);
             }
 
             if(User::where('email','reviewer@users.test')->get()->count() == 0){
@@ -74,7 +75,7 @@ use function PHPUnit\Framework\isNull;
                     'email' => 'reviewer@users.test',
                 ]);
                 $user->profile()->save(Profile::factory()->withoutUser()->make());
-                array_push($users,$user);
+                $users->push($user);
             }
 
             if(User::where('email','user@users.test')->get()->count() == 0){
@@ -82,7 +83,7 @@ use function PHPUnit\Framework\isNull;
                     'email' => 'user@users.test',
                 ]);
                 $user->profile()->save(Profile::factory()->withoutUser()->make());
-                array_push($users,$user);
+                $users->push($user);
             }
             echo "Generic Users Generated!!\n";
             
