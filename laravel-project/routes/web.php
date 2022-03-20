@@ -68,3 +68,10 @@ Route::get('/nav', function () {
 Route::get('/footer', function () {
     return view('layouts.footer');
 });
+
+Route::get('/verify', function () {
+    return view('auth.verify');
+});
+Route::get('/alert', function () {
+    return view('auth.alert');
+});
