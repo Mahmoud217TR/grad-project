@@ -18,7 +18,7 @@ class LanguageFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->sentence(),
+            'name' => $this->faker->word(),
             'description' => $this->faker->paragraph(),
             'status' => Language::getStatus('approved'),
         ];

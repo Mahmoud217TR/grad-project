@@ -90,4 +90,105 @@ use function PHPUnit\Framework\isNull;
             return $users;
         }
     }
+
+        if (!function_exists('seed_db')) {
+            function seed_db($tagsNumber=0, $numberOfUsers=0, $numberOfReviewers=0,
+                             $numberOfEditors=0, $genericUsers=false, $userSnippets=0, 
+                             $reviewerSnippets=0, $editorSnippets=0, $editorPosts=0,
+                             $tagsPerSnippet=0, $tagsPerPost=0, $commentPerPost=0){
+
+                $allSnippets = new Collection;
+                $allPosts = new Collection;
+                $allTags = new Collection;
+                $allUsers = new Collection;
+                
+                if($genericUsers){
+                    $allUsers = $allUsers->merge(generate_generic_useres());
+                }
+
+                if($tagsNumber>0){
+                    echo "Generating Tags....\n";
+                    $tags = Tag::factory($tagsNumber)->create();
+                    $allTags = $allTags->merge($tags);
+                    echo $tags->count()." Tags Generated!!\n";
+                }
+
+
+                echo "Generating Users....\n";
+                User::factory($numberOfUsers)->user()->create()->each(function ($user) use (&$allSnippets, &$allUsers, $userSnippets){
+                    $user->profile()->save(Profile::factory()->withoutUser()->make());
+
+                    if($userSnippets>0){
+                        echo "Generating Snippets for user ".$user->id."...\n";
+                        $snippets = Snippet::factory($userSnippets)->requested()->withoutUser()->make();
+                        $user->snippets()->saveMany($snippets);
+                        $allSnippets = $allSnippets->merge($snippets);
+                    }
+
+                    $allUsers->push($user);
+                });
+                echo $numberOfUsers." Users Generated!!\n";
+
+                echo "Generating Reviewers....\n";
+                User::factory($numberOfReviewers)->reviewer()->create()->each(function ($user) use (&$allSnippets, &$allUsers, $reviewerSnippets){
+                    $user->profile()->save(Profile::factory()->withoutUser()->make());
+
+                    if($reviewerSnippets>0){
+                        echo "Generating Snippets for reviewer ".$user->id."...\n";
+                        $snippets = Snippet::factory($reviewerSnippets)->approved()->withoutUser()->make();
+                        $user->snippets()->saveMany($snippets);
+                        $allSnippets = $allSnippets->merge($snippets);
+                    }
+
+                    $allUsers->push($user);
+                });
+                echo $numberOfReviewers." Reviewers Generated!!\n";
+
+                echo "Generating Editors....\n";
+                User::factory($numberOfEditors)->editor()->create()->each(function ($user) use (&$allSnippets, &$allUsers, &$allPosts, $editorSnippets, $editorPosts){
+                    $user->profile()->save(Profile::factory()->withoutUser()->make());
+
+                    if($editorSnippets>0){
+                        echo "Generating Snippets for editor ".$user->id."...\n";
+                        $snippets = Snippet::factory($editorSnippets)->approved()->withoutUser()->make();
+                        $user->snippets()->saveMany($snippets);
+                        $allSnippets = $allSnippets->merge($snippets);
+                    }
+
+                    if($editorPosts>0){
+                        echo "Generating Posts for editor ".$user->id."...\n";
+                        $posts = Post::factory($editorPosts)->withoutUser()->make();
+                        $user->posts()->saveMany($posts);
+                        $allPosts = $allPosts->merge($posts);
+                    }
+                    
+                    $allUsers->push($user);
+                });
+                echo $numberOfEditors." Editors Generated!!\n";
+
+                echo "Total of ".$allUsers->count()." Users where Generated!!\n";
+                echo "Total of ".$allSnippets->count()." Snippets where Generated!!\n";
+                echo "Total of ".$allPosts->count()." Posts where Generated!!\n";
+                
+                foreach($allSnippets as $snippet){
+                    echo "Attaching tags for snippet ".$snippet->id."...\n";
+                    $snippet->tags()->attach($tags->random($tagsPerSnippet));
+                }
+                echo "Tags Attached!!\n";
+                
+                $numberOfComments = 0;
+                foreach($allPosts as $post){
+                    echo "Generating Comments for post ".$post->id."....\n";
+                    $comments = Comment::factory($commentPerPost)->withoutPost()->withoutUser()->make();
+                    foreach($comments as $comment){
+                        $numberOfComments += 1;
+                        $comment->user_id = $allUsers->random()->id;
+                    }
+                    $post->comments()->saveMany($comments);
+                    echo "Attaching tags for post ".$post->id."...\n";
+                    $post->tags()->attach($tags->random($tagsPerPost));
+                }
+                echo $numberOfComments." Commnets Generated\n\n";
+            }
+        }
 ?>
