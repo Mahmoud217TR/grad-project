@@ -23,7 +23,7 @@ class TestingSeeder extends Seeder
      */
     public function run()
     {
-        seed_db(rand(3,20), rand(10,30), rand(3,9), rand(2,6),true,rand(0,2),rand(0,4),rand(0,2),rand(0,4),rand(3,20),rand(1,3),rand(0,4));
+        seed_db(rand(3,20), rand(10,30), rand(3,9), rand(2,6),true,rand(0,2),rand(0,4),rand(0,2),rand(0,4),rand(1,3),rand(1,3),rand(0,4));
         db_stat();
     }
 }
