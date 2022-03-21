@@ -13,7 +13,7 @@ class SheetController extends Controller
         $this->middleware('auth')->except(['index','show']);
     }
 
-    public function getValidData(){
+    public function validData(){
         return request()->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -52,8 +52,8 @@ class SheetController extends Controller
     public function store(StoreSheetRequest $request)
     {
         $this->authorize('create');
-        $data = $this->getValidData();
-        $data['user_id'] = auth()->id;
+        $data = $this->validData();
+        $data['user_id'] = auth()->id();
         Sheet::create($data);
     }
 

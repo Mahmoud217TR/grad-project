@@ -27,7 +27,9 @@ class CommentController extends Controller
     }
 
     public function store(){
-        return Comment::create($this->validData());
+        $data = $this->validData();
+        $data['user_id'] = auth()->id();
+        return Comment::create($data);
     }
 
     public function show($comment){

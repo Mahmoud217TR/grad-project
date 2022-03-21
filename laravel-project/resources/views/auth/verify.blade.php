@@ -1,15 +1,15 @@
 @extends('layouts.app')
+@section('title','Verify')
 @section('header')
 <style>
 body{
     background: url("{{ asset('images/background.jpg') }}");
     background-size: cover;
-    background-size: 100% 100%;
 }
 </style>
 @endsection
 @section('content')
-<div class="container py-5 my-5">
+<div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col">
             <div class="card registration-box">
@@ -28,13 +28,13 @@ body{
                    
                    <p class="base-line">{{ __('Before proceeding, please check your email for a verification link.') }}
                     {{ __('If you did not receive the email,') }}</p>
-                    <form class="" method="POST">
+                    <form method="POST" action="{{ route('verification.resend') }}">
                         @csrf
                         <div class="row mb-0 text-center">
                             <div class="py-2">
                                <p>"Click the button to request another"</p>
-                                <button type="submit" class="btn button-primary TB" action="{{ route('verification.resend') }}" >
-                                    {{ __('request') }}
+                                <button type="submit" class="btn button-primary TB" >
+                                    {{ __('Request') }}
                                 </button>
                             </div>
                         </div>

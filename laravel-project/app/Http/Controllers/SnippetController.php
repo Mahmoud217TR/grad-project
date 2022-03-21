@@ -28,7 +28,9 @@ class SnippetController extends Controller
     }
 
     public function store(){
-        return Snippet::create($this->validData());
+        $data = $this->validData();
+        $data['user_id'] = auth()->id();
+        return Snippet::create($data);
     }
 
     public function show($snippet){

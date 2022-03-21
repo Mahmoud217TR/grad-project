@@ -31,7 +31,7 @@ class PostController extends Controller
     public function store(){
         $this->authorize('create');
         $data = $this->validData();
-        $data['user_id'] = auth()->id;
+        $data['user_id'] = auth()->id();
         return Post::create($data);
     }
 

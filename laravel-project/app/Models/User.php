@@ -13,7 +13,7 @@ use Laravel\Scout\Searchable;
 
 use function PHPUnit\Framework\isNull;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable,Searchable;
 
