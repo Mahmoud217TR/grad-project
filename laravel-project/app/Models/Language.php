@@ -14,7 +14,6 @@ class Language extends Model
         'name',
         'description',
         'status',
-        'user_id',
     ];
 
     protected $attributes = [
@@ -27,7 +26,6 @@ class Language extends Model
         return [
             'name' => $this->code,
             'description' => $this->note,
-            'user_id' => $this->user_id,
         ];
     }
 

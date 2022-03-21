@@ -23,28 +23,24 @@ class ProfileController extends Controller
         return compact('profile');
     }
 
-    public function show($id){
-        $profile = Profile::findOrfail($id);
+    public function show($profile){
         return compact('profile');
     }
 
-    public function edit($id){
-        $profile = Profile::findOrfail($id);
+    public function edit($profile){
         $this->authorize('update',$profile);
         // return edit view
     }
 
-    public function update($id){
-        $profile = Profile::findOrfail($id);
+    public function update($profile){
         $this->authorize('update',$profile);
         $profile->update($this->validData());
         return compact('profile');
     }
 
-    public function destroy($id){
-        $profile = Profile::findOrfail($id);
+    public function destroy($profile){
         $this->authorize('delete',$profile);
-        $profile->destroy();
+        $profile->delete();
         // return redirect
     }
 }

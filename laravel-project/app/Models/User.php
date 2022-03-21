@@ -13,7 +13,7 @@ use Laravel\Scout\Searchable;
 
 use function PHPUnit\Framework\isNull;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable,Searchable;
 
@@ -117,6 +117,10 @@ class User extends Authenticatable
 
     public function profile(){
         return $this->hasOne(Profile::class);
+    }
+
+    public function sheets(){
+        return $this->hasMany(Sheet::class);
     }
 
     public function postVotes(){

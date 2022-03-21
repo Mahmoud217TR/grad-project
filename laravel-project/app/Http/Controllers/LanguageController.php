@@ -33,29 +33,25 @@ class LanguageController extends Controller
         return Language::create($this->validData());
     }
 
-    public function show($id){
-        $language = Language::findOrfail($id);
+    public function show($language){
         $this->authorize('view',$language);
         return compact('language');
     }
 
-    public function edit($id){
-        $language = Language::findOrfail($id);
+    public function edit($language){
         $this->authorize('update',$language);
         // return edit view
     }
 
-    public function update($id){
-        $language = Language::findOrfail($id);
+    public function update($language){
         $this->authorize('update',$language);
         $language->update($this->validData());
         return compact('language');
     }
 
-    public function destroy($id){
-        $language = Language::findOrfail($id);
+    public function destroy($language){
         $this->authorize('delete',$language);
-        $language->destroy();
+        $language->delete();
         // return redirect
     }
 }

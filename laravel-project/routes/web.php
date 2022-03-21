@@ -11,7 +11,9 @@ use App\Http\Controllers\TaggingController;
 use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FollowingController;
+use App\Http\Controllers\SheetController;
 use App\Http\Controllers\VotesController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use function Clue\StreamFilter\fun;
@@ -27,25 +29,27 @@ use function Clue\StreamFilter\fun;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 Route::resource('code', CodeController::class);
 Route::resource('comment', CommentController::class);
 Route::resource('language', LanguageController::class);
 Route::resource('post', PostController::class);
 Route::resource('snippet', SnippetController::class);
 Route::resource('tag', TagController::class);
+Route::resource('sheet', SheetController::class);
 Route::resource('profile', ProfileController::class)->except(['create','store']);
 
-Route::controller(TaggingController::class)->group(function(){
-    Route::post('post/{pid}/tag','post_tags')->name('tag-post');
-    Route::post('snippet/{sid}/tag','snippet_tags')->name('tag-snippet');
+Route::controller(TaggingController::class)->prefix('tag')->group(function(){
+    Route::post('/post','post_tags')->name('tag-post');
+    Route::post('/snippet','snippet_tags')->name('tag-snippet');
+    Route::post('/sheet','sheet_tags')->name('tag-sheet');
 });
 
-Route::controller(VotesController::class)->group(function(){
-    Route::post('post/vote','voteOnPost')->name('post-vote');
-    Route::post('comment/vote','voteOnComment')->name('comment-vote');
+Route::controller(VotesController::class)->prefix('vote')->group(function(){
+    Route::post('/post','voteOnPost')->name('post-vote');
+    Route::post('/comment','voteOnComment')->name('comment-vote');
 });
 
 Route::controller(FollowingController::class)->group(function(){

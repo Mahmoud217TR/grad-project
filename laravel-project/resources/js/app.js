@@ -7,4 +7,5 @@ app.component('example-component', require('./components/ExampleComponent.vue').
 app.component('test-component', require('./components/TestAPIComponent.vue').default);
 app.component('editor-component', require('./components/EditorComponent.vue').default);
 app.component('md-component', require('./components/MarkdownComponent.vue').default);
+app.component('modal-component', require('./components/ModalComponent.vue').default);
 app.mount("#app");

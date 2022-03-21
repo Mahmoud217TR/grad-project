@@ -20,14 +20,13 @@
       body{
         background: url("{{ asset('images/background.jpg') }}");
         background-size: cover;
-        background-size: 100% 100%;
       }
     </style>
 
     <!-- fav icon -->
     @include('components.favicon')
 </head>
-<body  class="body-image">
+<body>
   <div id="app">
     {{--start page--}}
        {{--start navbar--}}

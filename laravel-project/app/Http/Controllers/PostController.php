@@ -30,31 +30,29 @@ class PostController extends Controller
 
     public function store(){
         $this->authorize('create');
-        return Post::create($this->validData());
+        $data = $this->validData();
+        $data['user_id'] = auth()->id();
+        return Post::create($data);
     }
 
-    public function show($id){
-        $post = Post::findOrfail($id);
-        return compact('post');
+    public function show($post){
+        return $post;
     }
 
-    public function edit($id){
-        $post = Post::findOrfail($id);
+    public function edit($post){
         $this->authorize('update',$post);
         // return edit view
     }
 
-    public function update($id){
-        $post = Post::findOrfail($id);
+    public function update($post){
         $this->authorize('update',$post);
         $post->update($this->validData());
         return compact('post');
     }
 
-    public function destroy($id){
-        $post = Post::findOrfail($id);
+    public function destroy($post){
         $this->authorize('delete',$post);
-        $post->destroy();
+        $post->delete();
         // return redirect
     }
 }

@@ -28,32 +28,30 @@ class SnippetController extends Controller
     }
 
     public function store(){
-        return Snippet::create($this->validData());
+        $data = $this->validData();
+        $data['user_id'] = auth()->id();
+        return Snippet::create($data);
     }
 
-    public function show($id){
-        $snippet = Snippet::findOrfail($id);
+    public function show($snippet){
         $this->authorize('view',$snippet);
         return compact('snippet');
     }
 
-    public function edit($id){
-        $snippet = Snippet::findOrfail($id);
+    public function edit($snippet){
         $this->authorize('update',$snippet);
         // return edit view
     }
 
-    public function update($id){
-        $snippet = Snippet::findOrfail($id);
+    public function update($snippet){
         $this->authorize('update',$snippet);
         $snippet->update($this->validData());
         return compact('snippet');
     }
 
-    public function destroy($id){
-        $snippet =Snippet::findOrfail($id);
+    public function destroy($snippet){
         $this->authorize('delete',$snippet);
-        $snippet->destroy();
+        $snippet->delete();
         // return redirect
     }
 }

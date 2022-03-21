@@ -124,4 +124,12 @@ class Post extends Model
     public function isArchived(){
         return $this->statusValue() ==  self::getStatus('archived');
     }
+
+    public function getTag($tag){
+        return $this->tags->where('id',$tag->id)->first();
+    }
+
+    public function isTaggedBy($tag){
+        return !is_null($this->getTag($tag));
+    }
 }
