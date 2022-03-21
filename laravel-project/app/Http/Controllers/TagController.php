@@ -34,28 +34,24 @@ class TagController extends Controller
         return Tag::create($this->validData());
     }
 
-    public function show($id){
-        $tag = Tag::findOrfail($id);
+    public function show($tag){
         return compact('tag');
     }
 
-    public function edit($id){
-        $tag = Tag::findOrfail($id);
+    public function edit($tag){
         $this->authorize('update',$tag);
         // return edit view
     }
 
-    public function update($id){
-        $tag = Tag::findOrfail($id);
+    public function update($tag){
         $this->authorize('update',$tag);
         $tag->update($this->validData());
         return compact('tag');
     }
 
-    public function destroy($id){
-        $tag = Tag::findOrfail($id);
+    public function destroy($tag){
         $this->authorize('update',$tag);
-        $tag->destroy();
+        $tag->delete();
         // return redirect
     }
 }

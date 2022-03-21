@@ -11,7 +11,7 @@ class seed extends Command
      *
      * @var string
      */
-    protected $signature = 'seed:interactive {--a|advanced}';
+    protected $signature = 'seed:interactive {--a|advanced} {--u|user_info} {--i|db_info}';
 
     /**
      * The console command description.
@@ -57,6 +57,13 @@ class seed extends Command
                 $this->info('Database was seeded Successfully');
             }
         }
+        
+        if($this->option('users_info')){
+            db_users();
+        }
 
+        if($this->option('db_info')){
+            db_stat();
+        }
     }
 }

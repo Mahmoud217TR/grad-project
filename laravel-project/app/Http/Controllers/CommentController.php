@@ -30,28 +30,24 @@ class CommentController extends Controller
         return Comment::create($this->validData());
     }
 
-    public function show($id){
-        $comment = Comment::findOrfail($id);
+    public function show($comment){
         return compact('comment');
     }
 
-    public function edit($id){
-        $comment = Comment::findOrfail($id);
+    public function edit($comment){
         $this->authorize('update',$comment);
         // return edit view
     }
 
-    public function update($id){
-        $comment = Comment::findOrfail($id);
+    public function update($comment){
         $this->authorize('update',$comment);
         $comment->update($this->validData());
         return compact('comment');
     }
 
-    public function destroy($id){
-        $comment = Comment::findOrfail($id);
+    public function destroy($comment){
         $this->authorize('delete',$comment);
-        $comment->destroy();
+        $comment->delete();
         // return redirect
     }
 }

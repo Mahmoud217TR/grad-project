@@ -2,9 +2,11 @@
 
 use App\Models\Code;
 use App\Models\Comment;
+use App\Models\Field;
 use App\Models\Language;
 use App\Models\Post;
 use App\Models\Profile;
+use App\Models\Sheet;
 use App\Models\Snippet;
 use App\Models\Tag;
 use App\Models\User;
@@ -23,6 +25,8 @@ use function PHPUnit\Framework\isNull;
             ."\n\t\tPosts: \t\t".Post::count()
             ."\n\t\tComments: \t".Comment::count()
             ."\n\t\tTags: \t\t".Tag::count()
+            ."\n\t\tSheets: \t".Sheet::count()
+            ."\n\t\tFields: \t".Field::count()
             ."\n\n--------------------------------------------------------\n\n";
         }
     }

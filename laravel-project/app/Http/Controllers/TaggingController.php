@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Sheet;
 use App\Models\Snippet;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -82,5 +83,20 @@ class TaggingController extends Controller
         }
 
         return ['snippet'=>$snippet,'snippet_tags'=>$snippet->tags];
+    }
+
+    public function sheet_tags(){
+
+        $data = $this->validateSnippetData();
+
+        $sheet = Sheet::findOrfail($data['sid']);
+        $this->authorize('update',$sheet);
+
+        foreach($data['tids'] as $tid){
+            $tag = Tag::findOrfail($tid);
+            $this->process($sheet, $tag, strtolower($data['action']));
+        }
+
+        return ['sheet'=>$sheet,'sheet_tags'=>$sheet->tags];
     }
 }

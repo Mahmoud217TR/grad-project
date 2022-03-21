@@ -119,6 +119,10 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public function sheets(){
+        return $this->hasMany(Sheet::class);
+    }
+
     public function postVotes(){
         return $this->belongsToMany(Post::class,'post_user','user_id')->Published()->withPivot('upvote')->withPivot('upvote');
     }

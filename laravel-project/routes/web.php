@@ -11,6 +11,7 @@ use App\Http\Controllers\TaggingController;
 use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FollowingController;
+use App\Http\Controllers\SheetController;
 use App\Http\Controllers\VotesController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,11 +37,13 @@ Route::resource('language', LanguageController::class);
 Route::resource('post', PostController::class);
 Route::resource('snippet', SnippetController::class);
 Route::resource('tag', TagController::class);
+Route::resource('sheet', SheetController::class);
 Route::resource('profile', ProfileController::class)->except(['create','store']);
 
 Route::controller(TaggingController::class)->group(function(){
     Route::post('post/tag','post_tags')->name('tag-post');
     Route::post('snippet/tag','snippet_tags')->name('tag-snippet');
+    Route::post('sheet/tag','sheet_tags')->name('tag-sheet');
 });
 
 Route::controller(VotesController::class)->group(function(){

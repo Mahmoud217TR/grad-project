@@ -34,6 +34,10 @@ class Tag extends Model
         return $this->belongsToMany(Snippet::class);
     }
 
+    public function sheets(){
+        return $this->belongsToMany(Sheet::class);
+    }
+
     public function followers(){
         return $this->belongsToMany(User::class,'user_follow','object_id')->where('type',2);
     }
@@ -48,7 +52,6 @@ class Tag extends Model
         return !is_null($this->getTaggedPost($post));
     }
 
-    
     public function getTaggedSnippet($snippet){
         return $this->snippets->where('id',$snippet->id)->first();
     }

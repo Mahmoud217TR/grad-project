@@ -33,29 +33,25 @@ class CodeController extends Controller
         return Code::create($this->validData());
     }
 
-    public function show($id){
-        $code = Code::findOrfail($id);
+    public function show($code){
         $this->authorize('view',$code);
         return compact('code');
     }
 
-    public function edit($id){
-        $code = Code::findOrfail($id);
+    public function edit($code){
         $this->authorize('update',$code);
         // return edit view
     }
 
-    public function update($id){
-        $code = Code::findOrfail($id);
+    public function update($code){
         $this->authorize('update',$code);
         $code->update($this->validData());
         return compact('code');
     }
 
-    public function destroy($id){
-        $code = Code::findOrfail($id);
+    public function destroy($code){
         $this->authorize('delete',$code);
-        $code->destroy();
+        $code->delete();
         // return redirect
     }
 }
