@@ -22,4 +22,8 @@ class Controller extends BaseController
     public function about(){
         return view('about');
     }
+
+    public function editor(){
+        return view('editor');
+    }
 }

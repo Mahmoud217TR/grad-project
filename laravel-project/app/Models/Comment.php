@@ -79,6 +79,18 @@ class Comment extends Model
         return $this->belongsTo(Post::class);
     }
 
+    public function userVotes(){
+        return $this->belongsToMany(User::class,'comment_user','comment_id')->withPivot('upvote');
+    }
+
+    public function userUpvotes(){
+        return $this->UserVotes->where('pivot.upvote',true);
+    }
+
+    public function userDownvotes(){
+        return $this->UserVotes->where('pivot.upvote',false);
+    }
+
     // Attributes & Scopes
 
     public function getStatusAttribute($attribute){

@@ -33,4 +33,8 @@ class Tag extends Model
     public function snippets(){
         return $this->belongsToMany(Snippet::class);
     }
+
+    public function followers(){
+        return $this->belongsToMany(User::class,'user_follow','object_id')->where('type',2);
+    }
 }

@@ -30,7 +30,7 @@ class LanguagePolicy
      */
     public function view(?User $user, Language $language)
     {
-        return ($language->status === 'approved');
+        return $language->isApproved();
     }
 
     /**

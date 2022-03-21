@@ -10,6 +10,8 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaggingController;
 use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\FollowingController;
+use App\Http\Controllers\VotesController;
 use Illuminate\Support\Facades\Route;
 
 use function Clue\StreamFilter\fun;
@@ -41,12 +43,23 @@ Route::controller(TaggingController::class)->group(function(){
     Route::post('snippet/{sid}/tag','snippet_tags')->name('tag-snippet');
 });
 
+Route::controller(VotesController::class)->group(function(){
+    Route::post('post/vote','voteOnPost')->name('post-vote');
+    Route::post('comment/vote','voteOnComment')->name('comment-vote');
+});
+
+Route::controller(FollowingController::class)->group(function(){
+    Route::post('follow','follow')->name('follow');
+});
 
 Route::controller(Controller::class)->group(function(){
     Route::get('/','welcome')->name('welcome');
     Route::get('/services','services')->name('services');
     Route::get('/about-us','about')->name('about');
+    Route::get('/code-editor', 'editor')->name('editor');
 });
+
+Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');
 
 Route::get('/nav', function () {
     return view('layouts.nav');
@@ -55,8 +68,3 @@ Route::get('/nav', function () {
 Route::get('/footer', function () {
     return view('layouts.footer');
 });
-Route::get('/codeedit', function () {
-    return view('codeedit');
-});
-
-Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');

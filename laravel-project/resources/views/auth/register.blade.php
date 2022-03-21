@@ -1,20 +1,40 @@
 @extends('layouts.app')
+@section('title','Register')
+
+@section('header')
+<style>
+body{
+    background: url("{{ asset('images/background.jpg') }}");
+    background-size: cover;
+    background-size: 100% 100%;
+}
+</style>
+@endsection
 
 @section('content')
-<div class="container">
+
+<div class="container py-5 my-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+        <div class="col-md-8 col">
+            <div class="card registration-box">
+                <div class="card-body">
+                    <div class="border-bottom border-2">
+                        <div class="text-center pb-2 head-line">Welcome To {{ config('app.name', 'Laravel') }}</div>
+                        <div class="row row-cols-auto justify-content-center py-3">
+                           <a class="mx-auto my-1 bottom-line unstyled-anchor" href="{{ route('register') }}"><p class="base-line">New Account</p></a>
+                           <a class="mx-auto my-1 unstyled-anchor" href="{{ route('login') }}"><p class="base-line">Login</p></a>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                        <div class="row mb-3 px-5">
+                            <label for="name" class="col-form-label text-start ">{{ __('Name') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
@@ -25,10 +45,10 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                        <div class="row mb-3 px-5">
+                            <label for="email" class="col-form-label text-start">{{ __('Email Address') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
@@ -39,10 +59,10 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                        <div class="row mb-3 px-5">
+                            <label for="password" class="col-form-label text-start">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
@@ -53,18 +73,18 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                        <div class="row mb-3 px-5">
+                            <label for="password-confirm" class="col-form-label text-start">{{ __('Confirm Password') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="bdate" class="col-md-4 col-form-label text-md-end">{{ __('Birth Date:') }}</label>
+                        <div class="row mb-3 px-5">
+                            <label for="bdate" class="col-form-label text-start">{{ __('Birth Date:') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="bdate" type="date" class="form-control @error('bdate') is-invalid @enderror" name="bdate" value="{{ old('bdate') }}" required autocomplete="bdate">
 
                                 @error('bdate')
@@ -75,15 +95,27 @@
                             </div>
                         </div>
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                        <div class="row mb-0 text-center">
+                            <div class="py-2">
+                                <button type="submit" class="btn button-primary TB ">
+                                    {{ __('Submit') }}
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
+            </div>
+
+            <div class="text-center registration-box my-5">
+                <div class="row justify-content-center text-center py-1 head-line">or register with</div>
+                <a class="row row-cols-auto justify-content-center py-3 my-2 mx-5 box-or unstyled-anchor align-items-center" href="#">
+                    <i class="bi bi-google py-2"></i>
+                    <p class="base-line my-0">Your Google Account</p>
+                </a>
+                <a class="row row-cols-auto justify-content-center py-3 my-2 mx-5 box-or unstyled-anchor align-items-center" href="#">
+                    <i class="bi bi-facebook py-2"></i>
+                    <p class="base-line my-0">Your Facebook Account</p>
+                </a>
             </div>
         </div>
     </div>
