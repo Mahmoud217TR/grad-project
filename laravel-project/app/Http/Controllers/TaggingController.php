@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Sheet;
 use App\Models\Snippet;
 use App\Models\Tag;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -27,28 +28,40 @@ class TaggingController extends Controller
 
     private function validatePostData(){
         return request()->validate([
-            'pid' => 'required',
-            'tids' => ['required'],
+            'pid' => 'required|exists:posts,id',
             'action' => ['required',Rule::in(self::ACTIONS)],
+            'tids' => 'required|array',
+            'tids.*' => '|required|exists:tags,id',
         ]);
     }
 
     private function validateSnippetData(){
         return request()->validate([
-            'sid' => 'required',
-            'tids' => ['required'],
+            'sid' => 'required|exists:snippets,id',
             'action' => ['required',Rule::in(self::ACTIONS)],
+            'tids' => 'required|array',
+            'tids.*' => '|required|exists:tags,id',
+        ]);
+    }
+
+    
+    private function validateSheetData(){
+        return request()->validate([
+            'sid' => 'required|exists:sheets,id',
+            'action' => ['required',Rule::in(self::ACTIONS)],
+            'tids' => 'required|array',
+            'tids.*' => '|required|exists:tags,id',
         ]);
     }
 
     private function process($object, $tag, $action){
         if($this->isValidAction($action)){
             if($action === 'attach'){
-                if(!$object->isTagged($tag)){
+                if(!$object->isTaggedBy($tag)){
                     $object->tags()->attach($tag);
                 }
             }else{
-                if($object->isTagged($tag)){
+                if($object->isTaggedBy($tag)){
                     $object->tags()->detach($tag);
                 }
             }
@@ -66,8 +79,6 @@ class TaggingController extends Controller
             $tag = Tag::findOrfail($tid);
             $this->process($post, $tag, strtolower($data['action']));
         }
-
-        return ['post'=>$post,'post_tags'=>$post->tags];
     }
 
     public function snippet_tags(){
@@ -81,13 +92,10 @@ class TaggingController extends Controller
             $tag = Tag::findOrfail($tid);
             $this->process($snippet, $tag, strtolower($data['action']));
         }
-
-        return ['snippet'=>$snippet,'snippet_tags'=>$snippet->tags];
     }
 
     public function sheet_tags(){
-
-        $data = $this->validateSnippetData();
+        $data = $this->validateSheetData();
 
         $sheet = Sheet::findOrfail($data['sid']);
         $this->authorize('update',$sheet);
@@ -96,7 +104,5 @@ class TaggingController extends Controller
             $tag = Tag::findOrfail($tid);
             $this->process($sheet, $tag, strtolower($data['action']));
         }
-
-        return ['sheet'=>$sheet,'sheet_tags'=>$sheet->tags];
     }
 }
