@@ -47,8 +47,6 @@ Route::controller(TaggingController::class)->prefix('tagging')->group(function()
     Route::post('/sheet','sheet_tags')->name('tag-sheet');
 });
 
-Route::view('/test','test');
-
 Route::controller(VotesController::class)->prefix('vote')->group(function(){
     Route::post('/post','voteOnPost')->name('post-vote');
     Route::post('/comment','voteOnComment')->name('comment-vote');
