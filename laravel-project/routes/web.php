@@ -75,3 +75,6 @@ Route::get('/footer', function () {
 Route::get('/codesubmit', function () {
     return view('codesubmit');
 })->name('codesubmit');
+Route::get('/codeinfo', function () {
+    return view('codeinfo');
+})->name('codeinfo');
