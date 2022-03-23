@@ -41,7 +41,7 @@ Route::resource('tag', TagController::class);
 Route::resource('sheet', SheetController::class);
 Route::resource('profile', ProfileController::class)->except(['create','store']);
 
-Route::controller(TaggingController::class)->prefix('tag')->group(function(){
+Route::controller(TaggingController::class)->prefix('tagging')->group(function(){
     Route::post('/post','post_tags')->name('tag-post');
     Route::post('/snippet','snippet_tags')->name('tag-snippet');
     Route::post('/sheet','sheet_tags')->name('tag-sheet');
