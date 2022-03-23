@@ -81,7 +81,7 @@
       </div>
       <div class="text-center pt-3">
         <a href="{{ route('register') }}" class="btn button-primary TB mx-2" type="button">Rigester</a>
-        <a href="{{ route('home') }}" class="btn button-secondary TB mx-2" type="button">View</a>
+        <a href="/" class="btn button-secondary TB mx-2" type="button">View</a>
       </div>
       </div>
     {{----}}

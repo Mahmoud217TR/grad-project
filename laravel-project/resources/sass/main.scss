@@ -7,6 +7,7 @@ $Primary:#FF2E00;
 $Secondary:#F0EFF0;
 $background:#1c2025;
 $PrimaryText:#EEEBD0;
+$Secondary-text:#1c2025;
 $border-orange:$Primary;
 //main
 .broad-title{
@@ -55,6 +56,9 @@ $border-orange:$Primary;
         }
     .text-in-header{
         color: $Secondary;
+    }
+    .text-Secondary{
+        color: $Secondary-text;
     }
 //
 
