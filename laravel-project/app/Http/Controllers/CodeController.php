@@ -43,7 +43,7 @@ class CodeController extends Controller
     public function show($id){
         $code = Code::findOrFail($id);
         $this->authorize('view',$code);
-        return compact('code');
+        return view('code.show',compact('code'));
     }
 
     public function edit($id){
