@@ -32,22 +32,22 @@ class CommentController extends Controller
         return Comment::create($data);
     }
 
-    public function show($comment){
+    public function show(Comment $comment){
         return compact('comment');
     }
 
-    public function edit($comment){
+    public function edit(Comment $comment){
         $this->authorize('update',$comment);
         // return edit view
     }
 
-    public function update($comment){
+    public function update(Comment $comment){
         $this->authorize('update',$comment);
         $comment->update($this->validData());
         return compact('comment');
     }
 
-    public function destroy($comment){
+    public function destroy(Comment $comment){
         $this->authorize('delete',$comment);
         $comment->delete();
         // return redirect

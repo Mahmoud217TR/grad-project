@@ -39,18 +39,18 @@ class PostController extends Controller
         return $post;
     }
 
-    public function edit($post){
+    public function edit(Post $post){
         $this->authorize('update',$post);
         // return edit view
     }
 
-    public function update($post){
+    public function update(Post $post){
         $this->authorize('update',$post);
         $post->update($this->validData());
         return compact('post');
     }
 
-    public function destroy($post){
+    public function destroy(Post $post){
         $this->authorize('delete',$post);
         $post->delete();
         // return redirect

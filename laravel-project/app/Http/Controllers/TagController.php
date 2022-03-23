@@ -34,22 +34,22 @@ class TagController extends Controller
         return Tag::create($this->validData());
     }
 
-    public function show($tag){
+    public function show(Tag $tag){
         return compact('tag');
     }
 
-    public function edit($tag){
+    public function edit(Tag $tag){
         $this->authorize('update',$tag);
         // return edit view
     }
 
-    public function update($tag){
+    public function update(Tag $tag){
         $this->authorize('update',$tag);
         $tag->update($this->validData());
         return compact('tag');
     }
 
-    public function destroy($tag){
+    public function destroy(Tag $tag){
         $this->authorize('update',$tag);
         $tag->delete();
         // return redirect

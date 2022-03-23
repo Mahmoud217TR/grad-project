@@ -33,23 +33,23 @@ class SnippetController extends Controller
         return Snippet::create($data);
     }
 
-    public function show($snippet){
+    public function show(Snippet $snippet){
         $this->authorize('view',$snippet);
         return compact('snippet');
     }
 
-    public function edit($snippet){
+    public function edit(Snippet $snippet){
         $this->authorize('update',$snippet);
         // return edit view
     }
 
-    public function update($snippet){
+    public function update(Snippet $snippet){
         $this->authorize('update',$snippet);
         $snippet->update($this->validData());
         return compact('snippet');
     }
 
-    public function destroy($snippet){
+    public function destroy(Snippet $snippet){
         $this->authorize('delete',$snippet);
         $snippet->delete();
         // return redirect
