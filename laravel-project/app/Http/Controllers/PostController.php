@@ -35,7 +35,7 @@ class PostController extends Controller
         return Post::create($data);
     }
 
-    public function show($post){
+    public function show(Post $post){
         return $post;
     }
 

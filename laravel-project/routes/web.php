@@ -31,7 +31,7 @@ use function Clue\StreamFilter\fun;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('code', CodeController::class);
 Route::resource('comment', CommentController::class);
 Route::resource('language', LanguageController::class);

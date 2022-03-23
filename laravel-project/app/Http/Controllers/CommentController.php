@@ -33,7 +33,8 @@ class CommentController extends Controller
     }
 
     public function show(Comment $comment){
-        return compact('comment');
+        $this->authorize('view',Comment::class);
+        return $comment;
     }
 
     public function edit(Comment $comment){
