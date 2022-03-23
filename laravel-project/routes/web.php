@@ -72,6 +72,3 @@ Route::get('/nav', function () {
 Route::get('/footer', function () {
     return view('layouts.footer');
 });
-Route::get('/codesubmit', function () {
-    return view('codesubmit');
-})->name('codesubmit');

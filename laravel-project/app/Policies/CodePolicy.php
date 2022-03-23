@@ -41,7 +41,7 @@ class CodePolicy
      */
     public function create(User $user)
     {
-        return $user->isWebAdmin();
+        return $user->isOrAbove('user');
     }
 
     /**
