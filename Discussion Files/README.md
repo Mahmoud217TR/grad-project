@@ -1,4 +1,8 @@
 ### Discussion Files
 
 ## ERD Diagram
-this folder is made for storing our erd diagram
+Contains ERD Diagram
+
+## Reports
+* Project General Reports
+

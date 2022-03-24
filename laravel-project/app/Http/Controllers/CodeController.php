@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DeletionEvent;
+use App\Events\InsertionEvent;
+use App\Events\ModificationEvent;
 use App\Models\Code;
 use Illuminate\Http\Request;
 
@@ -13,7 +16,7 @@ class CodeController extends Controller
 
     public function validData(){
         return request()->validate([
-            'title' => 'required|string|max:100|unique:codes',
+            'title' => 'required|string|max:100',
             'description' => 'required|string|max:400'
         ]);
     }
@@ -24,34 +27,44 @@ class CodeController extends Controller
     }
 
     public function create(){
-        $this->authorize('create');
-        // return create view
+        $this->authorize('create', Code::class);
+        return view('code.create', ['code'=>new Code]);
     }
 
     public function store(){
-        $this->authorize('create');
-        return Code::create($this->validData());
+        $this->authorize('create', Code::class);
+        $data = $this->validData();
+        if(auth()->user()->isWebAdmin()){
+            $data['status'] = Code::getStatus('approved');
+        }
+        $code = Code::create($data);
+        event(new InsertionEvent($code,"Code",auth()->user()));
+
+        // flash a message
+        return $code; // needs update
     }
 
-    public function show($code){
+    public function show(Code $code){
         $this->authorize('view',$code);
-        return compact('code');
+        return view('code.show',compact('code'));
     }
 
-    public function edit($code){
+    public function edit(Code $code){
         $this->authorize('update',$code);
-        // return edit view
+        return view('code.edit', compact('code'));
     }
 
-    public function update($code){
+    public function update(Code $code){
         $this->authorize('update',$code);
         $code->update($this->validData());
+        event(new ModificationEvent($code,"Code",auth()->user()));
         return compact('code');
     }
 
-    public function destroy($code){
+    public function destroy(Code $code){
         $this->authorize('delete',$code);
         $code->delete();
+        event(new DeletionEvent($code,"Code",auth()->user()));
         // return redirect
     }
 }

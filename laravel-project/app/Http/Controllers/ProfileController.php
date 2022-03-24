@@ -23,22 +23,22 @@ class ProfileController extends Controller
         return compact('profile');
     }
 
-    public function show($profile){
+    public function show(Profile $profile){
         return compact('profile');
     }
 
-    public function edit($profile){
+    public function edit(Profile $profile){
         $this->authorize('update',$profile);
         // return edit view
     }
 
-    public function update($profile){
+    public function update(Profile $profile){
         $this->authorize('update',$profile);
         $profile->update($this->validData());
         return compact('profile');
     }
 
-    public function destroy($profile){
+    public function destroy(Profile $profile){
         $this->authorize('delete',$profile);
         $profile->delete();
         // return redirect

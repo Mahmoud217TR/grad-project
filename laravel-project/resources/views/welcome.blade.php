@@ -73,16 +73,18 @@
     
     {{--text--}}
       <div class="container mt-5 pt-5">
-      <div class="text-center pt-3 ">
-        <p class="broad-title welcome">welcome to <span class="orange-text">{{ config('app.name', 'Laravel') }}</span></p> 
-      </div>
-      <div class="text-center pt-3 ">
-        <p class="base-line welcome">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, iste doloribus veritatis excepturi, repudiandae voluptate rerum dignissimos quibusdam ex enim earum beatae sapiente delectus exercitationem assumenda fuga sunt. At, autem!</p>
-      </div>
-      <div class="text-center pt-3">
-        <a href="{{ route('register') }}" class="btn button-primary TB mx-2" type="button">Rigester</a>
-        <a href="/" class="btn button-secondary TB mx-2" type="button">View</a>
-      </div>
+        <div class="text-center pt-3 ">
+          <h1 class="broad-title welcome">welcome to <span class="orange-text">{{ config('app.name', 'Laravel') }}</span></h1> 
+        </div>
+        <div class="text-center pt-3 ">
+          <p class="base-line welcome">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, iste doloribus veritatis excepturi, repudiandae voluptate rerum dignissimos quibusdam ex enim earum beatae sapiente delectus exercitationem assumenda fuga sunt. At, autem!</p>
+        </div>
+        @guest
+          <div class="text-center pt-3">
+            <a href="{{ route('register') }}" class="btn button-primary TB mx-2" type="button">Rigester</a>
+            <a href="{{ route('login') }}" class="btn button-secondary TB mx-2" type="button">Login</a>
+          </div>
+        @endguest
       </div>
     {{----}}
 

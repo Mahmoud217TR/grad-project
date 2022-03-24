@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Code;
+use App\Models\Report;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CodePolicy
+class ReportPolicy
 {
     use HandlesAuthorization;
 
@@ -25,12 +25,12 @@ class CodePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Code  $code
+     * @param  \App\Models\Report  $report
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(?User $user, Code $code)
+    public function view(User $user, Report $report)
     {
-        return $code->isApproved();
+        //
     }
 
     /**
@@ -41,41 +41,41 @@ class CodePolicy
      */
     public function create(User $user)
     {
-        return $user->isOrAbove('user');
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Code  $code
+     * @param  \App\Models\Report  $report
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Code $code)
+    public function update(User $user, Report $report)
     {
-        return $user->isWebAdmin();
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Code  $code
+     * @param  \App\Models\Report  $report
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Code $code)
+    public function delete(User $user, Report $report)
     {
-        return $user->isWebAdmin();
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Code  $code
+     * @param  \App\Models\Report  $report
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Code $code)
+    public function restore(User $user, Report $report)
     {
         //
     }
@@ -84,10 +84,10 @@ class CodePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Code  $code
+     * @param  \App\Models\Report  $report
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Code $code)
+    public function forceDelete(User $user, Report $report)
     {
         //
     }
