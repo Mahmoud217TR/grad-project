@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\InsertionEvent;
+use App\Events\ModificationEvent;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -31,7 +33,9 @@ class TagController extends Controller
 
     public function store(){
         $this->authorize('create');
-        return Tag::create($this->validData());
+        $tag = Tag::create($this->validData());
+        event(new InsertionEvent($tag,"Tag",auth()->user()));
+        return $tag;
     }
 
     public function show(Tag $tag){
@@ -46,12 +50,14 @@ class TagController extends Controller
     public function update(Tag $tag){
         $this->authorize('update',$tag);
         $tag->update($this->validData());
-        return compact('tag');
+        event(new ModificationEvent($tag,"Tag",auth()->user()));
+        return $tag;
     }
 
     public function destroy(Tag $tag){
         $this->authorize('update',$tag);
         $tag->delete();
+        event(new ModificationEvent($tag,"Tag",auth()->user()));
         // return redirect
     }
 }

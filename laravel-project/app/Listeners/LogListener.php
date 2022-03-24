@@ -14,14 +14,13 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class LogListener implements ShouldQueue
 {
+    
     private function createLog($title,$data,$type){
-        if(Log::getType($type)){
-            Log::create([
-                'title' => $title,
-                'data' => $data,
-                'type' => $type,
-            ]);
-        }
+        Log::create([
+            'title' => $title,
+            'data' => $data,
+            'type' => Log::getTypeValue($type),
+        ]);
     }
 
     public function general(GeneralLogEvent $event)

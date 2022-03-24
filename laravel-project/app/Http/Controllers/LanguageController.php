@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DeletionEvent;
+use App\Events\InsertionEvent;
+use App\Events\ModificationEvent;
 use App\Models\Language;
 use Illuminate\Http\Request;
 
@@ -30,7 +33,9 @@ class LanguageController extends Controller
 
     public function store(){
         $this->authorize('create');
-        return Language::create($this->validData());
+        $language = Language::create($this->validData());
+        event(new InsertionEvent($language,"Language",auth()->user()));
+        return $language;
     }
 
     public function show(Language $language){
@@ -46,12 +51,14 @@ class LanguageController extends Controller
     public function update(Language $language){
         $this->authorize('update',$language);
         $language->update($this->validData());
-        return compact('language');
+        event(new ModificationEvent($language,"Language",auth()->user()));
+        return $language;
     }
 
     public function destroy(Language $language){
         $this->authorize('delete',$language);
         $language->delete();
+        event(new DeletionEvent($language,"Language",auth()->user()));
         // return redirect
     }
 }

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DeletionEvent;
+use App\Events\InsertionEvent;
+use App\Events\ModificationEvent;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
@@ -29,7 +32,8 @@ class CommentController extends Controller
     public function store(){
         $data = $this->validData();
         $data['user_id'] = auth()->id();
-        return Comment::create($data);
+        $comment = Comment::create($data);
+        event(new InsertionEvent($comment,"Comment",auth()->user()));
     }
 
     public function show(Comment $comment){
@@ -45,12 +49,14 @@ class CommentController extends Controller
     public function update(Comment $comment){
         $this->authorize('update',$comment);
         $comment->update($this->validData());
-        return compact('comment');
+        event(new ModificationEvent($comment,"Comment",auth()->user()));
+        return $comment;
     }
 
     public function destroy(Comment $comment){
         $this->authorize('delete',$comment);
         $comment->delete();
+        event(new DeletionEvent($comment,"Comment",auth()->user()));
         // return redirect
     }
 }

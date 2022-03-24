@@ -14,11 +14,8 @@ class RoleChangeEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
+    public $user, $object, $object_type, $datetime;
+    
     public function __construct($super_admin, $user)
     {
         $this->super_admin = $super_admin;

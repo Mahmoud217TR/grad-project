@@ -14,11 +14,8 @@ class UserRelatedEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
+    public $title, $data, $user, $datetime;
+    
     public function __construct($title,$data,$user)
     {
         $this->title = $title;
