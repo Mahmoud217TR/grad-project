@@ -60,7 +60,7 @@
               <!--Grid column-->
         
               <!--Grid column-->
-              <div class="col-md-4 mb-md-0 mb-4 p-3">
+              <div class="col-md-4 mb-md-0 mb-4 ps-5 p-3">
                 <h4 class="text-uppercase justify-content-center align-items-center py-3 ">links</h4>
                 <ul class="list-unstyled">
                   <li>
