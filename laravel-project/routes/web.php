@@ -61,7 +61,6 @@ Route::controller(Controller::class)->group(function(){
     Route::get('/services','services')->name('services');
     Route::get('/about-us','about')->name('about');
     Route::get('/code-editor', 'editor')->name('editor');
-
 });
 
 Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');

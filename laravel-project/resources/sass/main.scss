@@ -5,10 +5,12 @@
 
 $Primary:#FF2E00;
 $Secondary:#F0EFF0;
+$Tertiary: #00FF2E;
 $background:#1c2025;
 $PrimaryText:#EEEBD0;
 $Secondary-text:#1c2025;
 $border-orange:$Primary;
+
 //main
 .broad-title{
     font-size:3.8rem;
@@ -193,4 +195,21 @@ body{
         margin-left: 1rem;
         font-size: 1.5rem!important;
     }
+}
+
+.profile-image{
+    width:16rem;
+    height:16rem;
+}
+
+.camera-button{
+    transform: translate(80%,-120%);
+}
+
+.normal{
+    text-transform:none;
+}
+
+.role{
+    color: $Tertiary;
 }
