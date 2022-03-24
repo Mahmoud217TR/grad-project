@@ -69,12 +69,3 @@ Route::controller(Controller::class)->group(function(){
 
 Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');
 
-Route::get('/nav', function () {
-    return view('layouts.nav');
-});
-
-Route::get('/footer', function () {
-    return view('layouts.footer');
-});
-
-
