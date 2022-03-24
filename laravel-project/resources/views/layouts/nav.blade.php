@@ -16,12 +16,19 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <style>
+    .nav-image {
+      background: url("{{ asset('images/nav.jpg') }}") ;
+      background-size: cover;
+      background-size: 100% 100% ;
+    }
+  </style>
 </head>
 <body>
     {{-- Write your code here  --}}
      {{--start navbar--}}
-     <div class="container-fluid">
-        <div class="row d-flex align-items-center p-2 fixed-top " >
+     
+        <div class="row d-flex align-items-center p-2 fixed-top nav-image" >
           {{--Logo & NameProject--}}
            <div class="col-lg-6">
              <div class="row">
@@ -62,7 +69,7 @@
             </div>
           {{----}}
        </div>
-       </div>
+       
     {{--end navbar--}}
     
     
