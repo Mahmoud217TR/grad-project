@@ -61,6 +61,7 @@ Route::controller(Controller::class)->group(function(){
     Route::get('/services','services')->name('services');
     Route::get('/about-us','about')->name('about');
     Route::get('/code-editor', 'editor')->name('editor');
+
 });
 
 Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');
@@ -72,4 +73,5 @@ Route::get('/nav', function () {
 Route::get('/footer', function () {
     return view('layouts.footer');
 });
+
 
