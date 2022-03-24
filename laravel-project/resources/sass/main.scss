@@ -13,6 +13,9 @@ $SecondaryText: #000000;
 $border-orange:$Primary;
 
 //main
+main{
+    min-height: 100vh;
+}
 .broad-title{
     font-size:3.8rem;
     font-family:Arial, Helvetica, sans-serif;
