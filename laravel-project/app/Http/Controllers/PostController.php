@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DeletionEvent;
+use App\Events\InsertionEvent;
+use App\Events\ModificationEvent;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -32,27 +35,31 @@ class PostController extends Controller
         $this->authorize('create');
         $data = $this->validData();
         $data['user_id'] = auth()->id();
-        return Post::create($data);
-    }
-
-    public function show($post){
+        $post =  Post::create($data);
+        event(new InsertionEvent($post,"Post",auth()->user()));
         return $post;
     }
 
-    public function edit($post){
+    public function show(Post $post){
+        return $post;
+    }
+
+    public function edit(Post $post){
         $this->authorize('update',$post);
         // return edit view
     }
 
-    public function update($post){
+    public function update(Post $post){
         $this->authorize('update',$post);
         $post->update($this->validData());
-        return compact('post');
+        event(new ModificationEvent($post,"Post",auth()->user()));
+        return $post;
     }
 
-    public function destroy($post){
+    public function destroy(Post $post){
         $this->authorize('delete',$post);
         $post->delete();
+        event(new DeletionEvent($post,"Post",auth()->user()));
         // return redirect
     }
 }

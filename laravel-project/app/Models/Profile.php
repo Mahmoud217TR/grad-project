@@ -35,4 +35,10 @@ class Profile extends Pivot
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    // Functions
+
+    public function hasProfilePic(){
+        return !is_null($this->profile_pic);
+    }
 }

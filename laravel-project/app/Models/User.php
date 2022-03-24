@@ -123,6 +123,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Sheet::class);
     }
 
+    public function reports(){
+        return $this->hasMany(Report::class);
+    }
+
     public function postVotes(){
         return $this->belongsToMany(Post::class,'post_user','user_id')->Published()->withPivot('upvote')->withPivot('upvote');
     }

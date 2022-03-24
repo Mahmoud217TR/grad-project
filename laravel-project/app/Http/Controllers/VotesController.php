@@ -18,7 +18,7 @@ class VotesController extends Controller
     // Posts
     private function getPostData(){
         return request()->validate([
-            'post_id' => 'required',
+            'post_id' => 'required|exists:posts,id',
             'vote' => ['required',Rule::in(self::Votes)]
         ]);
     }
@@ -51,7 +51,7 @@ class VotesController extends Controller
     // Comments
     private function getCommentData(){
         return request()->validate([
-            'comment_id' => 'required',
+            'comment_id' => 'required|exists:comments,id',
             'vote' => ['required',Rule::in(self::Votes)]
         ]);
     }
