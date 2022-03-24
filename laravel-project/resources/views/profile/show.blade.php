@@ -8,7 +8,7 @@
             {{--card image--}}
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="@if(!$profile->hasProfilePic()){{ asset('images/blank-profile-picture.svg') }}@else {{ $profile->profile_pic }} @endif" class="profile-image rounded-circle">
+                    <img src="@if(!$profile->hasProfilePic()){{ asset('images/blank-profile-picture.svg') }}@else {{ asset('storage/'.$profile->profile_pic) }} @endif" class="profile-image rounded-circle">
                     <div class="my-3">
                         <p class="page-title normal PrimaryText my-4">{{ $profile->user->name }} @if($profile->user->isWebAdmin())<sub class="base-line role">({{ $profile->user->role }})</sub> @endif</p>
                         <p class="base-line PrimaryText">{{ $profile->bio }}</p>
@@ -28,7 +28,9 @@
                     @can('update',$profile)
                       <a href="{{ route('profile.edit',auth()->id()) }}" class="btn button-primary TB">Edit</a>
                     @else
-                      <button class="btn button-primary TB">Follow</button>
+                      @auth
+                      <follow-component uri-status='{{ route('get-follow') }}' uri-toggle='{{ route('follow') }}' type='user' id='{{ $profile->user_id }}'></follow-component>
+                      @endauth
                     @endcan
                   </div>
                 </div>

@@ -9,16 +9,18 @@
         <div class="card-body">
           <div class="d-flex flex-column align-items-center text-center">
             <div>
-              <img src="@if(!$profile->hasProfilePic()){{ asset('images/blank-profile-picture.svg') }}@else {{ $profile->profile_pic }} @endif" id="preview" class="profile-image rounded-circle">
+              <img src="@if(!$profile->hasProfilePic()){{ asset('images/blank-profile-picture.svg') }}@else {{ asset('storage/'.$profile->profile_pic) }} @endif" id="preview" class="profile-image rounded-circle">
             </div>
             {{--edit photo--}}
             <div class="camera-button">
-              <form method="post" id="image-form">
-                <input type="file" name="img[]" id='profile_pic' name="profile_pic" class="file" accept="image/*" hidden="hidden">
-                    <label for ='profile_pic' type="button" class="browse btn button-primary">
+              <form id='image-form' method="post" action="{{ route('upload-img') }}" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="profile_pic" id='profile_pic' class="file" accept="image/*" hidden="hidden" onchange="document.getElementById('image-submit').click()">
+                <label for="profile_pic" type="button" class="browse btn button-primary">
                     <i class="bi bi-camera"></i>
-                  </label>
-              </form>
+                </label>
+                <button id = 'image-submit' type="submit" hidden></button>
+            </form>
             </div>
             {{--end edit photo--}}
           </div>

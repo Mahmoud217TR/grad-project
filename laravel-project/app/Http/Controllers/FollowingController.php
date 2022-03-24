@@ -37,6 +37,13 @@ class FollowingController extends Controller
         ]);
     }
 
+    private function getValidStatus(){
+        return request()->validate([
+            'type' => ['required','string',Rule::in(self::TYPES)],
+            'object_id' => 'required',
+        ]);
+    }
+
     private function followUser($object){
         $user = auth()->user();
         if(!$user->isFollowingUser($object)){
@@ -103,6 +110,28 @@ class FollowingController extends Controller
         }
     }
 
+    public function getStatus($data){
+        $result = 'not following';
+        if($data['type'] == 'user'){
+            $user = User::findOrFail($data['object_id']);
+            if(auth()->user()->isFollowingUser($user)){
+                $result = 'following';
+            }
+        }else if($data['type'] == 'language'){
+            $language = Language::findOrFail($data['object_id']);
+            if(auth()->user()->isFollowingLanguage($language)){
+                $result = 'following';
+            }
+        }else{
+            $tag = Tag::findOrFail($data['object_id']);
+            if(auth()->user()->isFollowingTag($tag)){
+                $result = 'following';
+                return $result;
+            }
+        }
+        return $result;
+    }
+
     public function follow(){
         $data = $this->getValidRequest();
         if($data['type']=='user'){
@@ -116,6 +145,10 @@ class FollowingController extends Controller
             $object = Tag::findOrFail($data['object_id']);
             $this->tagHandler($object, $data['process']);
         }
-        return redirect()->back();
+    }
+    
+    public function getFollowStatus(){
+        $data = $this->getValidStatus();
+        return $this->getStatus($data);
     }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FollowingController;
 use App\Http\Controllers\SheetController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\VotesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -54,7 +55,10 @@ Route::controller(VotesController::class)->prefix('vote')->group(function(){
 
 Route::controller(FollowingController::class)->group(function(){
     Route::post('follow','follow')->name('follow');
+    Route::post('getfollow','getFollowStatus')->name('get-follow');
 });
+
+Route::post('/upload',[UploadController::class,'uploadImg'])->name('upload-img');
 
 Route::controller(Controller::class)->group(function(){
     Route::get('/','welcome')->name('welcome');
