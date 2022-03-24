@@ -93,12 +93,12 @@
         <div class="footer">
         <footer class=" text-dark text-center text-lg-start">
             <!-- Grid container -->
-            <div class="container p-4">
+            <div class="container p-3">
               <!--Grid row-->
               <div class="row">
                 <!--Grid column-->
-                <div class="col-lg-4">
-                  <div class="row">
+                <div class="col-lg-4 p-3">
+                  <div class="row ">
               <div class="col-lg-2 d-flex justify-content-center align-items-center">
                 {{--start Logo--}}                  
                <a href="{{ route('welcome') }}" class="unstyled-anchor">
