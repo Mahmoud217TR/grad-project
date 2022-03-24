@@ -45,7 +45,7 @@
  
               <div class="col d-flex justify-content-center justify-content-lg-start align-items-center">
                 {{--Strat Name Project--}} 
-                 <a href="/" class="unstyled-anchor page-title text-in-header">{{ config('app.name', 'Laravel') }}</a>
+                 <a href="/" class="unstyled-anchor base-line text-in-header">{{ config('app.name', 'Laravel') }}</a>
                {{--end Name--}}
               </div>
              </div>

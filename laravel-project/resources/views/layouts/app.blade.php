@@ -20,70 +20,139 @@
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     @yield('header')
+    <style>
+      .container-fluid {
+        background: url("{{ asset('/images/nav.jpg') }}") ;
+        background-size: cover;
+        background-size: 100% 100% ;
+      }
+    </style>
 
     <!-- fav icon -->
     @include('components.favicon')
+    
 </head>
 <body>
     <div id="app">
-        
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
        
-        <main class="my-3">
+        {{--start navbar--}}
+       <div class="container-fluid">
+        <div class="row d-flex align-items-center p-2 fixed-top " >
+          {{--Logo & NameProject--}}
+           <div class="col-lg-6">
+             <div class="row">
+              <div class="col-lg-2 d-flex justify-content-center align-items-center">
+                {{--start Logo--}}                  
+               <a href="{{ route('welcome') }}" class="unstyled-anchor">
+                   @include('components.logo',['width'=>50,'height'=>50])
+               </a>
+              {{--end logo--}} 
+              </div>
+ 
+              <div class="col d-flex justify-content-center justify-content-lg-start align-items-center">
+                {{--Strat Name Project--}} 
+                 <a href="/" class="unstyled-anchor head-line text-in-header">{{ config('app.name', 'Laravel') }}</a>
+               {{--end Name--}}
+              </div>
+             </div>
+           </div>
+          {{----}}
+
+          {{--Buttons in header--}}
+           <div class="col-lg-6">
+              <div class="row justify-content-end">
+                <div class="col-lg-2 d-flex justify-content-center align-items-center">
+                  <a href="{{ route('home') }}" class="TH unstyled-anchor">Home</a>
+                </div>
+                <div class="col-lg-2 d-flex justify-content-center align-items-center">
+                    <a href="{{ route('services') }}" class="TH unstyled-anchor">Services</a>
+                  </div>
+                <div class="col-lg-2 d-flex justify-content-center align-items-center">
+                  <a href="{{ route('about') }}" class="TH unstyled-anchor">About</a>
+                </div>
+                <div class="col-lg-2 d-flex justify-content-center align-items-center">
+                    <a href="{{ route('about') }}" class="TH unstyled-anchor">Contact</a>
+                  </div>
+                
+              </div>
+            </div>
+          {{----}}
+       </div>
+       </div>
+    {{--end navbar--}}
+    
+    
+
+       
+        <main class="my-4">
             @yield('content')
         </main>
+
+
+        <div class="footer">
+        <footer class=" text-dark text-center text-lg-start">
+            <!-- Grid container -->
+            <div class="container p-4">
+              <!--Grid row-->
+              <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-4">
+                  <div class="row">
+              <div class="col-lg-2 d-flex justify-content-center align-items-center">
+                {{--start Logo--}}                  
+               <a href="{{ route('welcome') }}" class="unstyled-anchor">
+                   @include('components.logofooter',['width'=>50,'height'=>50])
+               </a>
+              {{--end logo--}} 
+              </div>
+ 
+              <div class="col d-flex justify-content-center justify-content-lg-start align-items-center">
+                {{--Strat Name Project--}} 
+                 <a href="/" class="unstyled-anchor1 head-line text-in-header">{{ config('app.name', 'Laravel') }}</a>
+               {{--end Name--}}
+              </div>
+             </div>   
+          
+                  <p class="justify-content-center">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
+                    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
+                    aliquam voluptatem veniam, est atque cumque eum delectus sint!
+                  </p>
+                </div>
+                <!--Grid column-->
+          
+                <!--Grid column-->
+                <div class="col-md-4 mb-md-0 mb-4 p-3">
+                  <h4 class="text-uppercase justify-content-center align-items-center py-3 ">links</h4>
+                  <ul class="list-unstyled">
+                    <li>
+                      <a href="{{ route('home') }}" class="unstyled-anchor1 py-1.5">Home</a>
+                    </li>
+                    <li>
+                      <a href="{{ route('services') }}" class="unstyled-anchor1 py-1.5">Services</a>
+                    </li>
+                    <li>
+                      <a href="{{ route('about') }}" class="unstyled-anchor1 py-1.5">About</a>
+                    </li>
+                    <li>
+                      <a href="{{ route('about') }}" class="unstyled-anchor1 py-1.5">Contact</a>
+                    </li>
+                  </ul>
+                </div>
+          
+                  
+                </div>
+                <!--Grid column-->
+              </div>
+              <!--Grid row-->
+            </div>
+            <!-- Grid container -->
+          
+            
+          </footer>
+    </div>
+
     </div>
 </body>
 </html>
