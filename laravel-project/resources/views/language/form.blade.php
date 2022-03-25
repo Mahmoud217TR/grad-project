@@ -1,8 +1,8 @@
 <div class="row mb-3 px-5">
     <div class="col">
-        <label for="title" class="col-form-label text-start ">{{ __('Language Name') }}</label>
-        <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $languages->name??old('name') }}" required autofocus>
-        @error('title')
+        <label for="name" class="col-form-label text-start ">{{ __('Language Name') }}</label>
+        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $languages->name??old('name') }}" required autofocus>
+        @error('name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
