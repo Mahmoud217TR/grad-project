@@ -10,7 +10,7 @@
         <div class="col-lg-2 d-flex justify-content-center align-items-center">
           {{--start Logo--}}                  
           <a href="{{ route('welcome') }}" class="unstyled-anchor">
-              @include('components.logo',['width'=>50,'height'=>50])
+              @include('components.logo',['width'=>60,'height'=>60])
           </a>
         {{--end logo--}} 
         </div>
@@ -32,14 +32,16 @@
           </div>
           <div class="col-lg-2 d-flex justify-content-center align-items-center">
               <a href="{{ route('services') }}" class="TH unstyled-anchor">Services</a>
-            </div>
-          <div class="col-lg-2 d-flex justify-content-center align-items-center">
-            <a href="{{ route('about') }}" class="TH unstyled-anchor">About</a>
           </div>
           <div class="col-lg-2 d-flex justify-content-center align-items-center">
-              <a href="{{ route('about') }}" class="TH unstyled-anchor">Contact</a>
-            </div>
-          
+            <a href="{{ route('editor') }}" class="TH unstyled-anchor">Editor</a>
+          </div>
+          <div class="col-lg-2 d-flex justify-content-center align-items-center">
+            <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="TH unstyled-anchor">Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" hidden>
+              @csrf
+            </form>
+          </div>
         </div>
       </div>
     {{----}}

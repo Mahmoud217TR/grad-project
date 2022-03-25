@@ -57,8 +57,8 @@ class LanguageController extends Controller
 
     public function destroy(Language $language){
         $this->authorize('delete',$language);
-        $language->delete();
         event(new DeletionEvent($language,"Language",auth()->user()));
+        $language->delete();
         // return redirect
     }
 }

@@ -57,8 +57,8 @@ class SnippetController extends Controller
 
     public function destroy(Snippet $snippet){
         $this->authorize('delete',$snippet);
-        $snippet->delete();
         event(new DeletionEvent($snippet,"Snippet",auth()->user()));
+        $snippet->delete();
         // return redirect
     }
 }

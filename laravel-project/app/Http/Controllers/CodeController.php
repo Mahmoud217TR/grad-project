@@ -63,8 +63,8 @@ class CodeController extends Controller
 
     public function destroy(Code $code){
         $this->authorize('delete',$code);
-        $code->delete();
         event(new DeletionEvent($code,"Code",auth()->user()));
+        $code->delete();
         // return redirect
     }
 }

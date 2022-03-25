@@ -68,8 +68,8 @@ class SheetController extends Controller
     public function destroy(Sheet $sheet)
     {
         $this->authorize('delete',$sheet);
-        $sheet->delete();
         event(new DeletionEvent($sheet,"Sheet",auth()->user()));
+        $sheet->delete();
         // return redirect
     }
 }
