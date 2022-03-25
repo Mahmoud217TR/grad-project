@@ -5,7 +5,7 @@
         <div  class="row header bg-header p-2">
             <!-- this for label  -->
             <div class="col ml-2 text-center text-lg-start my-3">
-                <h2 class="m-0"> Code Editor</h2>
+                <h2 class="m-0">Code Editor</h2>
             </div>
             <!-- this for selector1  -->
             <div class="col-lg my-2 my-lg-0 text-center text-lg-start">

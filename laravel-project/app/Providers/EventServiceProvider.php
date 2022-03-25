@@ -2,6 +2,13 @@
 
 namespace App\Providers;
 
+use App\Events\DeletionEvent;
+use App\Events\GeneralLogEvent;
+use App\Events\InsertionEvent;
+use App\Events\ModificationEvent;
+use App\Events\RoleChangeEvent;
+use App\Events\UserRelatedEvent;
+use App\Listeners\LogListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,6 +24,24 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        GeneralLogEvent::class =>[
+            [LogListener::class, 'general'],
+        ],
+        RoleChangeEvent::class =>[
+            [LogListener::class, 'roleChange'],
+        ],
+        InsertionEvent::class =>[
+            [LogListener::class, 'insertion'],
+        ],
+        ModificationEvent::class =>[
+            [LogListener::class, 'modification'],
+        ],
+        DeletionEvent::class =>[
+            [LogListener::class, 'deletion'],
+        ],
+        UserRelatedEvent::class =>[
+            [LogListener::class, 'userRelated'],
         ],
     ];
 

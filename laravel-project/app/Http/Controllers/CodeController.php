@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DeletionEvent;
+use App\Events\InsertionEvent;
+use App\Events\ModificationEvent;
 use App\Models\Code;
 use Illuminate\Http\Request;
 
@@ -35,6 +38,7 @@ class CodeController extends Controller
             $data['status'] = Code::getStatus('approved');
         }
         $code = Code::create($data);
+        event(new InsertionEvent($code,"Code",auth()->user()));
 
         // flash a message
         return $code; // needs update
@@ -53,12 +57,14 @@ class CodeController extends Controller
     public function update(Code $code){
         $this->authorize('update',$code);
         $code->update($this->validData());
+        event(new ModificationEvent($code,"Code",auth()->user()));
         return compact('code');
     }
 
     public function destroy(Code $code){
         $this->authorize('delete',$code);
         $code->delete();
+        event(new DeletionEvent($code,"Code",auth()->user()));
         // return redirect
     }
 }

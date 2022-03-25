@@ -12,6 +12,7 @@ use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FollowingController;
 use App\Http\Controllers\SheetController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\VotesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +32,7 @@ use function Clue\StreamFilter\fun;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('code', CodeController::class);
 Route::resource('comment', CommentController::class);
 Route::resource('language', LanguageController::class);
@@ -54,7 +55,10 @@ Route::controller(VotesController::class)->prefix('vote')->group(function(){
 
 Route::controller(FollowingController::class)->group(function(){
     Route::post('follow','follow')->name('follow');
+    Route::post('getfollow','getFollowStatus')->name('get-follow');
 });
+
+Route::post('/upload',[UploadController::class,'uploadImg'])->name('upload-img');
 
 Route::controller(Controller::class)->group(function(){
     Route::get('/','welcome')->name('welcome');
@@ -65,6 +69,7 @@ Route::controller(Controller::class)->group(function(){
 
 Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');
 
+<<<<<<< HEAD
 Route::get('/nav', function () {
     return view('layouts.nav');
 });
@@ -76,3 +81,5 @@ Route::get('/lan1', function () {
     return view('/languages/show');
 });
 
+=======
+>>>>>>> f0a391267486ffabc628e8887d66684496a19aee

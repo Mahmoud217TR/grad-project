@@ -99,7 +99,7 @@ use function PHPUnit\Framework\isNull;
             function seed_db($tagsNumber=0, $numberOfUsers=0, $numberOfReviewers=0,
                              $numberOfEditors=0, $genericUsers=false, $userSnippets=0, 
                              $reviewerSnippets=0, $editorSnippets=0, $editorPosts=0,
-                             $tagsPerSnippet=0, $tagsPerPost=0, $commentPerPost=0){
+                             $tagsPerSnippet=0, $tagsPerPost=0, $commentsPerPost=0){
 
                 $allSnippets = new Collection;
                 $allPosts = new Collection;
@@ -183,7 +183,7 @@ use function PHPUnit\Framework\isNull;
                 $numberOfComments = 0;
                 foreach($allPosts as $post){
                     echo "Generating Comments for post ".$post->id."....\n";
-                    $comments = Comment::factory($commentPerPost)->withoutPost()->withoutUser()->make();
+                    $comments = Comment::factory($commentsPerPost)->withoutPost()->withoutUser()->make();
                     foreach($comments as $comment){
                         $numberOfComments += 1;
                         $comment->user_id = $allUsers->random()->id;

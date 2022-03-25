@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DeletionEvent;
+use App\Events\InsertionEvent;
+use App\Events\ModificationEvent;
 use App\Models\Snippet;
 use Illuminate\Http\Request;
 
@@ -30,7 +33,9 @@ class SnippetController extends Controller
     public function store(){
         $data = $this->validData();
         $data['user_id'] = auth()->id();
-        return Snippet::create($data);
+        $snippet = Snippet::create($data);
+        event(new InsertionEvent($snippet,"Snippet",auth()->user()));
+        return $snippet;
     }
 
     public function show(Snippet $snippet){
@@ -46,12 +51,14 @@ class SnippetController extends Controller
     public function update(Snippet $snippet){
         $this->authorize('update',$snippet);
         $snippet->update($this->validData());
-        return compact('snippet');
+        event(new ModificationEvent($snippet,"Snippet",auth()->user()));
+        return $snippet;
     }
 
     public function destroy(Snippet $snippet){
         $this->authorize('delete',$snippet);
         $snippet->delete();
+        event(new DeletionEvent($snippet,"Snippet",auth()->user()));
         // return redirect
     }
 }

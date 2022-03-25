@@ -24,12 +24,12 @@ class ProfileController extends Controller
     }
 
     public function show(Profile $profile){
-        return compact('profile');
+        return view('profile.show',compact('profile'));
     }
 
     public function edit(Profile $profile){
         $this->authorize('update',$profile);
-        // return edit view
+        return view('profile.edit',compact('profile'));
     }
 
     public function update(Profile $profile){
