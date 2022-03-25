@@ -72,4 +72,7 @@ Route::get('/nav', function () {
 Route::get('/footer', function () {
     return view('layouts.footer');
 });
+Route::get('/lan1', function () {
+    return view('/languages/show');
+});
 

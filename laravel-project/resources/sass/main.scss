@@ -190,3 +190,77 @@ body{
         font-size: 1.5rem!important;
     }
 }
+.cardcode{
+    min-height: 200px;
+    width:90%;
+    label{
+        margin-top:0.5rem;
+        margin-left: 0.8rem;
+        font-size: 2rem!important;
+        font-weight: bold;
+        text-transform:capitalize;
+    }
+    hr {
+        margin: 0.3rem;
+        color: $Primary;
+        background-color: $Primary;
+        height: 0.2rem;
+        opacity:1;
+       border-radius: 0.5rem;
+      }
+    p{
+        margin-top: 1rem;
+        margin-left: 1rem;
+        font-size: 1.4rem!important;
+    }
+}
+.tags{
+    padding-left: 0.5rem;
+    .div-tag{
+        padding:0.3rem;
+        justify-content: center;
+    }
+    .btn-tag{
+        background-color: #505152;
+        color: $PrimaryText ;
+        border-radius: 1rem;
+        margin: 0.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        text-transform: capitalize;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 1rem;
+        width: 100%;
+    }
+    @media (min-width: 768px) { 
+        padding-left: 2rem;
+        .btn-tag{
+            width: 100%;
+            color:$PrimaryText;
+            background-color: #505152;            ;
+            border-radius: 2rem;
+            margin: 0.4rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            text-transform: capitalize;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+        .div-tag{
+            padding:0.5rem;
+            justify-content: center;
+        }
+     }
+
+    a:hover{
+        background-color: $Primary;
+        color: $background;
+
+    }
+    
+    
+    
+
+}
