@@ -16,7 +16,7 @@ class LanguageController extends Controller
 
     public function validData(){
         return request()->validate([
-            'name' => 'required|string|max:100|unique:languages',
+            'name' => 'required|string|max:100',
             'description' => 'required|string|max:400'
         ]);
     }
