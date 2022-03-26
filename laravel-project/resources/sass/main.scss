@@ -63,16 +63,19 @@ main{
     background-color:$Primary;
     color:$Secondary;
     }
-    .button-secondary{
-        background-color:$Secondary;
-        color:$Primary;
-        }
-    .text-in-header{
-        color: $Secondary;
+.button-secondary{
+     background-color:$Secondary;
+     color:$Primary;
     }
-    .text-Secondary{
-        color: $Secondary-text;
+.text-in-header{
+     color: $Secondary;
     }
+.text-Secondary{
+    color: $Secondary-text;
+    }
+.text-primary{
+    color: $PrimaryText;
+    }    
 //
 
 //Hovering
@@ -263,6 +266,7 @@ padding-left: 0.5rem;
 
     }
 }
+
 .codeinfo{
     min-height: 300px;
     width:90%;

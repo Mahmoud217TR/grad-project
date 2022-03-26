@@ -69,3 +69,6 @@ Route::controller(Controller::class)->group(function(){
 
 Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');
 
+Route::get('/search', function () {
+    return view('search');
+});
