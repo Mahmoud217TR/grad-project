@@ -5,7 +5,7 @@
              {{--search bar --}}
               <div class="input-group">
                 <div class="input-group-btn col-12 col-md-2 col-lg-1 col-xl-1 me-lg-5 me-xl-3 dropdown">
-                   <button type="button" class="btn dropdown-toggle text-primary" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                   <button type="button" class="btn btn-default dropdown-toggle  text-primary" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                      <i class="bi bi-funnel-fill pe-2"></i><span id="search_concept">Filter by</span>
                    </button>
                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
