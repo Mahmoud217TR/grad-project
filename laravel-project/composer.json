@@ -8,9 +8,11 @@
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
         "http-interop/http-factory-guzzle": "^1.2",
+        "intervention/image": "^2.7",
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
         "laravel/scout": "^9.4",
+        "laravel/telescope": "^4.8",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "meilisearch/meilisearch-php": "^0.22.0"
