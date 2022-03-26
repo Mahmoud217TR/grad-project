@@ -58,8 +58,8 @@ class PostController extends Controller
 
     public function destroy(Post $post){
         $this->authorize('delete',$post);
-        $post->delete();
         event(new DeletionEvent($post,"Post",auth()->user()));
+        $post->delete();
         // return redirect
     }
 }

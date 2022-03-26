@@ -22,8 +22,8 @@ class CodeController extends Controller
     }
 
     public function index(){
-        $codes = Code::all();
-        return compact('codes');
+        $codes = Code::Approved()->paginate(9);
+        return view('code.index',compact('codes'));
     }
 
     public function create(){
@@ -41,7 +41,7 @@ class CodeController extends Controller
         event(new InsertionEvent($code,"Code",auth()->user()));
 
         // flash a message
-        return $code; // needs update
+        return redirect()->route('code.index');
     }
 
     public function show(Code $code){
@@ -58,13 +58,14 @@ class CodeController extends Controller
         $this->authorize('update',$code);
         $code->update($this->validData());
         event(new ModificationEvent($code,"Code",auth()->user()));
-        return compact('code');
+        return redirect()->route('code.show',$code);
     }
 
     public function destroy(Code $code){
         $this->authorize('delete',$code);
-        $code->delete();
         event(new DeletionEvent($code,"Code",auth()->user()));
-        // return redirect
+        $code->delete();
+        // flash a message
+        return redirect()->route('code.index');
     }
 }

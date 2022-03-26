@@ -72,3 +72,6 @@ Route::post('/compile',[CompilerController::class,'getResult'])->name('compile')
 Route::get('/lan1', function () {
     return view('/adminpanel');
 });
+Route::get('/search', function () {
+    return view('search');
+});

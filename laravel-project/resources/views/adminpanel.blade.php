@@ -9,29 +9,29 @@
         <div class="row py-3 py-md-1 adminbut my-2 my-md-2 mx-sm-0 mx-1">
             <div class=" justify-content-start d-flex flex-wrap cont">
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn">Archived</a>
+                    <a href="#" class="btn-tag btn TB">Archived</a>
                 </div>
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn">Add Codes</a>
+                    <a href="#" class="btn-tag btn TB">Add Codes</a>
                 </div>
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn">Add Languages</a>
+                    <a href="#" class="btn-tag btn TB">Add Languages</a>
                 </div>
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn">Requested Snippets</a>
+                    <a href="#" class="btn-tag btn TB">Requested Snippets</a>
                 </div>
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn">Logs</a>
+                    <a href="#" class="btn-tag btn TB">Logs</a>
                 </div>
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn">Reports</a>
+                    <a href="#" class="btn-tag btn TB ">Reports</a>
                 </div>
 
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn">Add Snippets</a>
+                    <a href="#" class="btn-tag btn TB">Add Snippets</a>
                 </div>
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn">Roles</a>
+                    <a href="#" class="btn-tag btn TB">Roles</a>
                 </div>
 
             </div>
