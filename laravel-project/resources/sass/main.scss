@@ -63,16 +63,19 @@ main{
     background-color:$Primary;
     color:$Secondary;
     }
-    .button-secondary{
-        background-color:$Secondary;
-        color:$Primary;
-        }
-    .text-in-header{
-        color: $Secondary;
+.button-secondary{
+     background-color:$Secondary;
+     color:$Primary;
     }
-    .text-Secondary{
-        color: $Secondary-text;
+.text-in-header{
+     color: $Secondary;
     }
+.text-Secondary{
+    color: $Secondary-text;
+    }
+.text-primary{
+    color: $PrimaryText;
+    }    
 //
 
 //Hovering
@@ -192,7 +195,6 @@ body{
     }
 
     }
-<<<<<<< HEAD
 }
 .cardcode{
     min-height: 200px;
@@ -268,46 +270,3 @@ body{
     
 
 }
-=======
-    .codeinfo{
-        min-height: 300px;
-        width:90%;
-        label{
-            margin-top:0%;
-            margin-left: 0.8rem;
-            font-size: 2.5rem!important;
-            font-weight: bold;
-            text-transform:capitalize;
-        }
-        hr {
-            margin: 0.3rem;
-            color: $Primary;
-            background-color: $Primary;
-            height: 0.2rem;
-            opacity:1;
-        border-radius: 0.5rem;
-        }
-        p{
-            margin-top: 1rem;
-            margin-left: 1rem;
-            font-size: 1.5rem!important;
-        }
-    }
-
-    .profile-image{
-        width:16rem;
-        height:16rem;
-    }
-
-    .camera-button{
-        transform: translate(80%,-120%);
-    }
-
-    .normal{
-        text-transform:none;
-    }
-
-    .role{
-        color: $Tertiary;
-    }
->>>>>>> f0a391267486ffabc628e8887d66684496a19aee

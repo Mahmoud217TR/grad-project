@@ -69,7 +69,6 @@ Route::controller(Controller::class)->group(function(){
 
 Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');
 
-<<<<<<< HEAD
 Route::get('/nav', function () {
     return view('layouts.nav');
 });
@@ -81,5 +80,7 @@ Route::get('/lan1', function () {
     return view('/languages/show');
 });
 
-=======
->>>>>>> f0a391267486ffabc628e8887d66684496a19aee
+Route::get('/search', function () {
+    return view('search');
+});
+
