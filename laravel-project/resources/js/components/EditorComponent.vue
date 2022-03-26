@@ -60,7 +60,7 @@
                     </div>
                   </div>
                    <!-- this for button   -->
-                  <div class="row  bg-header">
+                  <div class="row  bg-header py-2">
                   <!-- this for button run  -->
                     <div class="col p-1">
                         <button class="btn button-primary TB d-flex align-items-center" @click="run()">
