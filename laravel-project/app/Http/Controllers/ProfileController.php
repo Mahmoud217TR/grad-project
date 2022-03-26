@@ -14,7 +14,6 @@ class ProfileController extends Controller
     public function validData(){
         return request()->validate([
             'bio' => 'nullable|string|max:200',
-            'pic' => 'mimes:jpg,bmp,png|nullable'
         ]);
     }
 

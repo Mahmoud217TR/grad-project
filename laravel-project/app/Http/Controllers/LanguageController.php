@@ -16,49 +16,56 @@ class LanguageController extends Controller
 
     public function validData(){
         return request()->validate([
-            'name' => 'required|string|max:100|unique:languages',
+            'name' => 'required|string|max:100',
             'description' => 'required|string|max:400'
         ]);
     }
 
     public function index(){
-        $languages = Language::all();
-        return compact('languages');
+        $languages = Language::Approved()->paginate(9);
+        return view('language.index',compact('languages'));
     }
 
     public function create(){
-        $this->authorize('create');
-        // return create view
+        $this->authorize('create',Language::class);
+        return view('language.create', ['language'=>new Language]);
     }
 
     public function store(){
-        $this->authorize('create');
-        $language = Language::create($this->validData());
+        $this->authorize('create',Language::class);
+        $data = $this->validData();
+        if(auth()->user()->isWebAdmin()){
+            $data['status'] = Language::getStatus('approved');
+        }
+        $language = Language::create($data);
         event(new InsertionEvent($language,"Language",auth()->user()));
-        return $language;
+        // flash a message
+        return redirect()->route('language.index');
     }
 
     public function show(Language $language){
         $this->authorize('view',$language);
-        return compact('language');
+        return view('language.show',compact('language'));
     }
 
     public function edit(Language $language){
         $this->authorize('update',$language);
-        // return edit view
+        return view('language.edit',compact('language'));
     }
 
     public function update(Language $language){
         $this->authorize('update',$language);
         $language->update($this->validData());
         event(new ModificationEvent($language,"Language",auth()->user()));
-        return $language;
+        // flash a message
+        return redirect()->route('language.show',$language);
     }
 
     public function destroy(Language $language){
         $this->authorize('delete',$language);
         event(new DeletionEvent($language,"Language",auth()->user()));
         $language->delete();
-        // return redirect
+        // flash a message
+        return view('language.index');
     }
 }
