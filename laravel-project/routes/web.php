@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LanguageController;
@@ -72,4 +73,8 @@ Route::post('/compile',[CompilerController::class,'getResult'])->name('compile')
 
 Route::controller(SearchController::class)->group(function(){
     Route::get('/search','search')->name('search');
+});
+
+Route::controller(AdminController::class)->prefix('admin')->group(function(){
+    Route::get('/panel','panel')->name('panel');
 });

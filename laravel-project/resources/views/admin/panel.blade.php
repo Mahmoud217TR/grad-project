@@ -3,7 +3,7 @@
     <div class="container py-3 adminpanel">
         <div class="row">
             <div class="col text-start py-2">
-                <h1 class="head-line orange-text bold" >Admin panel</h1>
+                <h1 class="head-line orange-text bold" >Admin Panel</h1>
             </div>
         </div>
         <div class="row py-3 py-md-1 adminbut my-2 my-md-2 mx-sm-0 mx-1">
