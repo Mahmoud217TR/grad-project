@@ -21,7 +21,7 @@ class SnippetFactory extends Factory
     public function definition()
     {
         return [
-            'code' => $this->faker->paragraph(),
+            'code_snippet' => $this->faker->paragraph(),
             'note' => $this->faker->paragraph(),
             'status' => Snippet::getStatus('approved'),
             'user_id' => User::factory(),

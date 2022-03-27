@@ -18,7 +18,7 @@ return new class extends Migration
     {
         Schema::create('snippets', function (Blueprint $table) {
             $table->id();
-            $table->text('code');
+            $table->text('code_snippet');
             $table->text('note')->nullable();
             $table->unsignedInteger('status');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');

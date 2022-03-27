@@ -143,6 +143,9 @@ font-size:50px;
 .unstyled-anchor:hover{
     color: $Secondary!important;
 }
+.unstyled-anchor1:hover{
+    color:$SecondaryText;
+}
 
 body{
     background-color: $background;
@@ -428,3 +431,10 @@ padding-left: 0.5rem;
 .cursor-auto{
     cursor:auto;
 }
+
+.list-group-item.active {
+    color: $Secondary;
+    background-color: $Primary;
+    border-color: $Primary;
+}
+

@@ -46,6 +46,7 @@ class CodeController extends Controller
 
     public function show(Code $code){
         $this->authorize('view',$code);
+        $code->with('snippets');
         return view('code.show',compact('code'));
     }
 

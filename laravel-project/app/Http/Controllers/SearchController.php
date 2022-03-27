@@ -15,7 +15,6 @@ class SearchController extends Controller
     public $filters = [
         'Code',
         'Language',
-        'Snippet',
         'Post',
         'Tag',
     ];

@@ -29,8 +29,8 @@ use function PHPUnit\Framework\isNull;
             ."\n\t\tTags: \t\t".Tag::count()
             ."\n\t\tSheets: \t".Sheet::count()
             ."\n\t\tFields: \t".Field::count()
-            ."\n\t\Reports: \t".Report::count()
-            ."\n\t\Logs: \t\t".Log::count()
+            ."\n\t\tReports: \t".Report::count()
+            ."\n\t\tLogs: \t\t".Log::count()
             ."\n\n--------------------------------------------------------\n\n";
         }
     }

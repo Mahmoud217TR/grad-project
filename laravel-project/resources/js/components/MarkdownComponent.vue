@@ -1,8 +1,8 @@
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col">
-                <div class="markdown-body" v-html="text"></div>
+                <div class="markdown-body mx-0" v-html="text"></div>
             </div>
         </div>
     </div>
@@ -43,8 +43,7 @@
 .markdown-body {
 		box-sizing: border-box;
 		min-width: 200px;
-		max-width: 980px;
-		margin: 0 auto;
+		max-width: 100%;
 		padding: 45px;
 	}
 

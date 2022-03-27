@@ -16,14 +16,13 @@ class SnippetController extends Controller
 
     public function validData(){
         return request()->validate([
-            'code' => 'required|string|max:2000',
+            'code_snippet' => 'required|string|max:2000',
             'note' => 'required|string|max:1000'
         ]);
     }
 
     public function index(){
-        $snippets = Snippet::all();
-        return compact('snippets');
+        // empty for now
     }
 
     public function create(){
@@ -40,7 +39,8 @@ class SnippetController extends Controller
 
     public function show(Snippet $snippet){
         $this->authorize('view',$snippet);
-        return compact('snippet');
+        $snippet->with(['code','snippet','code.snippets']);
+        return view('snippet.show',compact('snippet'));
     }
 
     public function edit(Snippet $snippet){
