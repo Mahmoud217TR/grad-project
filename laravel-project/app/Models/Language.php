@@ -24,8 +24,8 @@ class Language extends Model
 
     public function toSearchableArray(){
         return [
-            'name' => $this->code,
-            'description' => $this->note,
+            'name' => $this->name,
+            'description' => $this->description,
         ];
     }
 

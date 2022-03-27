@@ -11,6 +11,7 @@ use App\Http\Controllers\TaggingController;
 use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FollowingController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SheetController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\VotesController;
@@ -69,6 +70,6 @@ Route::controller(Controller::class)->group(function(){
 
 Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');
 
-Route::get('/search', function () {
-    return view('search');
+Route::controller(SearchController::class)->group(function(){
+    Route::get('/search','search')->name('search');
 });
