@@ -292,6 +292,111 @@ padding-left: 0.5rem;
     }
 }
 
+    .role{
+        color: $Tertiary;
+    }
+
+    //this is admin panel 
+    .adminpanel{
+        .cont{
+            padding-left: 0px;
+           
+        }
+        .bold{
+           font-weight: bold;
+        }
+        
+        .adminbut{
+        border-top-left-radius: 1.3rem;
+        border-bottom-right-radius: 1.3rem;
+        background:rgba(97, 87,84, 0.29);
+        box-shadow: 0px 0px 0.4rem 0.7rem rgba(20, 20, 20, 0.5); 
+        border-color: black;
+        padding-left: 0.1rem;
+        }
+        .adminoutput{
+            padding-top: 0.90rem;
+            border-bottom-left-radius: 1.3rem;
+            border-bottom-right-radius: 1.3rem;
+            padding: 0.5rem;
+            background:rgba(97, 87,84, 0.29);
+            box-shadow: 0px 0px 0.4rem 0.7rem rgba(20, 20, 20, 0.5); 
+            border-color: black;
+            min-height: 443px;
+        }
+        hr {
+            margin: 0.3rem;
+            color: $Primary;
+            background-color: $Primary;
+            height: 0.2rem;
+            opacity:1;
+            border-radius: 0.5rem;
+        }
+        .div-tag{
+            padding:0.3rem;
+            justify-content: center;
+            width: 50%;
+        }
+        .btn-tag{
+            background-color: #505152;
+            color: $PrimaryText ;
+            border-radius: 1rem;
+            margin: 0.5rem;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            text-transform: capitalize!important;
+            text-decoration: none;
+            font-size: 1rem;
+            width: 100%;
+        }
+        @media (min-width: 768px) { 
+            .adminbut{
+                border-top-left-radius: 1.3rem;
+                border-bottom-right-radius: 1.3rem;
+                padding: 0.5rem;
+                padding-left: 0.3rem;
+                background:rgba(97, 87,84, 0.29);
+                box-shadow: 0px 0px 0.4rem 0.7rem rgba(20, 20, 20, 0.5); 
+                border-color: black;
+                }
+            .adminoutput{
+                    border-bottom-left-radius: 1.3rem;
+                    border-bottom-right-radius: 1.3rem;
+                    padding-left: 1rem;
+                    padding-top: 1rem;
+                    background:rgba(97, 87,84, 0.29);
+                    box-shadow: 0px 0px 0.2rem 0.5rem rgba(20, 20, 20, 0.5); 
+                    border-color: black;
+                   min-height: 443px;
+                }
+                .cont{
+                    padding-left: 0px;
+                    padding-right: 1.5rem;
+
+                }
+            .btn-tag{
+                width: 100%;
+                color:$PrimaryText;
+                background-color: #505152;           
+                border-radius: 0.5rem;
+                margin: 1rem;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+                text-transform: capitalize!important;
+                text-decoration: none;
+                font-size: 1.5rem;
+            }
+            .div-tag{
+                padding:0.5rem;
+                justify-content: center;
+                width: 25%;
+            }
+
+         }
+        }
+        //here end of admin panel 
+    
+    
 .profile-image{
     width:16rem;
     height:16rem;
