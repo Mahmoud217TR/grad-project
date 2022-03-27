@@ -30,6 +30,7 @@ class AdminController extends Controller
 
     public function panel(){
         $this->checkWebAdmin();
-        return view('admin.panel');
+        $database = get_db_full();
+        return view('admin.panel',compact('database'));
     }
 }

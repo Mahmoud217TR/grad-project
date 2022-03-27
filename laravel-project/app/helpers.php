@@ -199,4 +199,34 @@ use function PHPUnit\Framework\isNull;
                 echo $numberOfComments." Commnets Generated\n\n";
             }
         }
+
+        if (!function_exists('get_db_full')) {
+            function get_db_full(){ 
+                return [
+                    [
+                        'Profiles' => Profile::count(),
+                        'Codes' => Code::count(),
+                        'Languages' => Language::count(),
+                        'Snippets' => Snippet::count(),
+                        'Posts' => Post::count(),
+                        'Comments' => Comment::count(),
+                        'Tags' => Tag::count(),
+                        'Sheets' => Sheet::count(),
+                        'Fields' => Field::count(),
+                        'Reports' => Report::count(),
+                        'Logs' => Log::count(),
+                    ],
+                    [
+                        'Total Users' => User::count(),
+                        'Users' => User::Users()->count(),
+                        'Reviewrs' => User::Reviewers()->count(),
+                        'Editors' => User::Editors()->count(),
+                        'Admins' => User::Admins()->count(),
+                        'Super Admins' => User::SuperAdmins()->count(),
+                        'System Admins' => User::SystemAdmins()->count(),
+                        'Website Admins' => User::WebAdmins()->count(),
+                    ],
+                ];
+            }
+        }
 ?>

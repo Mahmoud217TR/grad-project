@@ -37,15 +37,21 @@
             </div>
         </div>
         <div class="row pt-4 py-md-2 my-2 my-md-4 mx-sm-0 mx-1">
-            <div class="col-md-6 d-flex align-items-start adminoutput">
+            <div class="col-md-6 adminoutput">
                 <div>
                     <h2 class="head-line orange-text bold" >Datebase State:</h2>
                     <hr>
-                    <p class="base-line pt-1">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit repudiandae itaque pariatur quae
-                        odio nulla quasi quis fugiat excepturi officia? Reiciendis alias, enim repellendus itaque odit vero
-                        error tempora possimus!
-                    </p>
+                    <div class="row">
+                        @foreach ($database as $chunk)
+                            <div class="col-md-6">
+                                <p class="base-line pt-1 text-center text-md-start">
+                                    @foreach ($chunk as $key => $value)
+                                        <span>{{ $key }}:</span> <span class="orange-text">{{ $value }}</span><br>
+                                    @endforeach
+                                </p>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
             <div class="col-md-6 d-md-flex align-items-end justify-content-center d-none">
