@@ -38,7 +38,7 @@
              {{--end search bar --}}  
 
              {{--All results tab --}}
-             @foreach ($total_results as $result_type=>$results)
+             @forelse ($total_results as $result_type=>$results)
               <ul class="nav nav-tabs mt-5">
                 <li class="nav-item">
                     <a href="{{ route('search',['keyword'=>$keyword,'limit'=>100,'filters'=>[$result_type]]) }}" data-toggle="tab" aria-expanded="true" class="nav-link active base-line">
@@ -56,7 +56,9 @@
                   </div>
                 </div>
               @endforeach
-             @endforeach
+             @empty
+                <h2 class="display-4 mt-5 pt-5 text-center">Search for Somthing :)</h2>
+             @endforelse
              {{-- end All results tab --}}
              @if (sizeof($selected) == 1)
              <div class="row my-4">

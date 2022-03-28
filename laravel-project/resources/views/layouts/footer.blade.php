@@ -33,20 +33,20 @@
             <!--Grid column-->
       
             <!--Grid column-->
-            <div class="col-md-4 mb-md-0 mb-4 px-5 p-3">
+            <div class="col-md-2 mb-md-0 mb-4 px-5 p-3 ms-auto text-center">
               <h4 class="text-uppercase justify-content-center align-items-center py-3 ">links</h4>
               <ul class="list-unstyled">
                 <li>
                   <a href="{{ route('home') }}" class="unstyled-anchor1 py-1.5">Home</a>
                 </li>
                 <li>
+                  <a href="{{ route('search') }}" class="unstyled-anchor1 py-1.5">Search</a>
+                </li>
+                <li>
                   <a href="{{ route('services') }}" class="unstyled-anchor1 py-1.5">Services</a>
                 </li>
                 <li>
                   <a href="{{ route('about') }}" class="unstyled-anchor1 py-1.5">About</a>
-                </li>
-                <li>
-                  <a href="{{ route('about') }}" class="unstyled-anchor1 py-1.5">Contact</a>
                 </li>
               </ul>
             </div>

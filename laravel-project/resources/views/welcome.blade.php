@@ -62,7 +62,9 @@
                   <a href="{{ route('about') }}" class="TH unstyled-anchor">about us</a>
                 </div>
                 <div class="col-lg-4 d-flex justify-content-center align-items-center">
-                  <i class="bi bi-person"></i>
+                  <a href="@guest route('login') @else {{ route('home') }} @endguest" class="unstyled-anchor">
+                    <i class="bi bi-person"></i>
+                  </a>
                 </div>
               </div>
             </div>

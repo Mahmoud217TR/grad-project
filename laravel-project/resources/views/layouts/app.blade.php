@@ -34,24 +34,16 @@
 </head>
 <body>
     <div id="app">
-
-       
-        {{--navbar--}}
+      {{--navbar--}}
         @include('layouts.nav')
-        {{--end navbar--}}
-       {{--content--}}
+      {{--end navbar--}}
+      {{--content--}}
         <main class="my-4">
             @yield('content')
         </main>
-
-        {{--footer--}}
+      {{--footer--}}
         @include('layouts.footer')
-        {{--end footer--}}
-       
-
-
-        
-
+      {{--end footer--}}
     </div>
 </body>
 </html>

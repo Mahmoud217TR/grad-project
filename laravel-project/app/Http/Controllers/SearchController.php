@@ -51,10 +51,12 @@ class SearchController extends Controller
         
         $total_results = [];
 
-        foreach($this->filters as $filter){
-            if(in_array($filter,$selected)){
-                $model = app("App\Models\\".$filter);
-                $total_results[$filter] = $model::search($keyword)->take($limit)->paginate(5);
+        if(request()->has('keyword')){
+            foreach($this->filters as $filter){
+                if(in_array($filter,$selected)){
+                    $model = app("App\Models\\".$filter);
+                    $total_results[$filter] = $model::search($keyword)->take($limit)->paginate(5);
+                }
             }
         }
         return view('result',['total_results'=>$total_results,'filters'=>$this->filters,'keyword'=>$keyword,'selected'=>$selected]);

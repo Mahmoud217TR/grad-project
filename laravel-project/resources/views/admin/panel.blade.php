@@ -12,10 +12,10 @@
                     <a href="#" class="btn-tag btn TB">Archived</a>
                 </div>
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn TB">Add Codes</a>
+                    <a href="{{ route('code.index') }}" class="btn-tag btn TB">Codes</a>
                 </div>
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn TB">Add Languages</a>
+                    <a href="{{ route('language.index') }}" class="btn-tag btn TB">Languages</a>
                 </div>
                 <div class="div-tag">
                     <a href="#" class="btn-tag btn TB">Requested Snippets</a>
@@ -26,9 +26,8 @@
                 <div class="div-tag">
                     <a href="#" class="btn-tag btn TB ">Reports</a>
                 </div>
-
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn TB">Add Snippets</a>
+                    <a href="{{ route('telescope') }}" class="btn-tag btn TB">Telescope</a>
                 </div>
                 <div class="div-tag">
                     <a href="#" class="btn-tag btn TB">Roles</a>
