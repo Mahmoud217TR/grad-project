@@ -67,6 +67,6 @@ class CodeController extends Controller
         event(new DeletionEvent($code,"Code",auth()->user()));
         $code->delete();
         // flash a message
-        return redirect()->route('code.index');
+        return route('code.index');
     }
 }

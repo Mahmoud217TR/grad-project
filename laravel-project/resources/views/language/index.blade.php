@@ -4,6 +4,11 @@
 
 @section('content')
 <div class="container">
+    <div class="row">
+        <div class="col">
+            <a href="{{ route('code.create') }}" class="btn button-primary">Create a new Code</a>
+        </div>
+    </div>
     @foreach ($languages->chunk(3) as $languageChunk)
         <div class="row">
             @foreach ($languageChunk as $language)

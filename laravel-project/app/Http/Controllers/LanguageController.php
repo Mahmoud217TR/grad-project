@@ -66,6 +66,6 @@ class LanguageController extends Controller
         event(new DeletionEvent($language,"Language",auth()->user()));
         $language->delete();
         // flash a message
-        return view('language.index');
+        return route('language.index');
     }
 }

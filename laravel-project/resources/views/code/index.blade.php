@@ -4,6 +4,11 @@
 
 @section('content')
 <div class="container">
+    <div class="row">
+        <div class="col">
+            <a href="{{ route('code.create') }}" class="btn button-primary">Create a new Code</a>
+        </div>
+    </div>
     @foreach ($codes->chunk(3) as $codeChunk)
         <div class="row">
             @foreach ($codeChunk as $code)

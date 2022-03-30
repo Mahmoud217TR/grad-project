@@ -7,4 +7,18 @@
         <a href="{{ route('language.show',$language) }}" class="btn button-primary TB mx-2" type="button">View</a>
         <a href="#" class="btn button-secondary TB mx-2" type="button">Report</a>
     </div>
+    <hr class="my-2">
+    <div class="text-center">
+        @auth
+            @if (auth()->user()->isWebAdmin())
+                <a href="{{ route('code.edit',$language) }}" class="btn button-secondary TB mx-2">Edit</a>
+                <remove-component 
+                    text="Remove"
+                    action="{{ route('language.destroy',$language->id) }}"
+                    title="Removing {{ $language->title }}"
+                    msg="Are you Sure you want to REMOVE {{ $language->title }}??"
+                ></remove-component>
+            @endif
+        @endauth
+    </div>
 </div>
