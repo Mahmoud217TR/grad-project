@@ -18,7 +18,7 @@
                     <a href="{{ route('language.index') }}" class="btn-tag btn TB">Languages</a>
                 </div>
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn TB">Requested Snippets</a>
+                    <a href="{{ route('snippet.index') }}" class="btn-tag btn TB">Snippets</a>
                 </div>
                 <div class="div-tag">
                     <a href="#" class="btn-tag btn TB">Logs</a>

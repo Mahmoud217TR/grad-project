@@ -11,7 +11,7 @@ class Snippet extends Model
     use HasFactory,Searchable;
 
     protected $fillable = [
-        'code',
+        'code_snippet',
         'note',
         'status',
         'user_id',

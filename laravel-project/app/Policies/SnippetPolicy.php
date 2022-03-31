@@ -45,7 +45,7 @@ class SnippetPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->isOrAbove('user');
     }
 
     /**

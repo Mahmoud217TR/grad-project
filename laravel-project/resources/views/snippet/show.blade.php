@@ -5,7 +5,7 @@
         <div class="codesubmit container codeinfo py-2 my-4 col-md-7 col-10">
             <h1 class="page-title orange-text">{{ $snippet->code->title }} <span class="text-light">For</span> {{ $snippet->language->name }}</h1>
              <hr>
-                <md-component content="```{{  $snippet->code_snippet  }}```"></md-component>
+                <md-component content="{{  $snippet->code_snippet  }}"></md-component>
              <hr>
              <h2 class="ps-2 orange-text">Note:</h2>
              <p>{{ $snippet->note }}</p>
