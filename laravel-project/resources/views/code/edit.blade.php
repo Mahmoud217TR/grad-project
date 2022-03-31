@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','Edit {{ $code->title }}')
 @section('content')
 <div class="container">
     <div class="row">
