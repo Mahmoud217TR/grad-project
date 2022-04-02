@@ -1,6 +1,6 @@
 
   {{--start navbar--}}
-  <nav class="navbar navbar-expand-lg navbar-dark nav-image px-4">
+  <nav class="navbar navbar-expand-lg navbar-dark nav-image px-4 sticky-top">
     <div class="container-fluid">
       <div class="navbar-brand d-flex justify-content-center align-items-center">
         {{--start Logo--}}                  
