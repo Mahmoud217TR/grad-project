@@ -84,7 +84,7 @@
         @guest
           <div class="text-center pt-3">
             <a href="{{ route('register') }}" class="btn button-primary TB mx-2" type="button">Rigester</a>
-            <a href="{{ route('login') }}" class="btn button-secondary TB mx-2" type="button">Login</a>
+            <a href="/logs" class="btn button-secondary TB mx-2" type="button">Login</a>
           </div>
         @endguest
       </div>
