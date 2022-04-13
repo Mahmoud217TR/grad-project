@@ -40,11 +40,11 @@ class AdminController extends Controller
         $log_chunks = Log::latest()->get()->groupBy(function($log){
             return $log->created_at->format('d-m-y');;
         });
-        return view('admin.logs',compact('log_chunks'));
+        return view('admin.log.index',compact('log_chunks'));
     }
 
     public function log(Log $log){
         $this->checkSuperAdmin();
-        return view('admin.log',compact('log'));
+        return view('admin.log.show',compact('log'));
     }
 }
