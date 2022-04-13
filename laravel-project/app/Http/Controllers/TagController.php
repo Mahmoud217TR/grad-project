@@ -57,7 +57,6 @@ class TagController extends Controller
     public function destroy(Tag $tag){
         $this->authorize('update',$tag);
         event(new ModificationEvent($tag,"Tag",auth()->user()));
-        $tag->delete();
         // return redirect
     }
 }

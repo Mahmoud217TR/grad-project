@@ -69,7 +69,6 @@ class SheetController extends Controller
     {
         $this->authorize('delete',$sheet);
         event(new DeletionEvent($sheet,"Sheet",auth()->user()));
-        $sheet->delete();
         // return redirect
     }
 }
