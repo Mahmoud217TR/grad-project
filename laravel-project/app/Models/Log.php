@@ -64,7 +64,7 @@ class Log extends Model
     }
 
     public function TypeValue(){
-        return $this->getTypeValue($this->status);
+        return $this->getTypeValue($this->type);
     }
 
     // Attributes & Scopes

@@ -65,7 +65,6 @@ class CodeController extends Controller
     public function destroy(Code $code){
         $this->authorize('delete',$code);
         event(new DeletionEvent($code,"Code",auth()->user()));
-        $code->delete();
         // flash a message
         return route('code.index');
     }

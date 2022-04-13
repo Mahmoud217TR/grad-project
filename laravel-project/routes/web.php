@@ -78,9 +78,7 @@ Route::controller(SearchController::class)->group(function(){
 
 Route::controller(AdminController::class)->prefix('admin')->group(function(){
     Route::get('/panel','panel')->name('panel');
-});
-
-Route::get('/logs', function () {
-    return view('logs');
+    Route::get('/logs','logs')->name('logs');
+    Route::get('/log/{log}','log')->name('log.show');
 });
 

@@ -21,7 +21,7 @@
                     <a href="{{ route('snippet.index') }}" class="btn-tag btn TB">Snippets</a>
                 </div>
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn TB">Logs</a>
+                    <a href="{{ route('logs') }}" class="btn-tag btn TB">Logs</a>
                 </div>
                 <div class="div-tag">
                     <a href="#" class="btn-tag btn TB ">Reports</a>

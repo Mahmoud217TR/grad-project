@@ -115,6 +115,7 @@ class LogListener implements ShouldQueue
                 "By ".$event->user->name." (".$event->user->id.") Role: ".$event->user->role.".\n".
                 "@".$event->datetime."\n";
         $this->createLog($title, $data, $type);
+        $event->object->delete();
     }
 
     public function userRelated(UserRelatedEvent $event)
