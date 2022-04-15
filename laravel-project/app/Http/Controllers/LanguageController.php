@@ -26,6 +26,11 @@ class LanguageController extends Controller
         return view('language.index',compact('languages'));
     }
 
+    public function requested(){
+        $languages = Language::Requested()->paginate(9);
+        return view('language.index',compact('languages'));
+    }
+
     public function create(){
         $this->authorize('create',Language::class);
         return view('language.create', ['language'=>new Language]);

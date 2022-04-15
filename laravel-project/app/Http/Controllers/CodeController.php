@@ -26,6 +26,11 @@ class CodeController extends Controller
         return view('code.index',compact('codes'));
     }
 
+    public function requested(){
+        $codes = Code::Requested()->paginate(9);
+        return view('code.index',compact('codes'));
+    }
+
     public function create(){
         $this->authorize('create', Code::class);
         return view('code.create', ['code'=>new Code]);
