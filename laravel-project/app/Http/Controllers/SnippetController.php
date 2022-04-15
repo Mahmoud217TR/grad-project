@@ -30,6 +30,11 @@ class SnippetController extends Controller
         return view('snippet.index',compact('snippets'));
     }
 
+    public function requested(){
+        $snippets = Snippet::Requested()->with(['code','language'])->paginate(9);
+        return view('snippet.index',compact('snippets'));
+    }
+
     public function create(){
         $this->authorize('create', Snippet::class);
         $codes = Code::Approved()->get();

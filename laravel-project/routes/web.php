@@ -40,6 +40,9 @@ Route::resource('comment', CommentController::class);
 Route::resource('language', LanguageController::class);
 Route::resource('post', PostController::class);
 Route::resource('snippet', SnippetController::class);
+Route::controller(SnippetController::class)->group(function(){
+    Route::get('/requested/snippet','requested')->name('snippet.requested');
+});
 Route::resource('tag', TagController::class);
 Route::resource('sheet', SheetController::class);
 Route::resource('profile', ProfileController::class)->except(['create','store']);

@@ -5,7 +5,8 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <a href="{{ route('snippet.create') }}" class="btn button-primary">Create a new Snippet</a>
+            <a href="{{ route('snippet.create') }}" class="btn button-primary mx-2">Create a Snippet</a>
+            <a href="{{ route('snippet.requested') }}" class="btn button-primary mx-2">Requested Snippets</a>
         </div>
     </div>
     @foreach ($snippets->chunk(3) as $snippetChunk)
