@@ -119,4 +119,10 @@ class Snippet extends Model
     public function isTaggedBy($tag){
         return !is_null($this->getTag($tag));
     }
+
+    public function approve(){
+        if($this->isRequested()){
+            $this->update(['status'=>1]);
+        }
+    }
 }

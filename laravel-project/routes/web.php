@@ -38,16 +38,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('code', CodeController::class);
 Route::controller(CodeController::class)->group(function(){
     Route::get('/requested/code','requested')->name('code.requested');
+    Route::get('/requested/{code}/approve','approve')->name('code.approve');
 });
 Route::resource('comment', CommentController::class);
 Route::resource('language', LanguageController::class);
 Route::controller(LanguageController::class)->group(function(){
     Route::get('/requested/language','requested')->name('language.requested');
+    Route::get('/requested/{language}/approve','approve')->name('language.approve');
 });
 Route::resource('post', PostController::class);
 Route::resource('snippet', SnippetController::class);
 Route::controller(SnippetController::class)->group(function(){
     Route::get('/requested/snippet','requested')->name('snippet.requested');
+    Route::get('/requested/{snippet}/approve','approve')->name('snippet.approve');
 });
 Route::resource('tag', TagController::class);
 Route::resource('sheet', SheetController::class);

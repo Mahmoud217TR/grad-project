@@ -31,6 +31,13 @@ class LanguageController extends Controller
         return view('language.index',compact('languages'));
     }
 
+    public function approve(Language $language){
+        $this->authorize('update',$language);
+        $language->approve();
+        event(new ModificationEvent($language,"Language", auth()->user()));
+        return redirect()->route('language.show',$language);
+    }
+
     public function create(){
         $this->authorize('create',Language::class);
         return view('language.create', ['language'=>new Language]);

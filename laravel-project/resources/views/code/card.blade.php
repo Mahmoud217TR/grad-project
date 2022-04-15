@@ -5,7 +5,15 @@
     <p class="mx-0 truncate-3-lines">{{$code->description}}</p>
     <div class="text-center">
         <a href="{{ route('code.show',$code) }}" class="btn button-primary TB mx-2">View</a>
-        <a href="#" class="btn button-secondary TB mx-2">Report</a>
+        @auth
+            @if(auth()->user()->isWebAdmin())
+                @if($code->isRequested())
+                    <a href="#" class="btn button-secondary TB mx-2">Approve</a>
+                @endif
+            @else
+                <a href="#" class="btn button-secondary TB mx-2">Report</a>
+            @endif
+        @endauth
     </div>
     <hr class="my-2">
     <div class="text-center">
