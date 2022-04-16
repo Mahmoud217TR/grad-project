@@ -8,7 +8,7 @@
         @auth
             @if(auth()->user()->isWebAdmin())
                 @if($language->isRequested())
-                    <a href="#" class="btn button-secondary TB mx-2">Approve</a>
+                    <a href="{{ route('language.approve',$language) }}" class="btn button-secondary TB mx-2">Approve</a>
                 @endif
             @else
                 <a href="#" class="btn button-secondary TB mx-2">Report</a>

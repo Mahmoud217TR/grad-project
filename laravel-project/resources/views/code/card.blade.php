@@ -8,7 +8,7 @@
         @auth
             @if(auth()->user()->isWebAdmin())
                 @if($code->isRequested())
-                    <a href="#" class="btn button-secondary TB mx-2">Approve</a>
+                    <a href="{{ route('code.approve',$code) }}" class="btn button-secondary TB mx-2">Approve</a>
                 @endif
             @else
                 <a href="#" class="btn button-secondary TB mx-2">Report</a>
