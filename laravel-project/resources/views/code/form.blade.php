@@ -13,7 +13,7 @@
 <div class="row mb-3 px-5">
     <div class="col">
         <label for="description" class="col-form-label text-start">{{ __('Code Description') }}</label>
-        <textarea  rows="5" id="description"  class="form-control @error('description') is-invalid @enderror" name="description" required >{{ $code->title??old('description') }}</textarea>
+        <ckeditor-component input-id='description' input-name='description' data='{{ $code->description??old('description') }}'></ckeditor-component>
         @error('description')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
