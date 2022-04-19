@@ -2,7 +2,7 @@
 <div class="codesubmit container cardcode py-2 my-4">
     <h3 class="orange-text">{{$snippet->code->title}} In {{$snippet->language->name}}</h3>
     <hr>
-    <p class="mx-0 truncate-3-lines">{{$snippet->note}}</p>
+    <p class="mx-0 truncate-3-lines">{!! $snippet->note !!}</p>
     <div class="text-center">
         <a href="{{ route('snippet.show',$snippet) }}" class="btn button-primary TB mx-2">View</a>
         @auth
