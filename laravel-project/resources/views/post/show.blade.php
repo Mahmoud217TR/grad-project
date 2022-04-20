@@ -57,27 +57,7 @@
 			{{--end number of comments--}}
 
 			{{--box write comment--}}
-            <div class="col-lg-8 ps-2 my-2">
-                <form method="POST" action="{{ route('comment.store') }}">
-					@csrf
-					<input type="text" name="post_id" hidden value="{{ $post->id }}">
-                    <div class="row row-cols-auto">
-                        <div class="col-12 col-sm-7 form-floating">
-                            <label for="floatingTextarea"><p class="text-dark">Comments</p></label>
-							<ckeditor-component input-id='floatingTextarea' input-name='content' data='{{ old('content') }}'></ckeditor-component>
-							@error('content')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-							@enderror
-						</div>
-						<div class="col-12 col-sm-5">
-                            <button type="submit" class="d-block btn button-primary btn-sm shadow-none me-2" type="button">Post comment</button>
-                            <button class="d-block btn btn-outline-danger btn-sm shadow-none" type="button">Cancel</button>
-						</div>
-                    </div>
-                </form>
-			</div>
+            	@include('comments.create')
 		   	{{--end box write comment--}}
 
 			{{--يتم معاملة المقطع التالي ك جزء كامل من اجل انشاء مكون يمثل صندوق الرد على التعليقات في ال
@@ -88,6 +68,7 @@
 				--}}
 
 			{{--other comment--}}
+			@foreach ($post->comments as $comment)
 			<div class="mx-3 border-start border-2 border-secondary">
 				<div class="d-flex justify-content-start row mt-4">
 					<div class="d-flex">
@@ -103,15 +84,15 @@
 							<div class="d-flex">
 								<img class="rounded-circle" src="{{ asset('images/background.jpg') }}" width="60" height="60">
 								<div class="d-flex flex-column ms-3">
-									<p class="orange-text base-line">Name</p>
-									<p class="text-secondary">2 days, 8 hours</p> 
+									<p class="orange-text base-line mb-0">{{ $comment->user->name }}</p>
+									<p class="text-secondary">{{ $comment->created_at->format('y-M-d h:m:s a') }}</p> 
 								</div>
 							</div>
 							{{--end name person--}}
 
 							{{--comment person--}}
 							<div class="mt-2">
-								<h6 class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h6>
+								<h6 class="text-Secondary">{!! $comment->content !!}</h6>
 							</div>
 							{{--end comment person--}}
 
@@ -133,18 +114,7 @@
 										
 										{{--box write comment--}}
 										<div class="col-lg-8 ps-2 my-2">
-											<form method="POST" action="">
-												<div class="row row-cols-auto">
-													<div class="col-12 col-sm-7 form-floating">
-														<textarea class="form-control shadow-none" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-														<label for="floatingTextarea"><p class="text-dark">Comments</p></label>
-													</div>
-													<div class="col-12 col-sm-5">
-														<button type="submit" class="btn button-primary btn-sm shadow-none me-2" type="button">Post comment</button>
-														<button class="btn btn-outline-danger btn-sm shadow-none" type="button">Cancel</button>
-													</div>
-												</div>
-											</form>
+											@include('comments.create')
 										</div>
 										{{--end box write comment--}}
 
@@ -155,6 +125,7 @@
 							{{--end reply--}}
 
 						</div>
+							
 						{{--end content comment--}}
 
 						{{--اذا كان صاحب التعليق بيطلعله هالخيار--}}
@@ -202,6 +173,7 @@
 				</div>
 			</div>
 			{{--end other comment--}}
+			@endforeach
 			
         </div>
 		{{--end comment--}}

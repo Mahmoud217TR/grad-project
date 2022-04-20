@@ -71,6 +71,9 @@ main{
      color: $Secondary;
     }
 .text-Secondary{
+    p,h2 {
+        color: $Secondary-text!important;
+    }
     color: $Secondary-text!important;
     }
 .text-primary{
