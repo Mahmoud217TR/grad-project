@@ -41,7 +41,8 @@ class PostController extends Controller
     }
 
     public function show(Post $post){
-        return $post;
+        $post->with(['user','comments','comments.user']);
+        return view('post.show',compact('post'));
     }
 
     public function edit(Post $post){
