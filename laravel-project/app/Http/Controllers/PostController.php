@@ -22,8 +22,8 @@ class PostController extends Controller
     }
 
     public function index(){
-        $posts = Post::all();
-        return compact('posts');
+        $posts = Post::published()->latest()->with('user','user.profile')->withCount('comments')->paginate(5);
+        return view('post.index',compact('posts'));
     }
 
     public function create(){
@@ -41,7 +41,7 @@ class PostController extends Controller
     }
 
     public function show(Post $post){
-        $post->with(['user','comments','comments.user']);
+        $post->with(['user','user.profile','comments','comments.user','comments.user.profile']);
         return view('post.show',compact('post'));
     }
 
