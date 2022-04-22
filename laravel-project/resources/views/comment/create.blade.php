@@ -14,7 +14,6 @@
             </div>
             <div class="col-12 col-sm-5">
                 <button type="submit" class="d-block btn button-primary btn-sm shadow-none me-2" type="button">Post comment</button>
-                <button class="d-block btn btn-outline-danger btn-sm shadow-none" type="button">Cancel</button>
             </div>
         </div>
     </form>
