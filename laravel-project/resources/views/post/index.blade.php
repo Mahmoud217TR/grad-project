@@ -46,7 +46,7 @@
                                         <i class="bi bi-chat-left-fill px-1"></i>
                                     </div>
                                         <div class="col-md-9">
-                                        <p>{{ $post->comments->count() }} comments</p> 
+                                        <p>{{ $post->comments_count }} comments</p> 
                                         </div>
                                 </div>
                             </li>

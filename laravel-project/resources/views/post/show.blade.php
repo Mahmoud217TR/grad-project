@@ -69,38 +69,40 @@
                 </h5>
             </p>
         </div>
-		{{--comment--}}
-        <div class="card-body">
+		@if ($post->isPublished())
+            {{--comment--}}
+            <div class="card-body">
 
-			{{--number of comments--}}
-            <div class="row row-cols-auto text-dark">
-                <div class="mt-4 pt-1">
-                    <h3><i class="bi bi-chat-left-fill px-1"></i></h3>
+                {{--number of comments--}}
+                <div class="row row-cols-auto text-dark">
+                    <div class="mt-4 pt-1">
+                        <h3><i class="bi bi-chat-left-fill px-1"></i></h3>
+                    </div>
+                    <div class="mt-4">
+                        <h3><p>{{ $post->comments->count() }} Comments</p></h3> 
+                    </div>
                 </div>
-                 <div class="mt-4">
-                    <h3><p>{{ $post->comments->count() }} Comments</p></h3> 
-                 </div>
+                {{--end number of comments--}}
+
+                {{--box write comment--}}
+                    @include('comment.create')
+                {{--end box write comment--}}
+
+                {{--يتم معاملة المقطع التالي ك جزء كامل من اجل انشاء مكون يمثل صندوق الرد على التعليقات في ال
+                    vue.js 
+                    للتوضيح نضع المقطع التالي كله كمحتوى ضمن 
+                    reply ----> reply box comment ----> comments
+                    فينتج لدينا تعليقات وردودها 
+                    --}}
+
+                
+                @foreach ($post->comments as $comment)
+                    @include('comment.show')
+                @endforeach
+                
             </div>
-			{{--end number of comments--}}
-
-			{{--box write comment--}}
-            	@include('comment.create')
-		   	{{--end box write comment--}}
-
-			{{--يتم معاملة المقطع التالي ك جزء كامل من اجل انشاء مكون يمثل صندوق الرد على التعليقات في ال
-				vue.js 
-				 للتوضيح نضع المقطع التالي كله كمحتوى ضمن 
-				 reply ----> reply box comment ----> comments
-				 فينتج لدينا تعليقات وردودها 
-				--}}
-
-			
-			@foreach ($post->comments as $comment)
-				@include('comment.show')
-			@endforeach
-			
-        </div>
-		{{--end comment--}}
+            {{--end comment--}}
+        @endif
     </div>
 </div>
 @endsection
