@@ -36,7 +36,7 @@
                     <div class="col col-md-6 mx-2 card collapse text-dark dropdown-menu" aria-labelledby="ff">
                         <ul class="m-3 list-unstyled">
 							@can('update',$post)
-                            	<a class="unstyled-anchor1" href="{{ route('post.edit',$post) }}"><li class="border-bottom mb-2" type="button"><i class="orange-text TB bi bi-pencil-square mx-1"></i>Edite</li></a>
+                            	<a class="unstyled-anchor1" href="{{ route('post.edit',$post) }}"><li class="border-bottom mb-2" type="button"><i class="orange-text TB bi bi-pencil-square mx-1"></i>Edit</li></a>
 							@endcan
                             @can('delete',$post)
 								<li class="mb-2" type="button" onclick="event.preventDefault();document.getElementById('remove-post-{{ $post->id }}').click();"><i class="orange-text TB bi bi-trash mx-1"></i>Delete</li>
