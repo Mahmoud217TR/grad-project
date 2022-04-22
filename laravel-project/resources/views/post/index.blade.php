@@ -2,6 +2,16 @@
 @section('title','Posts')
 @section('content')
 <div class="container pt-3">
+
+    @auth
+        @if (auth()->user()->isOrAbove('editor'))
+            <a href="{{ route('post.create') }}" class="btn button-primary mx-2">Create a new Post</a>
+            <a href="{{ route('post.all') }}" class="btn button-primary mx-2">Show All Posts</a>
+            <a href="{{ route('post.drafted') }}" class="btn button-primary mx-2">Show Drafted</a>
+            <a href="{{ route('post.archived') }}" class="btn button-primary mx-2">Show Archived</a>
+        @endif
+    @endauth
+
     @forelse ($posts as $post)
     <div class="card bg-dark my-5">
         <div class="card-body">
@@ -50,7 +60,7 @@
         </div>
     </div>
     @empty
-        <div class="display-4">
+        <div class="display-4 mt-5 text-center">
             NO Posts here.
         </div>
     @endforelse

@@ -28,6 +28,24 @@ class PostController extends Controller
         return view('post.index',compact('posts'));
     }
 
+    public function all(){
+        $this->authorize('viewall',Post::class);
+        $posts = Post::latest()->with('user','user.profile')->withCount('comments')->paginate(5);
+        return view('post.index',compact('posts'));
+    }
+
+    public function drafted(){
+        $this->authorize('viewall',Post::class);
+        $posts = Post::drafted()->latest()->with('user','user.profile')->withCount('comments')->paginate(5);
+        return view('post.index',compact('posts'));
+    }
+
+    public function archived(){
+        $this->authorize('viewall',Post::class);
+        $posts = Post::archived()->latest()->with('user','user.profile')->withCount('comments')->paginate(5);
+        return view('post.index',compact('posts'));
+    }
+
     public function create(){
         $this->authorize('create',Post::class);
         return view('post.create',['post'=>new Post, 'statuses'=>Post::getStatuses()]);

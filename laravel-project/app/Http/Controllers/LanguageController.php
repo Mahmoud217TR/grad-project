@@ -27,6 +27,7 @@ class LanguageController extends Controller
     }
 
     public function requested(){
+        $this->authorize('viewall',Language::class);
         $languages = Language::Requested()->paginate(9);
         return view('language.index',compact('languages'));
     }

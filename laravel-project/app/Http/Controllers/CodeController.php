@@ -27,6 +27,7 @@ class CodeController extends Controller
     }
 
     public function requested(){
+        $this->authorize('viewall',Code::class);
         $codes = Code::Requested()->paginate(9);
         return view('code.index',compact('codes'));
     }

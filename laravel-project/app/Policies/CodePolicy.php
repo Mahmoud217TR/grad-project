@@ -21,6 +21,16 @@ class CodePolicy
         //
     }
 
+    public function viewall(?User $user)
+    {
+        if ($user){
+            if($user->isWebAdmin()){
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Determine whether the user can view the model.
      *

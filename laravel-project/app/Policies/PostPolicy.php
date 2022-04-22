@@ -18,7 +18,17 @@ class PostPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        
+    }
+
+    public function viewall(?User $user)
+    {
+        if ($user){
+            if($user->isOrAbove('editor')){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
