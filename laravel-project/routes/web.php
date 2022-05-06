@@ -121,5 +121,9 @@ Route::get('/post-page', function () {
 Route::get('/post-create', function () {
     return view('post.create');
 });
+Route::get('/roles', function () {
+    return view('roles');
+});
+
 
 
