@@ -104,26 +104,13 @@ Route::controller(AdminController::class)->prefix('admin')->group(function(){
     Route::get('/panel','panel')->name('panel');
     Route::get('/logs','logs')->name('logs');
     Route::get('/log/{log}','log')->name('log.show');
+    Route::get('/roles', 'roles')->name('roles');
 });
 
 Route::get('/show-post', function () {
     return view('post.show');
 });
 
-Route::get('/example', function () {
-    return view('post.example-comment');
-});
-
-Route::get('/post-page', function () {
-    return view('post.postpage');
-});
-
-Route::get('/post-create', function () {
-    return view('post.create');
-});
-Route::get('/roles', function () {
-    return view('roles');
-});
 Route::get('/showSheet', function () {
     return view('sheet.showSheet');
 });

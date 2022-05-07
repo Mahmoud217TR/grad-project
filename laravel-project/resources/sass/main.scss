@@ -475,6 +475,9 @@ padding-left: 0.5rem;
             max-height: 200px;
             overflow: auto;
         }
+        .scrollText::-webkit-scrollbar {
+            display: none;
+          }
     }
     .contain{
         padding-left: 0.5rem;

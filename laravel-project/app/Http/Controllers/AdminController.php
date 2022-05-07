@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Log;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -46,5 +47,14 @@ class AdminController extends Controller
     public function log(Log $log){
         $this->checkSuperAdmin();
         return view('admin.log.show',compact('log'));
+    }
+
+    public function roles(){
+        $this->checkSuperAdmin();
+        $reviewers = User::Reviewers()->get();
+        $editors = User::Editors()->get();
+        $admins = User::Admins()->get();
+        $super_admins = User::SuperAdmins()->get();
+        return view('admin.roles',compact('reviewers', 'editors', 'admins', 'super_admins'));
     }
 }
