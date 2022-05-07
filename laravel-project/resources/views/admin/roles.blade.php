@@ -38,13 +38,13 @@
 
             <div class="col-md-4">
                 <div class="adminoutput ">
-                    <h2 class="head-line orange-text bold">Admins:({{ $editors->count() }})</h2>
+                    <h2 class="head-line orange-text bold">Admins: ({{ $admins->count() }})</h2>
                     <hr class="mb-4">
                     <div class="scrollText">
-                        @foreach ($editors as $editor)
+                        @foreach ($admins as $admin)
                             <div class="item ms-2 mb-4">
-                                <h4>{{ $editor->name }}</h4>
-                                <p>{{$editor->email}}</p>
+                                <h4>{{ $admin->name }}</h4>
+                                <p>{{$admin->email}}</p>
                             </div>
                         @endforeach
                     </div>
@@ -58,32 +58,70 @@
             <div class="col-md-4 text-center  d-md-block d-none" >
                 @include('components.SVG6')
             </div>
-            <div class="col-md-4 mt-2 contain">
-                <form method="POST" action=" ">
-                    <div class="row  justify-content-center">
-                        <div class="col-11 pt-md-3">
-                        <select class="form-select mb-3 box" aria-label="">
-                            <option value="1">Admin</option>
-                            <option value="2">Reviewer</option>
-                            <option value="3">Editor</option>
-                        </select>
-                        </div>
-                        <div class="row justify-content-center">
-                        <div class="col-11 ">
-                            <input type="text" class="form-control  box " id="roles" placeholder="enter email">
+            <div class="col-md-4 mt-2 container">
+                <form class="mb-4" method="POST" action="{{ route('roles.add') }}">
+                    @csrf
+                    @method('patch')
+                    <div class="row">
+                        <div class="col ps-3">
+                            <h2>Add a or Edit Role: </h2>
                         </div>
                     </div>
+                    <div class="row  justify-content-center">
+                        <div class="col pt-md-3">
+                            <select class="form-select mb-3 box" name='role' id='role'>
+                                <option value="admin">Admin</option>
+                                <option value="reviewer">Reviewer</option>
+                                <option value="editor">Editor</option>
+                            </select>
+                            @error('role')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col">
+                            <input type="email" class="form-control box" name="email" id="email" placeholder="Enter The Email">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                         <div class="row mb-0 justify-content-center  py-2 ">
                             <div class=" my-2 col-4">
                                 <button type="submit" class="btn button-primary TB box">
-                                    {{ __('Add') }}
+                                    {{ __('Update') }}
                                 </button>
                             </div>
-                            <div class="  my-2 col-4">
-                                <button type="submit" class="btn button-primary TB box ">
-                                    {{ __('Remove') }}
-                                </button>
-                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form class="mb-4" method="POST" action="{{ route('roles.remove') }}">
+                    @csrf
+                    @method('patch')
+                    <div class="row">
+                        <div class="col ps-3">
+                            <h2>Remove a Role: </h2>
+                        </div>
+                    </div>
+                    <div class="row  justify-content-center">
+                        <div class="col">
+                            <input type="email" class="form-control box" name="email" id="email" placeholder="Enter The Email">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row mb-0 justify-content-center  py-2 ">
+                        <div class="  my-2 col-4">
+                            <button type="submit" class="btn button-primary TB box ">
+                                {{ __('Remove') }}
+                            </button>
                         </div>
                     </div>
                 </form>

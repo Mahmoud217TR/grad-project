@@ -105,6 +105,8 @@ Route::controller(AdminController::class)->prefix('admin')->group(function(){
     Route::get('/logs','logs')->name('logs');
     Route::get('/log/{log}','log')->name('log.show');
     Route::get('/roles', 'roles')->name('roles');
+    Route::patch('/roles/add', 'addRole')->name('roles.add');
+    Route::patch('/roles/remove', 'removeRole')->name('roles.remove');
 });
 
 Route::get('/show-post', function () {
