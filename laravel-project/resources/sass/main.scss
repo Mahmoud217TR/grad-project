@@ -451,3 +451,100 @@ padding-left: 0.5rem;
 .ck-content{
     color:$Secondary-text;
 }
+
+
+.roles{
+   
+    .bold{
+       font-weight: bold;
+    }
+    
+    .adminoutput{
+        
+        padding-top: 0.90rem;
+        border-bottom-left-radius: 1.3rem;
+        border-bottom-right-radius: 1.3rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-top: 2.5rem;
+        background:rgba(97, 87,84, 0.29);
+        box-shadow: 0px 0px 0.4rem 0.7rem rgba(20, 20, 20, 0.5); 
+        border-color: black;
+        
+        .scrollText{
+            max-height: 200px;
+            overflow: auto;
+        }
+    }
+    .contain{
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+
+    }
+    hr {
+        margin: 0.3rem;
+        color: $Primary;
+        background-color: $Primary;
+        height: 0.2rem;
+        opacity:1;
+        border-radius: 0.5rem;
+    }
+   
+    @media (min-width: 768px) { 
+        .adminoutput{
+                border-radius: 1.3rem;
+                padding-left: 1rem;
+                padding-top: 1rem;
+                background:rgba(97, 87,84, 0.29);
+                box-shadow: 0px 0px 0.1rem 0.2rem rgba(20, 20, 20, 0.5); 
+                border-color: black;
+                
+                margin-top: 1rem;
+                .scrollText{
+                    overflow: auto;
+                max-height: 400px;
+                }
+            }
+            .box{
+                height: 55px;
+            }
+            
+           
+       
+
+     }
+    }
+    .showSheet{
+      .nest{
+margin-top: -2rem;
+      }
+        
+
+    border-color: $Primary;
+    border-top-left-radius: 1.3rem;
+    border-bottom-right-radius: 1.3rem;
+
+
+    background:rgba(97, 87,84, 0.29);
+    box-shadow: 0px 0px 0.4rem 0.7rem rgba(20, 20, 20, 0.5); 
+    border-color: black;
+            min-height: 300px;
+            width:90%;
+          
+            hr {
+                margin: 0.3rem;
+                color: $Primary;
+                background-color: $Primary;
+                height: 0.2rem;
+                opacity:1;
+                border-radius: 0.5rem;
+            }
+            p{
+                margin-top: 1rem;
+                margin-left: 1rem;
+                font-size: 1.5rem!important;
+            }
+            .del{
+                background-color: #505152!important;
+            }
+}
