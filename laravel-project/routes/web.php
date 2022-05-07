@@ -124,6 +124,9 @@ Route::get('/post-create', function () {
 Route::get('/roles', function () {
     return view('roles');
 });
+Route::get('/showSheet', function () {
+    return view('sheet.showSheet');
+});
 
 
 

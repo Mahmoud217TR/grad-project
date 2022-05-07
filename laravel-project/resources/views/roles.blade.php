@@ -139,7 +139,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-4  d-md-flex d-none">
+            <div class="col-md-4  d-md-flex d-none" >
                 @include('components.SVG5')
             </div>
         </div>
