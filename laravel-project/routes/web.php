@@ -127,6 +127,8 @@ Route::get('/roles', function () {
 Route::get('/showSheet', function () {
     return view('sheet.showSheet');
 });
-
+Route::get('/EditeSheet', function () {
+    return view('sheet.EditeSheet');
+});
 
 

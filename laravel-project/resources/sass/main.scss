@@ -515,9 +515,7 @@ padding-left: 0.5rem;
      }
     }
     .showSheet{
-      .nest{
-margin-top: -2rem;
-      }
+     
         
 
     border-color: $Primary;
@@ -547,4 +545,20 @@ margin-top: -2rem;
             .del{
                 background-color: #505152!important;
             }
+}
+.svgEditeSheet{
+    @media (max-width: 2560px) { 
+        margin-top: -10rem!important;
+        margin-left: -11rem!important;
+    }
+    @media (max-width:1200px) { 
+        margin-top: -9rem!important;
+        margin-left: -9rem!important;
+    }
+    @media (max-width:992px) { 
+        margin-top: -9rem!important;
+        margin-left: -7rem!important;
+    }
+
+
 }
