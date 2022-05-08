@@ -48,7 +48,8 @@ class SheetController extends Controller
 
     public function show(Sheet $sheet)
     {
-        return compact('sheet');
+        $sheet->with('user','fields');
+        return view('sheet.show',compact('sheet'));
     }
 
     public function edit(Sheet $sheet)

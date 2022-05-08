@@ -30,7 +30,7 @@
                     <a href="{{ route('telescope') }}" class="btn-tag btn TB">Telescope</a>
                 </div>
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn TB">Roles</a>
+                    <a href="{{ route('roles') }}" class="btn-tag btn TB">Roles</a>
                 </div>
 
             </div>

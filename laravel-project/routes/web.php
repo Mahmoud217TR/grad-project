@@ -113,9 +113,4 @@ Route::get('/show-post', function () {
     return view('post.show');
 });
 
-Route::get('/showSheet', function () {
-    return view('sheet.showSheet');
-});
-
-
 
