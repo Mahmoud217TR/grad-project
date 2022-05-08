@@ -41,7 +41,7 @@ class SheetPolicy
      */
     public function create(User $user)
     {
-        
+        return true;
     }
 
     /**

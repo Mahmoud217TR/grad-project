@@ -11,6 +11,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaggingController;
 use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\FieldController;
 use App\Http\Controllers\FollowingController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SheetController;
@@ -65,6 +66,14 @@ Route::controller(SnippetController::class)->group(function(){
 Route::resource('tag', TagController::class);
 
 Route::resource('sheet', SheetController::class);
+
+Route::controller(FieldController::class)->prefix('sheet')->group(function(){
+    Route::get('/{sheet}/fields','index')->name('fields.index');
+    Route::get('/{sheet}/fields/edit','edit')->name('fields.edit');
+    Route::post('/{sheet}/fields/add','store')->name('fields.store');
+    Route::patch('/{sheet}/fields/update/{field}','update')->name('fields.update');
+    Route::delete('/{sheet}/fields/destroy/{field}','destory')->name('fields.destroy');
+});
 
 Route::resource('profile', ProfileController::class)->except(['create','store']);
 

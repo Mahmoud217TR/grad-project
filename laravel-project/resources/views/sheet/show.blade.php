@@ -8,7 +8,7 @@
                     <h1 class="page-title orange-text  ps-2 pt-2 ">{{ $sheet->title }}</h1>
                     <hr>
                     <p>
-                        {{ $sheet->description }}
+                        {!! $sheet->description !!}
                     </p>
                     <p class="text-muted">
                         Made By {{ $sheet->user->name }}

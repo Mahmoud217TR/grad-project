@@ -12,4 +12,5 @@ app.component('modal-component', require('./components/ModalComponent.vue').defa
 app.component('follow-component', require('./components/FollowComponent.vue').default);
 app.component('remove-component', require('./components/RemoveComponent.vue').default);
 app.component('ckeditor-component', require('./components/CkEditorComponent.vue').default);
+app.component('fields-component', require('./components/ModifyFieldsComponent.vue').default);
 app.mount("#app");
