@@ -108,9 +108,3 @@ Route::controller(AdminController::class)->prefix('admin')->group(function(){
     Route::patch('/roles/add', 'addRole')->name('roles.add');
     Route::patch('/roles/remove', 'removeRole')->name('roles.remove');
 });
-
-Route::get('/show-post', function () {
-    return view('post.show');
-});
-
-
