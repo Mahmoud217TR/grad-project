@@ -27,8 +27,8 @@ class SheetController extends Controller
 
     public function index()
     {
-        $sheets = Sheet::Published();
-        return compact('sheets');
+        $sheets = Sheet::Published()->latest()->paginate(15);
+        return view('sheet.index',compact('sheets'));
     }
 
     public function create()
@@ -75,6 +75,6 @@ class SheetController extends Controller
     {
         $this->authorize('delete',$sheet);
         event(new DeletionEvent($sheet,"Sheet",auth()->user()));
-        // return redirect
+        return redirect()->route('sheet.index');
     }
 }

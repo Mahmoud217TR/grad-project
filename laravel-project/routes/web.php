@@ -13,6 +13,7 @@ use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\FollowingController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SheetController;
 use App\Http\Controllers\UploadController;
@@ -117,3 +118,5 @@ Route::controller(AdminController::class)->prefix('admin')->group(function(){
     Route::patch('/roles/add', 'addRole')->name('roles.add');
     Route::patch('/roles/remove', 'removeRole')->name('roles.remove');
 });
+
+Route::resource('report', ReportController::class);

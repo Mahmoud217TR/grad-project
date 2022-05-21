@@ -8,6 +8,10 @@ use App\Http\Requests\UpdateReportRequest;
 
 class ReportController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth')->except(['create','store']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        $reports = Report::latest()->paginate(15);
+        return view('report.index',compact('reports'));
     }
 
     /**
@@ -25,7 +30,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        //
+        return view('report.create');
     }
 
     /**
@@ -36,7 +41,11 @@ class ReportController extends Controller
      */
     public function store(StoreReportRequest $request)
     {
-        //
+        if(!$request->user_id){
+            $request->user_id = 0;
+        }
+        $report = Report::create($request->all());
+        return view('report.recieve'); 
     }
 
     /**
@@ -47,7 +56,7 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        //
+        return view('report.show',compact('report'));
     }
 
     /**

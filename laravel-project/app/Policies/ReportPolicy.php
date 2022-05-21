@@ -18,7 +18,7 @@ class ReportPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->isOrAbove('admin');
     }
 
     /**
@@ -30,7 +30,7 @@ class ReportPolicy
      */
     public function view(User $user, Report $report)
     {
-        //
+        return $user->isOrAbove('admin');
     }
 
     /**
@@ -53,7 +53,7 @@ class ReportPolicy
      */
     public function update(User $user, Report $report)
     {
-        //
+        return $user->isOrAbove('admin');
     }
 
     /**
@@ -65,7 +65,7 @@ class ReportPolicy
      */
     public function delete(User $user, Report $report)
     {
-        //
+        return $user->isOrAbove('admin');
     }
 
     /**

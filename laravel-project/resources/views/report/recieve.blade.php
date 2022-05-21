@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+@section('title','Reported')
+
+@section('content')
 {{--receiving message--}}
 <div class="container">
 
@@ -26,15 +31,15 @@
     <div class="col-4 "></div>
 
     <div class="col-4 ">
-       <div class="row justify-content-center"> <button type="submit" class="btnReport button-primary TB box ">
+       <div class="row justify-content-center text-center">
+         <a href="{{ route('welcome') }}" class="btnReport button-primary TB box ">
             {{ ('go to home page') }}
-        </button></div>
+        </a>
+      </div>
     </div>
 
     <div class="col-4"></div>
 
   </div>
-
-
-
 </div>
+@endsection

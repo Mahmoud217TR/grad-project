@@ -88,15 +88,15 @@ class Sheet extends Model
 	}
 
     public function scopeDrafted($query){
-		return $query->where('status','0');
+		return $query->where('status',0);
 	}
 
     public function scopePublished($query){
-		return $query->where('status','1');
+		return $query->where('status',1);
 	}
 
     public function scopeArchived($query){
-		return $query->where('status','2');
+		return $query->where('status',2);
 	}
 
     public function isDrafted(){
