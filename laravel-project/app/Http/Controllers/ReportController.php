@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DeletionEvent;
 use App\Models\Report;
 use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
@@ -90,6 +91,8 @@ class ReportController extends Controller
      */
     public function destroy(Report $report)
     {
-        //
+        $this->authorize('delete',$report);
+        event(new DeletionEvent($report,"Report",auth()->user()));
+        return route('report.index');
     }
 }
