@@ -16,7 +16,8 @@ class CommentController extends Controller
 
     public function validData(){
         return request()->validate([
-            'content' => 'required|string|max:500'
+            'content' => 'required|string|max:500',
+            'post_id' => 'required|exists:posts,id',
         ]);
     }
 
@@ -34,6 +35,7 @@ class CommentController extends Controller
         $data['user_id'] = auth()->id();
         $comment = Comment::create($data);
         event(new InsertionEvent($comment,"Comment",auth()->user()));
+        return redirect()->route('post.show',$data['post_id']);
     }
 
     public function show(Comment $comment){
@@ -56,7 +58,6 @@ class CommentController extends Controller
     public function destroy(Comment $comment){
         $this->authorize('delete',$comment);
         event(new DeletionEvent($comment,"Comment",auth()->user()));
-        $comment->delete();
         // return redirect
     }
 }

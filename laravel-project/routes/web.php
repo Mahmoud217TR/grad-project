@@ -11,6 +11,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\TaggingController;
 use App\Http\Controllers\CompilerController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\FieldController;
 use App\Http\Controllers\FollowingController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SheetController;
@@ -36,12 +37,44 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('code', CodeController::class);
+Route::controller(CodeController::class)->group(function(){
+    Route::get('/requested/code','requested')->name('code.requested');
+    Route::get('/requested/code/{code}/approve','approve')->name('code.approve');
+});
+
 Route::resource('comment', CommentController::class);
+
 Route::resource('language', LanguageController::class);
+Route::controller(LanguageController::class)->group(function(){
+    Route::get('/requested/language','requested')->name('language.requested');
+    Route::get('/requested/language/{language}/approve','approve')->name('language.approve');
+});
+
 Route::resource('post', PostController::class);
+Route::controller(PostController::class)->group(function(){
+    Route::get('/all/post','all')->name('post.all');
+    Route::get('/drafted/post','drafted')->name('post.drafted');
+    Route::get('/archived/post','archived')->name('post.archived');
+});
+
 Route::resource('snippet', SnippetController::class);
+Route::controller(SnippetController::class)->group(function(){
+    Route::get('/requested/snippet','requested')->name('snippet.requested');
+    Route::get('/requested/snippet/{snippet}/approve','approve')->name('snippet.approve');
+});
+
 Route::resource('tag', TagController::class);
+
 Route::resource('sheet', SheetController::class);
+
+Route::controller(FieldController::class)->prefix('sheet')->group(function(){
+    Route::get('/{sheet}/fields','index')->name('fields.index');
+    Route::get('/{sheet}/fields/edit','edit')->name('fields.edit');
+    Route::post('/{sheet}/fields/add','store')->name('fields.store');
+    Route::patch('/{sheet}/fields/update/{field}','update')->name('fields.update');
+    Route::delete('/{sheet}/fields/destroy/{field}','destory')->name('fields.destroy');
+});
+
 Route::resource('profile', ProfileController::class)->except(['create','store']);
 
 Route::controller(TaggingController::class)->prefix('tagging')->group(function(){
@@ -67,6 +100,7 @@ Route::controller(Controller::class)->group(function(){
     Route::get('/services','services')->name('services');
     Route::get('/about-us','about')->name('about');
     Route::get('/code-editor', 'editor')->name('editor');
+
 });
 
 Route::post('/compile',[CompilerController::class,'getResult'])->name('compile');
@@ -77,4 +111,9 @@ Route::controller(SearchController::class)->group(function(){
 
 Route::controller(AdminController::class)->prefix('admin')->group(function(){
     Route::get('/panel','panel')->name('panel');
+    Route::get('/logs','logs')->name('logs');
+    Route::get('/log/{log}','log')->name('log.show');
+    Route::get('/roles', 'roles')->name('roles');
+    Route::patch('/roles/add', 'addRole')->name('roles.add');
+    Route::patch('/roles/remove', 'removeRole')->name('roles.remove');
 });

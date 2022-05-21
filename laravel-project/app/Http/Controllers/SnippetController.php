@@ -30,6 +30,32 @@ class SnippetController extends Controller
         return view('snippet.index',compact('snippets'));
     }
 
+    public function requested(){
+        $this->authorize('viewall',Snippet::class);
+        $snippets = Snippet::Requested()->with(['code','language'])->paginate(9);
+        return view('snippet.index',compact('snippets'));
+    }
+
+    public function approve(Snippet $snippet){
+        $snippet->with('code','language');
+        $this->authorize('update',$snippet);
+        $this->authorize('update',$snippet->code);
+        $this->authorize('update',$snippet->language);
+
+        $user = auth()->user();
+
+        $snippet->code->approve();
+        event(new ModificationEvent($snippet->code,"Code", $user));
+
+        $snippet->language->approve();
+        event(new ModificationEvent($snippet->code,"Language", $user));
+        
+        $snippet->approve();
+        event(new ModificationEvent($snippet,"Snippet", $user));
+        
+        return redirect()->route('snippet.show',$snippet);
+    }
+
     public function create(){
         $this->authorize('create', Snippet::class);
         $codes = Code::Approved()->get();
@@ -72,7 +98,6 @@ class SnippetController extends Controller
     public function destroy(Snippet $snippet){
         $this->authorize('delete',$snippet);
         event(new DeletionEvent($snippet,"Snippet",auth()->user()));
-        $snippet->delete();
         return route('snippet.index');
     }
 }

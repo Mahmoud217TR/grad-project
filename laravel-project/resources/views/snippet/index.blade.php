@@ -5,7 +5,12 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <a href="{{ route('snippet.create') }}" class="btn button-primary">Create a new Snippet</a>
+            @auth
+                <a href="{{ route('snippet.create') }}" class="btn button-primary mx-2">Create a Snippet</a>
+                @if (auth()->user()->isWebAdmin())
+                    <a href="{{ route('snippet.requested') }}" class="btn button-primary mx-2">Requested Snippets</a>
+                @endif
+            @endauth
         </div>
     </div>
     @foreach ($snippets->chunk(3) as $snippetChunk)

@@ -1,12 +1,12 @@
 <template>
-    <button class="btn button-primary TB mx-2" @click="showModal">{{ text }}</button>
+    <button v-show="!hidden" class="btn button-primary TB mx-2" @click="showModal" :id='buttonId'>{{ text }}</button>
     <modal-component :title="title" :msg="msg" :show="show" @close="hideModal" @confirm="remove"></modal-component>
 </template>
 
 <script>
 import axios from 'axios'
     export default {
-        props:['text','action','title','msg'],
+        props:['text','action','title','msg','hidden','buttonId'],
         data() {
             return {
                 show: false

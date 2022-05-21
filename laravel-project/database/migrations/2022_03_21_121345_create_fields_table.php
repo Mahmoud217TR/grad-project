@@ -17,8 +17,8 @@ return new class extends Migration
         Schema::create('fields', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Sheet::class)->constrained()->onDelete('cascade');
-            $table->string('title');
-            $table->text('info');
+            $table->string('title')->nullable();
+            $table->text('info')->nullable();
             $table->timestamps();
         });
     }

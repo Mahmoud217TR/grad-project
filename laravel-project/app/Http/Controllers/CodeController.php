@@ -26,6 +26,19 @@ class CodeController extends Controller
         return view('code.index',compact('codes'));
     }
 
+    public function requested(){
+        $this->authorize('viewall',Code::class);
+        $codes = Code::Requested()->paginate(9);
+        return view('code.index',compact('codes'));
+    }
+
+    public function approve(Code $code){
+        $this->authorize('update',$code);
+        $code->approve();
+        event(new ModificationEvent($code,"Code", auth()->user()));
+        return redirect()->route('code.show',$code);
+    }
+
     public function create(){
         $this->authorize('create', Code::class);
         return view('code.create', ['code'=>new Code]);
@@ -65,7 +78,6 @@ class CodeController extends Controller
     public function destroy(Code $code){
         $this->authorize('delete',$code);
         event(new DeletionEvent($code,"Code",auth()->user()));
-        $code->delete();
         // flash a message
         return route('code.index');
     }

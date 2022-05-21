@@ -97,4 +97,10 @@ class Language extends Model
     public function isRequested(){
         return $this->statusValue() == self::getStatus('requested');
     }
+
+    public function approve(){
+        if($this->isRequested()){
+            $this->update(['status'=>1]);
+        }
+    }
 }

@@ -5,7 +5,12 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <a href="{{ route('code.create') }}" class="btn button-primary">Create a new Code</a>
+            @auth
+                <a href="{{ route('language.create') }}" class="btn button-primary mx-2">Create a Language</a>
+                @if (auth()->user()->isWebAdmin())
+                    <a href="{{ route('language.requested') }}" class="btn button-primary mx-2">Requested Languages</a>
+                @endif
+            @endauth
         </div>
     </div>
     @foreach ($languages->chunk(3) as $languageChunk)
