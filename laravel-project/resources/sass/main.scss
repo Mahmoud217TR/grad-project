@@ -252,7 +252,7 @@ padding-left: 0.5rem;
         .btn-tag{
             width: 100%;
             color:$PrimaryText;
-            background-color: #505152;            ;
+            background-color: #505152;            
             border-radius: 2rem;
             margin: 0.4rem;
             padding-left: 2rem;
@@ -443,6 +443,17 @@ padding-left: 0.5rem;
     border-color: $Primary;
 }
 
+//sheet
+.button-pri-sheet{
+    background-color:$Primary;
+    color:#EEEBD0;
+    }
+.button-sec-sheet{
+    background-color:  #505152!important;;
+    color:#EEEBD0;
+    }    
+.sheet-box{
+    
 .reply-list{
 	background-color:black;
 	height: 0.13rem!important;
@@ -518,9 +529,6 @@ padding-left: 0.5rem;
      }
     }
     .showSheet{
-     
-        
-
     border-color: $Primary;
     border-top-left-radius: 1.3rem;
     border-bottom-right-radius: 1.3rem;
@@ -528,6 +536,19 @@ padding-left: 0.5rem;
 
     background:rgba(97, 87,84, 0.29);
     box-shadow: 0px 0px 0.4rem 0.7rem rgba(20, 20, 20, 0.5); 
+    
+    label{
+    
+        font-size: 1.3rem!important;
+}
+
+}
+.btnReport{
+    border-radius:20px;
+    margin-top:5px;
+    width:80%;
+    border-color: #FF2E00;
+  }
     border-color: black;
             min-height: 300px;
             width:90%;

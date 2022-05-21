@@ -38,9 +38,11 @@
         @include('layouts.nav')
       {{--end navbar--}}
       {{--content--}}
+      
         <main class="my-4">
             @yield('content')
         </main>
+      
       {{--footer--}}
         @include('layouts.footer')
       {{--end footer--}}
