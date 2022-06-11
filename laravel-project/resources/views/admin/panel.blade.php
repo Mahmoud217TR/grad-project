@@ -9,7 +9,7 @@
         <div class="row py-3 py-md-1 adminbut my-2 my-md-2 mx-sm-0 mx-1">
             <div class=" justify-content-start d-flex flex-wrap cont">
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn TB">Posts</a>
+                    <a href="{{ route('post.index') }}" class="btn-tag btn TB">Posts</a>
                 </div>
                 <div class="div-tag">
                     <a href="{{ route('code.index') }}" class="btn-tag btn TB">Codes</a>
@@ -24,7 +24,7 @@
                     <a href="{{ route('logs') }}" class="btn-tag btn TB">Logs</a>
                 </div>
                 <div class="div-tag">
-                    <a href="#" class="btn-tag btn TB ">Reports</a>
+                    <a href="{{ route('report.index') }}" class="btn-tag btn TB ">Reports</a>
                 </div>
                 <div class="div-tag">
                     <a href="{{ route('telescope') }}" class="btn-tag btn TB">Telescope</a>
