@@ -25,6 +25,10 @@ const SCOUT_MODELS = [
     "Language",
     "Code",
     "Snippet",
+	"Sheet",
+	"Fields",
+	"Report",
+	"Log",
 ];
 
 Artisan::command('inspire', function () {
