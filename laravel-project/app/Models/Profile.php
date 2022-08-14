@@ -14,6 +14,7 @@ class Profile extends Pivot
         'bio',
         'profile_pic',
         'visits',
+        'user_id',
     ];
 
     protected $attributes = [
